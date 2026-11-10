@@ -307,6 +307,58 @@
     .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; }
   }
 
+
+  /* 層次：區塊色帶、雙欄故事、方案切換 */
+  .band { position: relative; }
+  .band-deep { background: linear-gradient(180deg, #0E1815, #0B1310); border-block: 1px solid rgba(255,255,255,.04); }
+  .band-solution { background: radial-gradient(60% 70% at 0% 0%, rgba(111,221,185,.10), transparent 70%), radial-gradient(50% 60% at 100% 100%, rgba(240,182,107,.07), transparent 70%), linear-gradient(180deg, #102219, #0C1913); border-block: 1px solid rgba(111,221,185,.10); }
+  .band > .wrap.section { padding-block: 80px 80px; }
+  .h2 em, .story h3 em { font-style: normal; color: var(--mint); }
+  .lead { margin: -12px 0 0; color: var(--muted); font-size: 16px; }
+  .sec-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 32px; margin-bottom: 8px; }
+  .sec-head .h2 { margin-bottom: 20px; }
+
+  .story { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 32px 72px; padding-block: 88px; }
+  .story-side { position: sticky; top: 110px; align-self: start; display: flex; flex-direction: column; gap: 12px; }
+  .story-side .h2 { margin: 0; font-size: clamp(30px, 3.6vw, 44px); }
+  .story-count { margin: 18px 0 0; font-family: var(--display); font-size: 13px; letter-spacing: .3em; color: var(--muted); }
+  .who-mini { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .who-mini span { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px 4px 8px; }
+  .who-mini .ic { width: 16px; height: 16px; color: var(--mint); }
+  .story-list { display: flex; flex-direction: column; }
+  .story-item { padding: 40px 0; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 14px; }
+  .story-item:first-child { padding-top: 0; border-top: 0; }
+  .story-no { margin: 0; font-family: var(--display); font-size: 13px; letter-spacing: .14em; color: var(--mint); }
+  .story-item h3 { margin: 6px 0 0; font-size: clamp(22px, 2.4vw, 28px); line-height: 1.35; }
+  .story-item p:last-child { margin: 0; color: var(--muted); font-size: 15px; max-width: 34em; }
+  .story-card { background: linear-gradient(160deg, #18302A, #12221E); border: 1px solid rgba(111,221,185,.16); border-radius: 18px; padding: 18px; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; max-width: 420px; box-shadow: 0 24px 50px -30px rgba(0,0,0,.9); }
+  .story-card small { font-size: 12px; color: var(--muted); margin-bottom: 2px; }
+  .story-card .q { background: var(--chat); color: var(--ink); font-size: 14px; padding: 6px 12px; border-radius: 14px 14px 14px 4px; }
+  .story-card .note { font-size: 12px; color: var(--warm); }
+  .story-card .todo { font-size: 14px; color: #D6DDD8; display: flex; align-items: center; gap: 8px; }
+  .story-card .todo::before { content: ""; width: 14px; height: 14px; border-radius: 4px; border: 1.5px solid var(--line-2); }
+  .empty-menu { display: grid; grid-template-columns: repeat(3, 44px); gap: 4px; padding: 4px; background: #070B0A; border-radius: 10px; }
+  .empty-menu i { height: 30px; border-radius: 6px; background: #22302C; }
+
+  .mode { display: inline-flex; padding: 4px; border-radius: 999px; background: rgba(255,255,255,.04); border: 1px solid var(--line); margin-bottom: 20px; }
+  .mode button { font: inherit; font-size: 15px; font-weight: 700; color: var(--muted); background: transparent; border: 0; padding: 10px 22px; border-radius: 999px; cursor: pointer; transition: background .2s, color .2s; }
+  .mode button[aria-selected="true"] { background: var(--mint); color: var(--mint-ink); }
+  .mode-note { margin: 0 0 26px; color: var(--muted); font-size: 15px; }
+  .plan .note { margin: -8px 0 0; font-size: 13px; color: var(--warm); }
+
+  .promise-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 0 32px; }
+  .pr { padding: 24px 0; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 6px; }
+  .pr .ic { width: 28px; height: 28px; color: var(--mint); margin-bottom: 6px; }
+  .pr h3 { margin: 0; font-size: 18px; }
+  .pr p { margin: 0; color: var(--muted); font-size: 14px; }
+
+  @media (max-width: 860px) {
+    .story { grid-template-columns: 1fr; padding-block: 64px; }
+    .story-side { position: static; }
+    .story-item { padding: 32px 0; }
+    .band > .wrap.section { padding-block: 60px; }
+  }
+
   /* 滾動浮現動畫 */
   .reveal-on .rv { opacity: 0; transform: translateY(28px) scale(.97); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); transition-delay: calc(var(--i, 0) * 90ms); will-change: opacity, transform; }
   .reveal-on .rv.in { opacity: 1; transform: none; }
@@ -426,26 +478,65 @@
     </div>
   </section>
 
-  <!-- WHO -->
-  <section class="who" aria-label="適合的店家">
-    <div class="wrap">
-      <p>適合沒時間研究 LINE 的你</p>
-      <div class="who-list">
-        <div class="who-item"><i><svg class="ic"><use href="#i-bowl"></use></svg></i>餐飲小店</div>
-        <div class="who-item"><i><svg class="ic"><use href="#i-nail"></use></svg></i>美業美甲</div>
-        <div class="who-item"><i><svg class="ic"><use href="#i-book"></use></svg></i>補習才藝</div>
-        <div class="who-item"><i><svg class="ic"><use href="#i-paw"></use></svg></i>診所寵物</div>
-        <div class="who-item"><i><svg class="ic"><use href="#i-helmet"></use></svg></i>工程居家</div>
-        <div class="who-item"><i><svg class="ic"><use href="#i-user"></use></svg></i>個人工作室</div>
-        <div class="who-item"><i><svg class="ic"><use href="#i-bag"></use></svg></i>網拍電商</div>
+  <!-- STORY -->
+  <section class="band band-deep" id="story" aria-labelledby="story-h">
+    <div class="wrap story">
+      <div class="story-side">
+        <p class="eyebrow">WHY</p>
+        <h2 class="h2" id="story-h">客人在 LINE 上等，<br /><em>你在店裡忙。</em></h2>
+        <p class="lead">這三件事，是大多數店家的日常。</p>
+        <p class="story-count">01 — 03</p>
+        <div class="who-mini" aria-label="適合的店家">
+          <span><svg class="ic"><use href="#i-bowl"></use></svg>餐飲</span>
+          <span><svg class="ic"><use href="#i-nail"></use></svg>美業</span>
+          <span><svg class="ic"><use href="#i-book"></use></svg>補習</span>
+          <span><svg class="ic"><use href="#i-paw"></use></svg>診所寵物</span>
+          <span><svg class="ic"><use href="#i-helmet"></use></svg>工程居家</span>
+          <span><svg class="ic"><use href="#i-bag"></use></svg>電商</span>
+        </div>
+      </div>
+      <div class="story-list">
+        <article class="story-item">
+          <p class="story-no">01 / 一直被問</p>
+          <div class="story-card" aria-hidden="true">
+            <small>營業中・LINE 又跳出訊息</small>
+            <span class="q">請問營業到幾點？</span>
+            <span class="q">這個多少錢？</span>
+            <span class="q">附近好停車嗎？</span>
+          </div>
+          <h3>同一個問題，<br />一天回二十次。</h3>
+          <p>營業時間、價格、地址天天重複回答，真正想買的客人反而等太久。</p>
+        </article>
+        <article class="story-item">
+          <p class="story-no">02 / 選單空空</p>
+          <div class="story-card" aria-hidden="true">
+            <small>加入好友之後</small>
+            <div class="empty-menu"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <span class="note">客人不知道能點什麼</span>
+          </div>
+          <h3>加了好友，<br />然後就沒有然後。</h3>
+          <p>選單沒規劃，客人不知道能做什麼，好友名單越來越安靜。</p>
+        </article>
+        <article class="story-item">
+          <p class="story-no">03 / 沒空經營</p>
+          <div class="story-card" aria-hidden="true">
+            <small>待辦清單・又延到下週</small>
+            <span class="todo">本月優惠還沒發</span>
+            <span class="todo">節慶選單還沒換</span>
+            <span class="todo">舊客好久沒聯絡</span>
+          </div>
+          <h3>想好好經營，<br />卻總是排不出時間。</h3>
+          <p>活動、優惠、換選單都知道要做，就是一直往後延。</p>
+        </article>
       </div>
     </div>
   </section>
 
   <!-- SERVICES -->
-  <section id="services" class="wrap section">
-    <p class="eyebrow">SERVICES</p>
-    <h2 class="h2">服務項目</h2>
+  <section id="services" class="band band-solution">
+    <div class="wrap section">
+    <p class="eyebrow">SOLUTION</p>
+    <h2 class="h2">交給 Rowan Studio，<br /><em>LINE 自己會做事。</em></h2>
     <div class="grid">
       <article class="svc">
         <div class="vis" aria-hidden="true">
@@ -503,114 +594,13 @@
         <div class="svc-body"><h3>網站與小工具</h3><p>形象網站、活動頁一起做。</p></div>
       </article>
     </div>
-  </section>
-
-  <!-- PRICING -->
-  <section id="pricing" class="wrap section">
-    <p class="eyebrow">PRICING</p>
-    <h2 class="h2">方案價格</h2>
-
-    <div class="plans">
-      <article class="plan">
-        <div class="plan-head"><i><svg class="ic"><use href="#i-store"></use></svg></i><div><h3>入門方案</h3><p class="sub">先把門面做好</p></div></div>
-        <p class="price"><span class="cur">NT$</span><span class="amt">3,000</span><span class="unit">起</span></p>
-        <ul class="feats">
-          <li><svg class="ic"><use href="#i-check"></use></svg>帳號設定＋歡迎訊息</li>
-          <li><svg class="ic"><use href="#i-check"></use></svg>圖文選單 1 頁</li>
-          <li><svg class="ic"><use href="#i-check"></use></svg>自動回覆 5 組</li>
-        </ul>
-        <a href="#contact" class="btn btn-ghost pick" data-plan="入門方案">詢問這個方案</a>
-      </article>
-      <article class="plan featured">
-        <span class="flag">最多人選</span>
-        <div class="plan-head"><i><svg class="ic"><use href="#i-grid"></use></svg></i><div><h3>標準方案</h3><p class="sub">讓帳號幫你接客</p></div></div>
-        <p class="price"><span class="cur">NT$</span><span class="amt">6,800</span><span class="unit">起</span></p>
-        <ul class="feats">
-          <li><svg class="ic"><use href="#i-check"></use></svg>入門方案全部內容</li>
-          <li><svg class="ic"><use href="#i-check"></use></svg>選單 2 頁可切換</li>
-          <li><svg class="ic"><use href="#i-check"></use></svg>自動回覆 15 組＋卡片訊息</li>
-          <li><svg class="ic"><use href="#i-check"></use></svg>操作教學 1 小時</li>
-        </ul>
-        <a href="#contact" class="btn pick" data-plan="標準方案">詢問這個方案</a>
-      </article>
-      <article class="plan">
-        <div class="plan-head"><i><svg class="ic"><use href="#i-flow"></use></svg></i><div><h3>自動化方案</h3><p class="sub">預約、報名自動整理</p></div></div>
-        <p class="price"><span class="cur">NT$</span><span class="amt">15,000</span><span class="unit">起</span></p>
-        <ul class="feats">
-          <li><svg class="ic"><use href="#i-check"></use></svg>流程規劃</li>
-          <li><svg class="ic"><use href="#i-check"></use></svg>線上預約／報名表單</li>
-          <li><svg class="ic"><use href="#i-check"></use></svg>自動進 Google 試算表</li>
-          <li><svg class="ic"><use href="#i-check"></use></svg>新預約即時通知</li>
-        </ul>
-        <a href="#contact" class="btn btn-ghost pick" data-plan="自動化方案">聊聊你的需求</a>
-      </article>
-    </div>
-
-    <div class="care">
-      <h3><svg class="ic"><use href="#i-refresh"></use></svg>每月代管</h3>
-      <div class="care-item"><b>輕量 <span>NT$1,500</span>／月</b><small>換圖 1 次＋推播 2 則</small></div>
-      <div class="care-item"><b>進階 <span>NT$3,000</span>／月</b><small>推播 4 則＋活動選單＋數據回報</small></div>
-    </div>
-
-    <div class="promises">
-      <div class="promise"><i><svg class="ic"><use href="#i-coin"></use></svg></i>50% 訂金開工</div>
-      <div class="promise"><i><svg class="ic"><use href="#i-key"></use></svg></i>不需給帳號密碼</div>
-      <div class="promise"><i><svg class="ic"><use href="#i-clock"></use></svg></i>5–7 個工作天上線</div>
-      <div class="promise"><i><svg class="ic"><use href="#i-teach"></use></svg></i>上線後教你改</div>
-    </div>
-
-    <details class="ala">
-      <summary>單項價目與合作條款<span class="plus" aria-hidden="true">+</span></summary>
-      <div class="ala-body">
-        <div class="ala-group">
-          <h4>基礎設定</h4>
-          <div class="row"><span>帳號開通與基本設定</span><b>NT$800</b></div>
-          <div class="row"><span>圖文選單設計＋設定（1 頁）</span><b>NT$2,000</b></div>
-          <div class="row"><span>頁籤切換：每多 1 頁</span><b>NT$1,500</b></div>
-          <div class="row"><span>關鍵字回覆（含文案，5 組起）</span><b>NT$100／組</b></div>
-        </div>
-        <div class="ala-group">
-          <h4>內容設計</h4>
-          <div class="row"><span>卡片型訊息（左右滑，含圖）</span><b>NT$800／組</b></div>
-          <div class="row"><span>圖文訊息／推播圖</span><b>NT$600／張</b></div>
-          <div class="row"><span>背景圖／歡迎圖設計</span><b>NT$500／張</b></div>
-          <div class="row"><span>線上操作教學（1 小時）</span><b>NT$800</b></div>
-        </div>
-        <div class="ala-group">
-          <h4>進階功能</h4>
-          <div class="row"><span>集點卡設定（含卡面設計）</span><b>NT$1,000</b></div>
-          <div class="row"><span>認證帳號（藍盾）申請協助</span><b>NT$1,200</b></div>
-          <div class="row"><span>會員點數系統（客製）</span><b>NT$15,000 起</b></div>
-          <div class="row"><span>AI 智慧客服</span><b>NT$30,000 起</b></div>
-        </div>
-        <ul class="terms">
-          <li>價格為新台幣、未稅，實際依需求報價</li>
-          <li>確認報價後付 50% 訂金開工，驗收後付尾款</li>
-          <li>超過修改次數，每次 NT$300</li>
-          <li>急件（3 個工作天內）加收 30%</li>
-          <li>LINE 官方帳號月費、AI 使用費由客戶自付</li>
-          <li>Logo、照片、價目等素材由客戶提供</li>
-        </ul>
-      </div>
-    </details>
-  </section>
-
-  <!-- PROCESS -->
-  <section id="process" class="wrap section">
-    <p class="eyebrow">PROCESS</p>
-    <h2 class="h2">合作流程</h2>
-    <div class="steps">
-      <div class="step"><span class="n">1</span><i><svg class="ic"><use href="#i-chat"></use></svg></i><h3>免費諮詢</h3><p>加 LINE 聊聊你的店</p></div>
-      <div class="step"><span class="n">2</span><i><svg class="ic"><use href="#i-clip"></use></svg></i><h3>規劃報價</h3><p>選單草圖＋明確報價</p></div>
-      <div class="step"><span class="n">3</span><i><svg class="ic"><use href="#i-pen"></use></svg></i><h3>設計設定</h3><p>隨時給你看進度</p></div>
-      <div class="step"><span class="n">4</span><i><svg class="ic"><use href="#i-rocket"></use></svg></i><h3>上線教學</h3><p>教你自己改內容</p></div>
     </div>
   </section>
 
   <!-- WORKS -->
   <section class="wrap section">
     <p class="eyebrow">WORKS</p>
-    <h2 class="h2">圖文選單作品</h2>
+    <h2 class="h2">做過的<em>圖文選單</em></h2>
     <div class="gallery">
       <figure class="shot-item big">
         <button type="button" class="zoom" data-src="images/menu-restaurant.webp" data-alt="餐飲小店圖文選單：今日菜單、線上訂位、外帶預點、本月優惠、會員集點、交通資訊" aria-label="放大看：餐飲小店圖文選單">
@@ -650,11 +640,172 @@
     <img id="viewer-img" src="" alt="" />
   </dialog>
 
+  <!-- PRICING -->
+  <section id="pricing" class="band band-deep">
+    <div class="wrap section">
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">PRICING</p>
+        <h2 class="h2">一次買斷，<em>或月費全包。</em></h2>
+      </div>
+      <div class="mode" role="tablist" aria-label="付費方式">
+        <button type="button" role="tab" id="tab-buy" aria-selected="true" aria-controls="panel-buy">一次買斷</button>
+        <button type="button" role="tab" id="tab-mon" aria-selected="false" aria-controls="panel-mon" tabindex="-1">月費方案</button>
+      </div>
+    </div>
+    <div id="panel-buy" role="tabpanel" aria-labelledby="tab-buy">
+      <p class="mode-note">做好就是你的，不用每月繳。適合想自己管理的店家。</p>
+      <div class="plans">
+      <article class="plan">
+        <div class="plan-head"><i><svg class="ic"><use href="#i-store"></use></svg></i><div><h3>入門方案</h3><p class="sub">先把門面做好</p></div></div>
+        <p class="price"><span class="cur">NT$</span><span class="amt">3,000</span><span class="unit">起</span></p>
+        <p class="note">一次付清・做好就是你的</p>
+        <ul class="feats">
+          <li><svg class="ic"><use href="#i-check"></use></svg>帳號設定＋歡迎訊息</li>
+          <li><svg class="ic"><use href="#i-check"></use></svg>圖文選單 1 頁</li>
+          <li><svg class="ic"><use href="#i-check"></use></svg>自動回覆 5 組</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost pick" data-plan="買斷・入門方案">詢問這個方案</a>
+      </article>
+      <article class="plan featured">
+        <span class="flag">最多人選</span>
+        <div class="plan-head"><i><svg class="ic"><use href="#i-grid"></use></svg></i><div><h3>標準方案</h3><p class="sub">讓帳號幫你接客</p></div></div>
+        <p class="price"><span class="cur">NT$</span><span class="amt">6,800</span><span class="unit">起</span></p>
+        <p class="note">一次付清・做好就是你的</p>
+        <ul class="feats">
+          <li><svg class="ic"><use href="#i-check"></use></svg>入門方案全部內容</li>
+          <li><svg class="ic"><use href="#i-check"></use></svg>選單 2 頁可切換</li>
+          <li><svg class="ic"><use href="#i-check"></use></svg>自動回覆 15 組＋卡片訊息</li>
+          <li><svg class="ic"><use href="#i-check"></use></svg>操作教學 1 小時</li>
+        </ul>
+        <a href="#contact" class="btn pick" data-plan="買斷・標準方案">詢問這個方案</a>
+      </article>
+      <article class="plan">
+        <div class="plan-head"><i><svg class="ic"><use href="#i-flow"></use></svg></i><div><h3>自動化方案</h3><p class="sub">預約、報名自動整理</p></div></div>
+        <p class="price"><span class="cur">NT$</span><span class="amt">15,000</span><span class="unit">起</span></p>
+        <p class="note">依流程複雜度報價</p>
+        <ul class="feats">
+          <li><svg class="ic"><use href="#i-check"></use></svg>流程規劃</li>
+          <li><svg class="ic"><use href="#i-check"></use></svg>線上預約／報名表單</li>
+          <li><svg class="ic"><use href="#i-check"></use></svg>自動進 Google 試算表</li>
+          <li><svg class="ic"><use href="#i-check"></use></svg>新預約即時通知</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost pick" data-plan="買斷・自動化方案">詢問這個方案</a>
+      </article>
+      </div>
+    </div>
+    <div id="panel-mon" role="tabpanel" aria-labelledby="tab-mon" hidden>
+      <p class="mode-note">不用一次付一大筆，每月有人幫你更新。月繳不綁約，隨時可停。</p>
+      <div class="plans">
+      <article class="plan">
+        <div class="plan-head"><i><svg class="ic"><use href="#i-refresh"></use></svg></i><div><h3>輕量代管</h3><p class="sub">有人幫你顧選單</p></div></div>
+        <p class="price"><span class="cur">NT$</span><span class="amt">1,500</span><span class="unit">／月</span></p>
+        <p class="note">建置費 NT$3,000・年繳免建置費</p>
+        <ul class="feats">
+          <li><svg class="ic"><use href="#i-check"></use></svg>入門方案建置</li>
+          <li><svg class="ic"><use href="#i-check"></use></svg>每月換選單或圖文 1 次</li>
+          <li><svg class="ic"><use href="#i-check"></use></svg>推播文案＋圖 2 則</li>
+          <li><svg class="ic"><use href="#i-check"></use></svg>小修改隨時處理</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost pick" data-plan="月費・輕量代管">詢問這個方案</a>
+      </article>
+      <article class="plan featured">
+        <span class="flag">推薦</span>
+        <div class="plan-head"><i><svg class="ic"><use href="#i-star"></use></svg></i><div><h3>AI 智慧客服</h3><p class="sub">打烊後也有人回</p></div></div>
+        <p class="price"><span class="cur">NT$</span><span class="amt">1,680</span><span class="unit">／月</span></p>
+        <p class="note">建置費 NT$8,000・年繳免建置費</p>
+        <ul class="feats">
+          <li><svg class="ic"><use href="#i-check"></use></svg>AI 依你的資料回答問題</li>
+          <li><svg class="ic"><use href="#i-check"></use></svg>答不出來自動轉真人</li>
+          <li><svg class="ic"><use href="#i-check"></use></svg>含圖文選單設計 1 頁</li>
+          <li><svg class="ic"><use href="#i-check"></use></svg>每月對話重點整理</li>
+        </ul>
+        <a href="#contact" class="btn pick" data-plan="月費・AI 智慧客服">詢問這個方案</a>
+      </article>
+      <article class="plan">
+        <div class="plan-head"><i><svg class="ic"><use href="#i-grid"></use></svg></i><div><h3>進階代管</h3><p class="sub">整個 LINE 交給我</p></div></div>
+        <p class="price"><span class="cur">NT$</span><span class="amt">3,000</span><span class="unit">／月</span></p>
+        <p class="note">建置費 NT$6,800・年繳免建置費</p>
+        <ul class="feats">
+          <li><svg class="ic"><use href="#i-check"></use></svg>標準方案建置</li>
+          <li><svg class="ic"><use href="#i-check"></use></svg>推播 4 則＋節慶活動選單</li>
+          <li><svg class="ic"><use href="#i-check"></use></svg>每月數據回報</li>
+          <li><svg class="ic"><use href="#i-check"></use></svg>優先處理</li>
+        </ul>
+        <a href="#contact" class="btn btn-ghost pick" data-plan="月費・進階代管">詢問這個方案</a>
+      </article>
+      </div>
+    </div>
+
+    <details class="ala">
+      <summary>單項價目與合作條款<span class="plus" aria-hidden="true">+</span></summary>
+      <div class="ala-body">
+        <div class="ala-group">
+          <h4>基礎設定</h4>
+          <div class="row"><span>帳號開通與基本設定</span><b>NT$800</b></div>
+          <div class="row"><span>圖文選單設計＋設定（1 頁）</span><b>NT$2,000</b></div>
+          <div class="row"><span>頁籤切換：每多 1 頁</span><b>NT$1,500</b></div>
+          <div class="row"><span>關鍵字回覆（含文案，5 組起）</span><b>NT$100／組</b></div>
+        </div>
+        <div class="ala-group">
+          <h4>內容設計</h4>
+          <div class="row"><span>卡片型訊息（左右滑，含圖）</span><b>NT$800／組</b></div>
+          <div class="row"><span>圖文訊息／推播圖</span><b>NT$600／張</b></div>
+          <div class="row"><span>背景圖／歡迎圖設計</span><b>NT$500／張</b></div>
+          <div class="row"><span>線上操作教學（1 小時）</span><b>NT$800</b></div>
+        </div>
+        <div class="ala-group">
+          <h4>進階功能</h4>
+          <div class="row"><span>集點卡設定（含卡面設計）</span><b>NT$1,000</b></div>
+          <div class="row"><span>認證帳號（藍盾）申請協助</span><b>NT$1,200</b></div>
+          <div class="row"><span>會員點數系統（客製）</span><b>NT$15,000 起</b></div>
+          <div class="row"><span>AI 智慧客服</span><b>NT$30,000 起</b></div>
+        </div>
+        <ul class="terms">
+          <li>價格為新台幣、未稅，實際依需求報價</li>
+          <li>確認報價後付 50% 訂金開工，驗收後付尾款</li>
+          <li>超過修改次數，每次 NT$300</li>
+          <li>急件（3 個工作天內）加收 30%</li>
+          <li>LINE 官方帳號月費、AI 使用費由客戶自付</li>
+          <li>Logo、照片、價目等素材由客戶提供</li>
+        </ul>
+      </div>
+    </details>
+    </div>
+  </section>
+
+  <!-- PROMISE -->
+  <section class="wrap section" aria-labelledby="promise-h">
+    <p class="eyebrow">PROMISE</p>
+    <h2 class="h2" id="promise-h">合作之前，<em>先讓你放心。</em></h2>
+    <div class="promise-grid">
+      <div class="pr"><svg class="ic"><use href="#i-pen"></use></svg><h3>先看草圖，再付訂金</h3><p>免費先畫一張你的選單草圖，喜歡再開始。</p></div>
+      <div class="pr"><svg class="ic"><use href="#i-key"></use></svg><h3>帳號永遠是你的</h3><p>用你的名義申請，不用給密碼，加我為管理員就好。</p></div>
+      <div class="pr"><svg class="ic"><use href="#i-teach"></use></svg><h3>教你自己改</h3><p>上線後教你改文字和優惠，不用每次都找人。</p></div>
+      <div class="pr"><svg class="ic"><use href="#i-refresh"></use></svg><h3>月費不綁約</h3><p>月繳隨時可停，帳號和設定都留在你手上。</p></div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" class="band band-deep">
+    <div class="wrap section">
+    <p class="eyebrow">PROCESS</p>
+    <h2 class="h2">合作流程</h2>
+    <div class="steps">
+      <div class="step"><span class="n">1</span><i><svg class="ic"><use href="#i-chat"></use></svg></i><h3>免費諮詢</h3><p>加 LINE 聊聊你的店</p></div>
+      <div class="step"><span class="n">2</span><i><svg class="ic"><use href="#i-clip"></use></svg></i><h3>規劃報價</h3><p>選單草圖＋明確報價</p></div>
+      <div class="step"><span class="n">3</span><i><svg class="ic"><use href="#i-pen"></use></svg></i><h3>設計設定</h3><p>隨時給你看進度</p></div>
+      <div class="step"><span class="n">4</span><i><svg class="ic"><use href="#i-rocket"></use></svg></i><h3>上線教學</h3><p>教你自己改內容</p></div>
+    </div>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section id="faq" class="wrap section">
     <p class="eyebrow">FAQ</p>
     <h2 class="h2">常見問題</h2>
     <div class="faq">
+      <details><summary>一次買斷和月費方案差在哪？<span class="plus" aria-hidden="true">+</span></summary><p>買斷是一次付清，做好後你自己管理，之後要更新再單次計費。月費是每月幫你更新內容、推播和維護，年繳免建置費。不確定的話，先免費諮詢再決定。</p></details>
       <details><summary>我還沒有 LINE 官方帳號，可以找你嗎？<span class="plus" aria-hidden="true">+</span></summary><p>可以，申請帳號是免費的，我會一步一步帶你開好，再接著做選單和自動回應。</p></details>
       <details><summary>需要給你帳號密碼嗎？<span class="plus" aria-hidden="true">+</span></summary><p>不需要。你只要在後台把我加為「管理員」，結案後隨時可以移除權限，帳號始終在你手上。</p></details>
       <details><summary>做好大概要多久？<span class="plus" aria-hidden="true">+</span></summary><p>入門與標準方案約 5–7 個工作天；自動化專案會在報價時給你明確時程。急件（3 個工作天內）加收 30%。</p></details>
@@ -683,7 +834,7 @@
             <select id="f-type"><option>餐飲小店</option><option>美業・美甲美睫</option><option>補習班・才藝教室</option><option>診所・寵物店</option><option>工程・居家服務</option><option>個人工作室</option><option>網拍電商</option><option>其他</option></select>
           </label>
           <label for="f-plan">有興趣的方案
-            <select id="f-plan"><option>還不確定</option><option>入門方案</option><option>標準方案</option><option>自動化方案</option><option>每月代管</option><option>AI 智慧客服</option></select>
+            <select id="f-plan"><option>還不確定</option><option>買斷・入門方案</option><option>買斷・標準方案</option><option>買斷・自動化方案</option><option>月費・輕量代管</option><option>月費・AI 智慧客服</option><option>月費・進階代管</option></select>
           </label>
         </div>
         <label for="f-status">目前狀況
@@ -747,7 +898,7 @@
   (function () {
     if (!('IntersectionObserver' in window)) return;
     if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const groups = ['.who-item', '.svc', '.plan', '.care', '.promise', '.ala', '.step', '.shot-item', '.faq details', '.contact', '.eyebrow', '.h2'];
+    const groups = ['.story-item', '.who-mini', '.svc', '.plan', '.mode-note', '.ala', '.pr', '.step', '.shot-item', '.faq details', '.contact', '.eyebrow', '.h2', '.lead'];
     const els = [];
     groups.forEach(sel => document.querySelectorAll(sel).forEach(el => {
       if (els.includes(el)) return;
@@ -760,6 +911,25 @@
       if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
     }), { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
     els.forEach(el => io.observe(el));
+  })();
+  // 一次買斷／月費方案切換
+  (function () {
+    const tabs = [document.getElementById('tab-buy'), document.getElementById('tab-mon')];
+    function show(t) {
+      tabs.forEach(x => {
+        const on = x === t;
+        x.setAttribute('aria-selected', on); x.tabIndex = on ? 0 : -1;
+        const panel = document.getElementById(x.getAttribute('aria-controls'));
+        panel.hidden = !on;
+        if (on) panel.querySelectorAll('.rv').forEach(el => el.classList.add('in'));
+      });
+    }
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => show(t));
+      t.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { const n = tabs[(i + 1) % 2]; show(n); n.focus(); }
+      });
+    });
   })();
 </script>
 </body>
