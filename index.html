@@ -223,6 +223,40 @@
   .work h3 { margin: 0; font-size: 17px; }
   .work p { margin: 0; color: var(--muted); font-size: 14px; }
 
+
+  /* 案例示意 */
+  .shot { position: relative; overflow: hidden; gap: 14px; padding: 16px; }
+  .cs-a { background: #1E293B; }
+  .cs-web { width: 58%; max-width: 220px; background: #F8FAFC; border-radius: 10px; overflow: hidden; box-shadow: 0 12px 24px -12px rgba(0,0,0,.5); }
+  .cs-web .bar { height: 16px; background: #E2E8F0; display: flex; align-items: center; gap: 4px; padding: 0 7px; }
+  .cs-web .bar i { width: 5px; height: 5px; border-radius: 50%; background: #94A3B8; }
+  .cs-web .hero-m { background: #0F172A; color: #fff; padding: 14px 12px; display: flex; flex-direction: column; gap: 4px; }
+  .cs-web .hero-m b { font-size: 15px; }
+  .cs-web .hero-m span { font-size: 11px; color: #FBBF24; }
+  .cs-web .hero-m em { font-style: normal; align-self: flex-start; margin-top: 6px; background: #D97706; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; }
+  .cs-arrow { color: #FBBF24; width: 26px; height: 26px; }
+  .cs-sheet { width: 22%; max-width: 84px; background: #fff; border-radius: 8px; padding: 6px; display: grid; gap: 4px; }
+  .cs-sheet div { height: 9px; border-radius: 2px; background: #E2E8F0; }
+  .cs-sheet .sh-h { background: #16A34A; }
+  .cs-sheet .new { background: #FDE68A; }
+  .cs-b { background: #8CABD9; align-items: center; }
+  .cs-card { width: 62%; max-width: 220px; background: #fff; border-radius: 12px; overflow: hidden; font-size: 11px; box-shadow: 0 12px 24px -12px rgba(15,34,64,.5); }
+  .cs-card .hd { background: #0F2240; color: #fff; padding: 9px 12px; border-bottom: 3px solid #06B6D4; display: flex; flex-direction: column; }
+  .cs-card .hd small { font-size: 8.5px; letter-spacing: 2px; color: #67E8F9; font-family: var(--display); }
+  .cs-card .hd b { font-size: 13px; }
+  .cs-card .rw { display: flex; justify-content: space-between; padding: 4px 12px; color: #0F2240; }
+  .cs-card .rw span:first-child { color: #64748B; }
+  .cs-card .go { margin: 6px 10px 10px; background: #0F2240; color: #fff; text-align: center; border-radius: 7px; padding: 6px; font-weight: 700; }
+  .cs-done { align-self: flex-end; margin-bottom: 8px; background: #A7E58B; color: #14532D; font-size: 11px; font-weight: 700; line-height: 1.5; padding: 7px 10px; border-radius: 12px 12px 4px 12px; display: flex; flex-direction: column; }
+  .cs-done .ic { width: 14px; height: 14px; }
+  .cs-c { background: var(--teal-soft); }
+  .cs-menu { width: 58%; max-width: 210px; }
+  .cs-menu div { height: 48px; }
+  .cs-move { font-size: 12px; font-weight: 700; color: var(--teal-ink); line-height: 1.4; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px; }
+  .cs-move .ic { width: 26px; height: 26px; }
+  .tags-s { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tags-s span { font-size: 12px; font-weight: 700; color: var(--teal-ink); background: var(--teal-soft); padding: 2px 10px; border-radius: 999px; }
+
   /* FAQ */
   .faq { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); column-gap: 48px; align-items: start; }
   .faq details { border-top: 1px solid var(--line-strong); padding: 15px 0; }
@@ -297,6 +331,7 @@
   <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"></circle><path d="M11 12l9-9M17 6l3 3M14 9l2 2"></path></symbol>
   <symbol id="i-teach" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"></rect><path d="M8 20h8M12 16v4M8 9l2 2 4-4"></path></symbol>
   <symbol id="i-map" viewBox="0 0 24 24"><path d="M3 6l6-3 6 3 6-3v15l-6 3-6-3-6 3z"></path><path d="M9 3v15M15 6v15"></path></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></symbol>
   <symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M21 16l-5-5L5 20"></path></symbol>
 </svg>
 
@@ -544,19 +579,47 @@
     <h2 class="h2">作品案例</h2>
     <div class="grid">
       <article class="work">
-        <div class="shot real" aria-hidden="true"><svg class="ic" style="width:64px;height:64px;stroke-width:1.6"><use href="#i-helmet"></use></svg></div>
-        <h3>在地工程行｜官網＋線上洽詢</h3>
-        <p>詢問資料自動進試算表，不漏接。</p>
+        <div class="shot cs-a" aria-hidden="true">
+          <div class="cs-web">
+            <div class="bar"><i></i><i></i><i></i></div>
+            <div class="hero-m"><b>宏明工程行</b><span>在地土木統包</span><em>填寫工程洽詢</em></div>
+          </div>
+          <svg class="ic cs-arrow"><use href="#i-arrow"></use></svg>
+          <div class="cs-sheet"><div class="sh-h"></div><div></div><div></div><div class="new"></div></div>
+        </div>
+        <div class="tags-s"><span>形象官網</span><span>表單自動化</span></div>
+        <h3>工程行｜官網＋洽詢自動進試算表</h3>
+        <p>客人填表，資料直接進 Google 試算表，不漏接。</p>
       </article>
       <article class="work">
-        <div class="shot todo"><svg class="ic"><use href="#i-nail"></use></svg>案例整理中</div>
-        <h3>美業工作室｜預約選單＋集點卡</h3>
-        <p>徵求合作店家，前 3 家享優惠。</p>
+        <div class="shot cs-b" aria-hidden="true">
+          <div class="cs-card">
+            <div class="hd"><small>DAILY REPORT</small><b>今日工作日報</b></div>
+            <div class="rw"><span>今日行程</span><span>客戶廠區</span></div>
+            <div class="rw"><span>追蹤中</span><span>3 件</span></div>
+            <div class="go">開始填寫（約 2 分鐘）</div>
+          </div>
+          <div class="cs-done"><svg class="ic"><use href="#i-check"></use></svg>已存檔<br />待辦已建立</div>
+        </div>
+        <div class="tags-s"><span>LINE 推播</span><span>手機表單</span><span>自動待辦</span></div>
+        <h3>現場工程師｜LINE 日報小秘書</h3>
+        <p>每天 LINE 提醒，2 分鐘填完，待辦自動建立。</p>
       </article>
       <article class="work">
-        <div class="shot todo"><svg class="ic"><use href="#i-bowl"></use></svg>案例整理中</div>
-        <h3>餐飲小店｜菜單選單＋自動回覆</h3>
-        <p>徵求合作店家，前 3 家享優惠。</p>
+        <div class="shot cs-c" aria-hidden="true">
+          <div class="m-menu cs-menu">
+            <div class="on"><svg class="ic"><use href="#i-cal"></use></svg>線上掛號</div>
+            <div><svg class="ic"><use href="#i-clock"></use></svg>門診時間</div>
+            <div><svg class="ic"><use href="#i-pin"></use></svg>交通位置</div>
+            <div><svg class="ic"><use href="#i-book"></use></svg>衛教資訊</div>
+            <div><svg class="ic"><use href="#i-list"></use></svg>自費項目</div>
+            <div><svg class="ic"><use href="#i-chat"></use></svg>聯絡我們</div>
+          </div>
+          <div class="cs-move"><svg class="ic"><use href="#i-arrow"></use></svg>搬到診所<br />自己的帳號</div>
+        </div>
+        <div class="tags-s"><span>圖文選單</span><span>自動回應</span></div>
+        <h3>診所｜選單搬家＋自動回應</h3>
+        <p>解約原廠商，選單與回覆移回診所自己管。</p>
       </article>
     </div>
   </section>
