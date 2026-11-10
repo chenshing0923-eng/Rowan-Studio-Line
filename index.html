@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rowan Studio | LINE 官方帳號建置與代管</title>
+  <meta name="description" content="Rowan Studio 專門幫店家與中小企業建置 LINE 官方帳號：帳號開通、圖文選單設計、自動回覆、集點卡與優惠券、群發訊息代操與月費代管，讓客人加好友就能下單、預約、回購。" />
+  <meta property="og:title" content="Rowan Studio | LINE 官方帳號建置與代管" />
+  <meta property="og:description" content="讓客人加好友就能下單、預約、回購。從開通到代管，一次幫你搞定 LINE 官方帳號。" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { line: { DEFAULT: '#06C755', dark: '#05A847', light: '#E8F9EE' } } } }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    body { font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif; }
+    .bubble { position: relative; }
+    .bubble-l::before { content: ""; position: absolute; left: -6px; top: 10px; border: 6px solid transparent; border-right-color: #fff; border-left: 0; }
+    .bubble-r::before { content: ""; position: absolute; right: -6px; top: 10px; border: 6px solid transparent; border-left-color: #06C755; border-right: 0; }
+    details summary::-webkit-details-marker { display: none; }
+    details[open] .faq-icon { transform: rotate(45deg); }
+  </style>
+</head>
+<body class="bg-white text-slate-800 antialiased">
+
+  <!-- Header -->
+  <header class="fixed top-0 inset-x-0 bg-white/95 backdrop-blur border-b border-slate-200 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 flex justify-between items-center h-16">
+      <a href="#" class="flex items-center gap-2.5">
+        <span class="w-9 h-9 rounded-xl bg-line text-white flex items-center justify-center text-lg shadow"><i class="fa-brands fa-line"></i></span>
+        <span class="leading-tight">
+          <span class="block font-black text-lg tracking-tight text-slate-900">Rowan Studio</span>
+          <span class="block text-[11px] text-slate-500 font-semibold">LINE 官方帳號建置・代管</span>
+        </span>
+      </a>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+        <a href="#services" class="hover:text-line-dark">服務項目</a>
+        <a href="#plans" class="hover:text-line-dark">方案價格</a>
+        <a href="#process" class="hover:text-line-dark">合作流程</a>
+        <a href="#cases" class="hover:text-line-dark">案例</a>
+        <a href="#faq" class="hover:text-line-dark">常見問題</a>
+      </nav>
+      <a href="#contact" class="px-4 py-2 bg-line hover:bg-line-dark text-white text-sm font-bold rounded-lg shadow transition">免費諮詢</a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="pt-28 pb-16 lg:pt-36 lg:pb-24 bg-gradient-to-b from-line-light to-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-12 items-center">
+      <div class="text-center lg:text-left">
+        <span class="inline-flex items-center gap-1.5 py-1 px-3 bg-white text-line-dark text-xs font-bold rounded-full border border-line/30 mb-5">
+          <i class="fa-solid fa-store"></i> 專為店家與中小企業設計
+        </span>
+        <h1 class="text-4xl sm:text-5xl font-black tracking-tight leading-tight text-slate-900 mb-5">
+          讓客人<span class="text-line">加好友</span>，<br />就能下單、預約、回購
+        </h1>
+        <p class="text-slate-600 text-base sm:text-lg leading-relaxed mb-8 max-w-xl mx-auto lg:mx-0">
+          你專心做生意，LINE 官方帳號交給我們。從開通、圖文選單、自動回覆到每月訊息代操，一次幫你建好一套<strong>會自己接單</strong>的 LINE。
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+          <a href="#contact" class="px-7 py-3.5 bg-line hover:bg-line-dark text-white font-bold rounded-xl shadow-lg transition flex items-center justify-center gap-2">
+            <i class="fa-brands fa-line text-xl"></i> 免費諮詢我的店適合怎麼做
+          </a>
+          <a href="#plans" class="px-7 py-3.5 bg-white hover:bg-slate-50 text-slate-700 font-bold rounded-xl border border-slate-200 transition text-center">看方案價格</a>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-x-6 gap-y-2 justify-center lg:justify-start text-sm text-slate-500">
+          <span><i class="fa-solid fa-check text-line mr-1"></i>不綁約</span>
+          <span><i class="fa-solid fa-check text-line mr-1"></i>帳號所有權歸你</span>
+          <span><i class="fa-solid fa-check text-line mr-1"></i>7 天內上線</span>
+        </div>
+      </div>
+
+      <!-- Phone mockup -->
+      <div class="flex justify-center">
+        <div class="w-[290px] rounded-[2.5rem] bg-slate-900 p-3 shadow-2xl">
+          <div class="rounded-[2rem] overflow-hidden bg-[#8CABD9]">
+            <div class="bg-slate-800 text-white px-4 py-3 flex items-center gap-2 text-sm">
+              <i class="fa-solid fa-chevron-left text-xs"></i>
+              <span class="font-bold">你的店名</span>
+              <i class="fa-solid fa-circle-check text-line text-xs"></i>
+            </div>
+            <div class="p-3 space-y-3 text-[13px] min-h-[250px]">
+              <div class="flex gap-2">
+                <span class="w-7 h-7 rounded-full bg-line text-white flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-store"></i></span>
+                <div class="bubble bubble-l bg-white rounded-2xl px-3 py-2 max-w-[80%]">歡迎加入！🎉 加好友就送 <b>9 折券</b>，點下方選單馬上預約 👇</div>
+              </div>
+              <div class="flex justify-end">
+                <div class="bubble bubble-r bg-line text-white rounded-2xl px-3 py-2 max-w-[80%]">我要預約</div>
+              </div>
+              <div class="flex gap-2">
+                <span class="w-7 h-7 rounded-full bg-line text-white flex items-center justify-center text-xs shrink-0"><i class="fa-solid fa-store"></i></span>
+                <div class="bubble bubble-l bg-white rounded-2xl px-3 py-2 max-w-[80%]">請選擇日期和時段 📅<br /><span class="text-line-dark font-bold">→ 線上預約</span></div>
+              </div>
+            </div>
+            <div class="grid grid-cols-3 gap-px bg-slate-300 text-[11px] font-bold text-slate-700">
+              <div class="bg-white py-4 text-center"><i class="fa-solid fa-calendar-check text-line text-lg block mb-1"></i>線上預約</div>
+              <div class="bg-white py-4 text-center"><i class="fa-solid fa-utensils text-line text-lg block mb-1"></i>菜單價目</div>
+              <div class="bg-white py-4 text-center"><i class="fa-solid fa-ticket text-line text-lg block mb-1"></i>優惠券</div>
+              <div class="bg-white py-4 text-center"><i class="fa-solid fa-stamp text-line text-lg block mb-1"></i>集點卡</div>
+              <div class="bg-white py-4 text-center"><i class="fa-solid fa-location-dot text-line text-lg block mb-1"></i>交通位置</div>
+              <div class="bg-white py-4 text-center"><i class="fa-solid fa-headset text-line text-lg block mb-1"></i>聯絡我們</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pain points -->
+  <section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <h2 class="text-2xl sm:text-3xl font-black text-center text-slate-900 mb-10">你的 LINE 是不是也這樣？</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100"><div class="text-2xl mb-2">😩</div><div class="font-bold mb-1">訊息回不完</div><p class="text-sm text-slate-500">同樣問題一天被問 20 次：營業時間、價格、地址……</p></div>
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100"><div class="text-2xl mb-2">🫥</div><div class="font-bold mb-1">開了帳號沒人用</div><p class="text-sm text-slate-500">好友加了就沉睡，選單空空的，不知道要放什麼。</p></div>
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100"><div class="text-2xl mb-2">💸</div><div class="font-bold mb-1">群發像丟錢</div><p class="text-sm text-slate-500">訊息費一直付，封鎖率卻越來越高，看不到效果。</p></div>
+        <div class="p-5 rounded-2xl bg-slate-50 border border-slate-100"><div class="text-2xl mb-2">⏳</div><div class="font-bold mb-1">沒時間經營</div><p class="text-sm text-slate-500">本業已經很忙，根本沒空研究後台怎麼設定。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-20 bg-slate-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <span class="text-line-dark font-bold text-sm">SERVICES</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-1">我們幫你做什麼</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100"><i class="fa-solid fa-user-plus text-line text-2xl mb-4"></i><h3 class="font-bold text-lg mb-2">帳號開通與認證</h3><p class="text-sm text-slate-500 leading-relaxed">申請官方帳號、藍盾認證、基本資料與頭像封面設定，帳號所有權完全在你手上。</p></div>
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100"><i class="fa-solid fa-table-cells-large text-line text-2xl mb-4"></i><h3 class="font-bold text-lg mb-2">圖文選單設計</h3><p class="text-sm text-slate-500 leading-relaxed">依你的生意設計專屬選單：預約、菜單、優惠、位置一鍵到位，客人不用問就找得到。</p></div>
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100"><i class="fa-solid fa-robot text-line text-2xl mb-4"></i><h3 class="font-bold text-lg mb-2">自動回覆與關鍵字</h3><p class="text-sm text-slate-500 leading-relaxed">歡迎訊息、常見問題、關鍵字自動回覆，24 小時幫你接待，省下回訊息的時間。</p></div>
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100"><i class="fa-solid fa-ticket text-line text-2xl mb-4"></i><h3 class="font-bold text-lg mb-2">集點卡與優惠券</h3><p class="text-sm text-slate-500 leading-relaxed">設計加好友禮、生日禮、集點回購機制，讓一次客變成常客。</p></div>
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100"><i class="fa-solid fa-calendar-check text-line text-2xl mb-4"></i><h3 class="font-bold text-lg mb-2">預約與表單串接</h3><p class="text-sm text-slate-500 leading-relaxed">線上預約、報名、詢價表單，資料自動整理到試算表，不再漏單。</p></div>
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100"><i class="fa-solid fa-paper-plane text-line text-2xl mb-4"></i><h3 class="font-bold text-lg mb-2">群發訊息代操</h3><p class="text-sm text-slate-500 leading-relaxed">每月規劃活動、撰寫文案、設計圖片並分眾推播，附成效報告，訊息費花在刀口上。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plans -->
+  <section id="plans" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <span class="text-line-dark font-bold text-sm">PLANS</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-1">方案價格</h2>
+        <p class="text-slate-500 mt-3 text-sm">價格未稅，實際報價依需求調整。LINE 官方訊息費由 LINE 另計。</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6 items-stretch">
+        <!-- Plan 1 -->
+        <div class="rounded-2xl border border-slate-200 p-7 flex flex-col">
+          <h3 class="font-bold text-lg">基礎建置</h3>
+          <p class="text-sm text-slate-500 mb-5">剛開始經營 LINE 的店家</p>
+          <div class="mb-6"><span class="text-sm text-slate-500">一次性</span> <span class="text-4xl font-black text-slate-900">NT$ 0,000</span></div>
+          <ul class="space-y-3 text-sm text-slate-600 flex-1">
+            <li><i class="fa-solid fa-check text-line mr-2"></i>帳號開通與基本設定</li>
+            <li><i class="fa-solid fa-check text-line mr-2"></i>圖文選單設計 1 組</li>
+            <li><i class="fa-solid fa-check text-line mr-2"></i>歡迎訊息與自動回覆 10 組</li>
+            <li><i class="fa-solid fa-check text-line mr-2"></i>後台操作教學 1 小時</li>
+          </ul>
+          <a href="#contact" data-plan="基礎建置" class="plan-btn mt-7 block text-center py-3 rounded-xl border-2 border-line text-line-dark font-bold hover:bg-line-light transition">選這個方案</a>
+        </div>
+        <!-- Plan 2 -->
+        <div class="rounded-2xl border-2 border-line p-7 flex flex-col relative shadow-xl">
+          <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-line text-white text-xs font-bold px-3 py-1 rounded-full">最多人選</span>
+          <h3 class="font-bold text-lg">完整建置</h3>
+          <p class="text-sm text-slate-500 mb-5">想讓 LINE 直接幫你接單</p>
+          <div class="mb-6"><span class="text-sm text-slate-500">一次性</span> <span class="text-4xl font-black text-slate-900">NT$ 0,000</span></div>
+          <ul class="space-y-3 text-sm text-slate-600 flex-1">
+            <li><i class="fa-solid fa-check text-line mr-2"></i>包含基礎建置全部內容</li>
+            <li><i class="fa-solid fa-check text-line mr-2"></i>圖文選單 2 組（可切換）</li>
+            <li><i class="fa-solid fa-check text-line mr-2"></i>關鍵字自動回覆 30 組</li>
+            <li><i class="fa-solid fa-check text-line mr-2"></i>集點卡、加好友禮優惠券</li>
+            <li><i class="fa-solid fa-check text-line mr-2"></i>預約／詢價表單串接</li>
+          </ul>
+          <a href="#contact" data-plan="完整建置" class="plan-btn mt-7 block text-center py-3 rounded-xl bg-line hover:bg-line-dark text-white font-bold transition">選這個方案</a>
+        </div>
+        <!-- Plan 3 -->
+        <div class="rounded-2xl border border-slate-200 p-7 flex flex-col">
+          <h3 class="font-bold text-lg">月費代管</h3>
+          <p class="text-sm text-slate-500 mb-5">完全沒時間經營的老闆</p>
+          <div class="mb-6"><span class="text-sm text-slate-500">每月</span> <span class="text-4xl font-black text-slate-900">NT$ 0,000</span></div>
+          <ul class="space-y-3 text-sm text-slate-600 flex-1">
+            <li><i class="fa-solid fa-check text-line mr-2"></i>每月群發訊息 4 則（文案＋圖片）</li>
+            <li><i class="fa-solid fa-check text-line mr-2"></i>節慶活動與優惠規劃</li>
+            <li><i class="fa-solid fa-check text-line mr-2"></i>選單與自動回覆持續更新</li>
+            <li><i class="fa-solid fa-check text-line mr-2"></i>每月成效報告</li>
+            <li><i class="fa-solid fa-check text-line mr-2"></i>不綁約，隨時可停</li>
+          </ul>
+          <a href="#contact" data-plan="月費代管" class="plan-btn mt-7 block text-center py-3 rounded-xl border-2 border-line text-line-dark font-bold hover:bg-line-light transition">選這個方案</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="py-20 bg-slate-900 text-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <span class="text-line font-bold text-sm">PROCESS</span>
+        <h2 class="text-3xl sm:text-4xl font-black mt-1">合作流程</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
+        <div class="p-5 rounded-2xl bg-slate-800 border border-slate-700"><div class="text-line font-black text-2xl mb-2">01</div><div class="font-bold mb-1">免費諮詢</div><p class="text-sm text-slate-400">聊聊你的生意與客人，評估適合的做法。</p></div>
+        <div class="p-5 rounded-2xl bg-slate-800 border border-slate-700"><div class="text-line font-black text-2xl mb-2">02</div><div class="font-bold mb-1">規劃報價</div><p class="text-sm text-slate-400">提出選單架構與功能清單，報價清楚不追加。</p></div>
+        <div class="p-5 rounded-2xl bg-slate-800 border border-slate-700"><div class="text-line font-black text-2xl mb-2">03</div><div class="font-bold mb-1">設計建置</div><p class="text-sm text-slate-400">設計圖文選單、撰寫回覆內容、設定功能。</p></div>
+        <div class="p-5 rounded-2xl bg-slate-800 border border-slate-700"><div class="text-line font-black text-2xl mb-2">04</div><div class="font-bold mb-1">測試上線</div><p class="text-sm text-slate-400">你確認滿意後正式上線，並教你操作後台。</p></div>
+        <div class="p-5 rounded-2xl bg-slate-800 border border-slate-700"><div class="text-line font-black text-2xl mb-2">05</div><div class="font-bold mb-1">持續優化</div><p class="text-sm text-slate-400">依好友數據調整內容，也可升級月費代管。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cases -->
+  <section id="cases" class="py-20 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <span class="text-line-dark font-bold text-sm">CASES</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-1">案例</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="rounded-2xl border border-slate-200 overflow-hidden">
+          <div class="h-36 bg-amber-50 flex items-center justify-center text-amber-600 text-4xl"><i class="fa-solid fa-helmet-safety"></i></div>
+          <div class="p-6"><span class="text-xs font-bold text-line-dark">工程營造</span><h3 class="font-bold text-lg mt-1 mb-2">在地工程行</h3><p class="text-sm text-slate-500">客人加好友後直接填寫現勘需求表單，案件資料自動進試算表，師傅不漏接任何一通詢問。</p></div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 overflow-hidden">
+          <div class="h-36 bg-rose-50 flex items-center justify-center text-rose-500 text-4xl"><i class="fa-solid fa-scissors"></i></div>
+          <div class="p-6"><span class="text-xs font-bold text-line-dark">美業工作室</span><h3 class="font-bold text-lg mt-1 mb-2">案例徵求中</h3><p class="text-sm text-slate-500">線上預約、服務價目、集點卡回購，減少一來一往確認時段的時間。</p></div>
+        </div>
+        <div class="rounded-2xl border border-slate-200 overflow-hidden">
+          <div class="h-36 bg-sky-50 flex items-center justify-center text-sky-500 text-4xl"><i class="fa-solid fa-mug-hot"></i></div>
+          <div class="p-6"><span class="text-xs font-bold text-line-dark">餐飲小吃</span><h3 class="font-bold text-lg mt-1 mb-2">案例徵求中</h3><p class="text-sm text-slate-500">菜單、外帶預訂、加好友禮優惠券，讓路過的客人變成回頭客。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-20 bg-slate-50">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-10">
+        <span class="text-line-dark font-bold text-sm">FAQ</span>
+        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-1">常見問題</h2>
+      </div>
+      <div class="space-y-3">
+        <details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="font-bold cursor-pointer flex justify-between items-center">帳號是誰的？之後不合作會怎樣？<i class="fa-solid fa-plus faq-icon text-line transition"></i></summary><p class="text-sm text-slate-600 mt-3 leading-relaxed">帳號一律用你的名義申請，所有權在你手上。我們只是被加入的管理員，不合作時移除權限即可，好友和設定都會留著。</p></details>
+        <details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="font-bold cursor-pointer flex justify-between items-center">我已經有官方帳號了，可以重新整理嗎？<i class="fa-solid fa-plus faq-icon text-line transition"></i></summary><p class="text-sm text-slate-600 mt-3 leading-relaxed">可以。我們會先檢視現有的設定與好友數據，保留好友、重新規劃選單與回覆內容。</p></details>
+        <details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="font-bold cursor-pointer flex justify-between items-center">多久可以上線？<i class="fa-solid fa-plus faq-icon text-line transition"></i></summary><p class="text-sm text-slate-600 mt-3 leading-relaxed">基礎建置大約 3–5 個工作天，完整建置約 7–10 個工作天，實際時間依資料提供速度而定。</p></details>
+        <details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="font-bold cursor-pointer flex justify-between items-center">LINE 的訊息費要另外付嗎？<i class="fa-solid fa-plus faq-icon text-line transition"></i></summary><p class="text-sm text-slate-600 mt-3 leading-relaxed">是的，LINE 官方帳號的月費方案由 LINE 直接向你收取。我們會依你的好友數與發送頻率，建議最划算的方案。</p></details>
+        <details class="bg-white rounded-xl border border-slate-200 p-5"><summary class="font-bold cursor-pointer flex justify-between items-center">不在同一個城市也可以合作嗎？<i class="fa-solid fa-plus faq-icon text-line transition"></i></summary><p class="text-sm text-slate-600 mt-3 leading-relaxed">可以，全程線上溝通即可完成，需要時也能安排視訊說明。</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-20 bg-line text-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 items-start">
+      <div>
+        <h2 class="text-3xl sm:text-4xl font-black mb-4">免費諮詢</h2>
+        <p class="text-white/90 leading-relaxed mb-6">留下你的店家資訊，我們會在 1 個工作天內透過 LINE 聯繫你，免費評估你的 LINE 可以怎麼做。</p>
+        <a id="line-add-btn" href="#" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white text-line-dark font-bold px-6 py-3.5 rounded-xl shadow-lg hover:bg-line-light transition">
+          <i class="fa-brands fa-line text-2xl"></i> 直接加 LINE 好友詢問
+        </a>
+        <p class="mt-4 text-sm text-white/80">LINE ID：<span id="line-id-text"></span></p>
+      </div>
+      <form id="contact-form" class="bg-white text-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+        <div class="grid sm:grid-cols-2 gap-4">
+          <label class="block text-sm font-bold">您的稱呼 *<input id="f-name" required class="mt-1 w-full border border-slate-300 rounded-lg p-3 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-line" placeholder="例如：王小姐" /></label>
+          <label class="block text-sm font-bold">店家名稱<input id="f-shop" class="mt-1 w-full border border-slate-300 rounded-lg p-3 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-line" placeholder="例如：小王美甲" /></label>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <label class="block text-sm font-bold">產業類別<select id="f-type" class="mt-1 w-full border border-slate-300 rounded-lg p-3 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-line"><option>餐飲小吃</option><option>美業／美容</option><option>工程／居家服務</option><option>零售／電商</option><option>課程／教育</option><option>醫療／診所</option><option>其他</option></select></label>
+          <label class="block text-sm font-bold">有興趣的方案<select id="f-plan" class="mt-1 w-full border border-slate-300 rounded-lg p-3 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-line"><option>還不確定</option><option>基礎建置</option><option>完整建置</option><option>月費代管</option></select></label>
+        </div>
+        <label class="block text-sm font-bold">目前狀況<select id="f-status" class="mt-1 w-full border border-slate-300 rounded-lg p-3 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-line"><option>還沒有官方帳號</option><option>有帳號但沒在經營</option><option>有在經營，想做得更好</option></select></label>
+        <label class="block text-sm font-bold">想解決的問題<textarea id="f-msg" rows="3" class="mt-1 w-full border border-slate-300 rounded-lg p-3 text-sm font-normal focus:outline-none focus:ring-2 focus:ring-line" placeholder="例如：想讓客人用 LINE 預約、減少回訊息的時間"></textarea></label>
+        <button type="submit" class="w-full py-3.5 bg-line hover:bg-line-dark text-white font-bold rounded-xl transition flex items-center justify-center gap-2">
+          <i class="fa-brands fa-line text-xl"></i> 用 LINE 送出諮詢
+        </button>
+        <p class="text-xs text-slate-400 text-center">送出後會開啟 LINE，並自動帶入您填寫的內容</p>
+      </form>
+    </div>
+  </section>
+
+  <footer class="py-8 bg-slate-900 text-slate-400 text-sm text-center">
+    © <span id="year"></span> Rowan Studio・LINE 官方帳號建置與代管
+  </footer>
+
+  <script>
+    // ===== 設定區：拿到 LINE 官方帳號 ID 後改這裡 =====
+    const LINE_ID = "@your-line-id"; // 例如 "@123abcde"（要包含 @）
+
+    const encodedId = encodeURIComponent(LINE_ID);
+    document.getElementById('line-id-text').textContent = LINE_ID;
+    document.getElementById('line-add-btn').href = `https://line.me/R/ti/p/${encodedId}`;
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 點方案按鈕時，自動帶入表單的方案欄位
+    document.querySelectorAll('.plan-btn').forEach(btn => {
+      btn.addEventListener('click', () => { document.getElementById('f-plan').value = btn.dataset.plan; });
+    });
+
+    // 表單送出：組成文字，開啟 LINE 對話並帶入內容
+    document.getElementById('contact-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const v = id => document.getElementById(id).value.trim();
+      const text = [
+        '【Rowan Studio 諮詢】',
+        `稱呼：${v('f-name')}`,
+        `店家：${v('f-shop') || '—'}`,
+        `產業：${v('f-type')}`,
+        `方案：${v('f-plan')}`,
+        `狀況：${v('f-status')}`,
+        `需求：${v('f-msg') || '—'}`
+      ].join('\n');
+      window.open(`https://line.me/R/oaMessage/${encodedId}/?${encodeURIComponent(text)}`, '_blank');
+    });
+  </script>
+</body>
+</html>
