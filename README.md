@@ -1,8 +1,17 @@
-# Rowan Studio — LINE 官方帳號建置與代管
+# Rowan Studio 官方網站
 
-接案用的單頁網站（`index.html`），手機優先。風格沿用 Rowan Studio 商標（R 字標誌、米白底、深石板色、青綠色）。
+LINE 官方帳號・網站・自動化工作室的接案網站，部署在 Cloudflare Pages（`main` 分支自動上線）。
 
-## 上線前要改的地方
-- LINE 官方帳號 ID 已設定為 `@041yyclq`（`index.html` 最下方 `LINE_ID`）
-- 方案價格與單項價目沿用 Rowan Studio 服務方案表
-- 案例：「案例整理中」之後換成真實案例截圖
+## 頁面
+| 檔案 | 內容 |
+|---|---|
+| `index.html` | 主畫面：選擇一次買斷／月費方案／開店套餐、痛點故事、作品、合作承諾 |
+| `one-time.html` | 一次買斷方案、單項價目、服務項目、流程 |
+| `monthly.html` | 月費方案（代管、AI 智慧客服） |
+| `new-shop.html` | 新開店：網站＋LINE 官方帳號套餐 |
+
+共用樣式在 `styles.css`，共用程式在 `main.js`，作品圖在 `images/`。
+
+## 常改的地方
+- LINE 官方帳號 ID：`main.js` 最上方 `LINE_ID`（目前 `@041yyclq`）
+- 價格：各頁的方案卡片
