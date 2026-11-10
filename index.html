@@ -224,38 +224,28 @@
   .work p { margin: 0; color: var(--muted); font-size: 14px; }
 
 
-  /* 案例示意 */
-  .shot { position: relative; overflow: hidden; gap: 14px; padding: 16px; }
-  .cs-a { background: #1E293B; }
-  .cs-web { width: 58%; max-width: 220px; background: #F8FAFC; border-radius: 10px; overflow: hidden; box-shadow: 0 12px 24px -12px rgba(0,0,0,.5); }
-  .cs-web .bar { height: 16px; background: #E2E8F0; display: flex; align-items: center; gap: 4px; padding: 0 7px; }
-  .cs-web .bar i { width: 5px; height: 5px; border-radius: 50%; background: #94A3B8; }
-  .cs-web .hero-m { background: #0F172A; color: #fff; padding: 14px 12px; display: flex; flex-direction: column; gap: 4px; }
-  .cs-web .hero-m b { font-size: 15px; }
-  .cs-web .hero-m span { font-size: 11px; color: #FBBF24; }
-  .cs-web .hero-m em { font-style: normal; align-self: flex-start; margin-top: 6px; background: #D97706; font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px; }
-  .cs-arrow { color: #FBBF24; width: 26px; height: 26px; }
-  .cs-sheet { width: 22%; max-width: 84px; background: #fff; border-radius: 8px; padding: 6px; display: grid; gap: 4px; }
-  .cs-sheet div { height: 9px; border-radius: 2px; background: #E2E8F0; }
-  .cs-sheet .sh-h { background: #16A34A; }
-  .cs-sheet .new { background: #FDE68A; }
-  .cs-b { background: #8CABD9; align-items: center; }
-  .cs-card { width: 62%; max-width: 220px; background: #fff; border-radius: 12px; overflow: hidden; font-size: 11px; box-shadow: 0 12px 24px -12px rgba(15,34,64,.5); }
-  .cs-card .hd { background: #0F2240; color: #fff; padding: 9px 12px; border-bottom: 3px solid #06B6D4; display: flex; flex-direction: column; }
-  .cs-card .hd small { font-size: 8.5px; letter-spacing: 2px; color: #67E8F9; font-family: var(--display); }
-  .cs-card .hd b { font-size: 13px; }
-  .cs-card .rw { display: flex; justify-content: space-between; padding: 4px 12px; color: #0F2240; }
-  .cs-card .rw span:first-child { color: #64748B; }
-  .cs-card .go { margin: 6px 10px 10px; background: #0F2240; color: #fff; text-align: center; border-radius: 7px; padding: 6px; font-weight: 700; }
-  .cs-done { align-self: flex-end; margin-bottom: 8px; background: #A7E58B; color: #14532D; font-size: 11px; font-weight: 700; line-height: 1.5; padding: 7px 10px; border-radius: 12px 12px 4px 12px; display: flex; flex-direction: column; }
-  .cs-done .ic { width: 14px; height: 14px; }
-  .cs-c { background: var(--teal-soft); }
-  .cs-menu { width: 58%; max-width: 210px; }
-  .cs-menu div { height: 48px; }
-  .cs-move { font-size: 12px; font-weight: 700; color: var(--teal-ink); line-height: 1.4; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px; }
-  .cs-move .ic { width: 26px; height: 26px; }
-  .tags-s { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tags-s span { font-size: 12px; font-weight: 700; color: var(--teal-ink); background: var(--teal-soft); padding: 2px 10px; border-radius: 999px; }
+  /* 作品集 */
+  .gallery { display: grid; grid-template-columns: 2.3fr 1fr 1fr; gap: 16px; }
+  .shot-item { margin: 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+  .shot-item.big { grid-row: span 2; }
+  .shot-item.big .zoom { flex: 1; }
+  .shot-item.big .zoom img { height: 100%; }
+  .zoom { display: block; width: 100%; padding: 0; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: var(--white); cursor: zoom-in; }
+  .zoom img { display: block; width: 100%; height: auto; aspect-ratio: 2000 / 1349; object-fit: cover; transition: transform .25s; }
+  .zoom:hover img { transform: scale(1.03); }
+  .shot-item figcaption { display: flex; align-items: baseline; gap: 8px; font-size: 14px; }
+  .shot-item figcaption span { color: var(--muted); font-size: 13px; }
+  .shot-item.big figcaption { font-size: 16px; }
+  @media (max-width: 760px) {
+    .gallery { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .shot-item.big { grid-column: 1 / -1; grid-row: auto; }
+    .shot-item.big .zoom img { height: auto; }
+    .zoom { border-radius: 12px; }
+  }
+  dialog#viewer { padding: 0; border: 0; border-radius: 16px; max-width: min(96vw, 1200px); background: transparent; }
+  dialog#viewer::backdrop { background: rgba(31,42,46,.82); }
+  dialog#viewer img { display: block; width: 100%; height: auto; border-radius: 16px; }
+  dialog#viewer .close { position: absolute; top: 10px; right: 10px; width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--ink); color: var(--paper); font-size: 26px; line-height: 1; cursor: pointer; }
 
   /* FAQ */
   .faq { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); column-gap: 48px; align-items: start; }
@@ -576,53 +566,45 @@
   <!-- WORKS -->
   <section class="wrap section">
     <p class="eyebrow">WORKS</p>
-    <h2 class="h2">作品案例</h2>
-    <div class="grid">
-      <article class="work">
-        <div class="shot cs-a" aria-hidden="true">
-          <div class="cs-web">
-            <div class="bar"><i></i><i></i><i></i></div>
-            <div class="hero-m"><b>宏明工程行</b><span>在地土木統包</span><em>填寫工程洽詢</em></div>
-          </div>
-          <svg class="ic cs-arrow"><use href="#i-arrow"></use></svg>
-          <div class="cs-sheet"><div class="sh-h"></div><div></div><div></div><div class="new"></div></div>
-        </div>
-        <div class="tags-s"><span>形象官網</span><span>表單自動化</span></div>
-        <h3>工程行｜官網＋洽詢自動進試算表</h3>
-        <p>客人填表，資料直接進 Google 試算表，不漏接。</p>
-      </article>
-      <article class="work">
-        <div class="shot cs-b" aria-hidden="true">
-          <div class="cs-card">
-            <div class="hd"><small>DAILY REPORT</small><b>今日工作日報</b></div>
-            <div class="rw"><span>今日行程</span><span>客戶廠區</span></div>
-            <div class="rw"><span>追蹤中</span><span>3 件</span></div>
-            <div class="go">開始填寫（約 2 分鐘）</div>
-          </div>
-          <div class="cs-done"><svg class="ic"><use href="#i-check"></use></svg>已存檔<br />待辦已建立</div>
-        </div>
-        <div class="tags-s"><span>LINE 推播</span><span>手機表單</span><span>自動待辦</span></div>
-        <h3>現場工程師｜LINE 日報小秘書</h3>
-        <p>每天 LINE 提醒，2 分鐘填完，待辦自動建立。</p>
-      </article>
-      <article class="work">
-        <div class="shot cs-c" aria-hidden="true">
-          <div class="m-menu cs-menu">
-            <div class="on"><svg class="ic"><use href="#i-cal"></use></svg>線上掛號</div>
-            <div><svg class="ic"><use href="#i-clock"></use></svg>門診時間</div>
-            <div><svg class="ic"><use href="#i-pin"></use></svg>交通位置</div>
-            <div><svg class="ic"><use href="#i-book"></use></svg>衛教資訊</div>
-            <div><svg class="ic"><use href="#i-list"></use></svg>自費項目</div>
-            <div><svg class="ic"><use href="#i-chat"></use></svg>聯絡我們</div>
-          </div>
-          <div class="cs-move"><svg class="ic"><use href="#i-arrow"></use></svg>搬到診所<br />自己的帳號</div>
-        </div>
-        <div class="tags-s"><span>圖文選單</span><span>自動回應</span></div>
-        <h3>診所｜選單搬家＋自動回應</h3>
-        <p>解約原廠商，選單與回覆移回診所自己管。</p>
-      </article>
+    <h2 class="h2">圖文選單作品</h2>
+    <div class="gallery">
+      <figure class="shot-item big">
+        <button type="button" class="zoom" data-src="images/menu-restaurant.webp" data-alt="餐飲小店圖文選單：今日菜單、線上訂位、外帶預點、本月優惠、會員集點、交通資訊" aria-label="放大看：餐飲小店圖文選單">
+          <img src="images/menu-restaurant.webp" alt="餐飲小店圖文選單：今日菜單、線上訂位、外帶預點、本月優惠、會員集點、交通資訊" loading="lazy" width="1400" height="944" />
+        </button>
+        <figcaption><b>餐飲小店</b><span>訂位・外帶・集點</span></figcaption>
+      </figure>
+      <figure class="shot-item">
+        <button type="button" class="zoom" data-src="images/menu-cram-school.webp" data-alt="補習班圖文選單：免費試聽預約大按鈕，下方為課程介紹、師資陣容、成績查詢" aria-label="放大看：補習班圖文選單">
+          <img src="images/menu-cram-school.webp" alt="補習班圖文選單：免費試聽預約大按鈕，下方為課程介紹、師資陣容、成績查詢" loading="lazy" width="1400" height="944" />
+        </button>
+        <figcaption><b>補習班</b><span>免費試聽預約</span></figcaption>
+      </figure>
+      <figure class="shot-item">
+        <button type="button" class="zoom" data-src="images/menu-pet.webp" data-alt="寵物美容圖文選單：美容預約、服務價目、毛孩相簿、住宿安親、注意事項、聯絡我們" aria-label="放大看：寵物美容圖文選單">
+          <img src="images/menu-pet.webp" alt="寵物美容圖文選單：美容預約、服務價目、毛孩相簿、住宿安親、注意事項、聯絡我們" loading="lazy" width="1400" height="944" />
+        </button>
+        <figcaption><b>寵物美容</b><span>美容預約・住宿</span></figcaption>
+      </figure>
+      <figure class="shot-item">
+        <button type="button" class="zoom" data-src="images/menu-dental.webp" data-alt="牙醫診所圖文選單：線上掛號大按鈕，旁邊為門診時間、醫師團隊、交通資訊、聯絡診所" aria-label="放大看：牙醫診所圖文選單">
+          <img src="images/menu-dental.webp" alt="牙醫診所圖文選單：線上掛號大按鈕，旁邊為門診時間、醫師團隊、交通資訊、聯絡診所" loading="lazy" width="1400" height="944" />
+        </button>
+        <figcaption><b>牙醫診所</b><span>線上掛號</span></figcaption>
+      </figure>
+      <figure class="shot-item">
+        <button type="button" class="zoom" data-src="images/menu-tea.webp" data-alt="茶館圖文選單：上方頁籤切換首頁、茶品、課程、預約、關於，下方為本季茶品、品茶課程、包廂預約、門市資訊" aria-label="放大看：茶館圖文選單">
+          <img src="images/menu-tea.webp" alt="茶館圖文選單：上方頁籤切換首頁、茶品、課程、預約、關於，下方為本季茶品、品茶課程、包廂預約、門市資訊" loading="lazy" width="1400" height="944" />
+        </button>
+        <figcaption><b>茶館</b><span>頁籤切換選單</span></figcaption>
+      </figure>
     </div>
   </section>
+
+  <dialog id="viewer" aria-label="作品放大">
+    <button type="button" class="close" aria-label="關閉">×</button>
+    <img id="viewer-img" src="" alt="" />
+  </dialog>
 
   <!-- FAQ -->
   <section id="faq" class="wrap section">
@@ -709,6 +691,14 @@
     ].join('\n');
     location.href = `https://line.me/R/oaMessage/${id}/?${encodeURIComponent(text)}`;
   });
+  // 作品放大
+  const viewer = document.getElementById('viewer');
+  const vImg = document.getElementById('viewer-img');
+  document.querySelectorAll('.zoom').forEach(b => b.addEventListener('click', () => {
+    vImg.src = b.dataset.src; vImg.alt = b.dataset.alt;
+    if (viewer.showModal) viewer.showModal(); else window.open(b.dataset.src, '_blank');
+  }));
+  viewer.addEventListener('click', e => { if (e.target === viewer || e.target.classList.contains('close')) viewer.close(); });
 </script>
 </body>
 </html>
