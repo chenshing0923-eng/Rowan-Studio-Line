@@ -285,6 +285,22 @@
     .svc p { font-size: 14px; }
     .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; }
   }
+
+  /* 滾動浮現動畫 */
+  .reveal-on .rv { opacity: 0; transform: translateY(28px) scale(.97); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); transition-delay: calc(var(--i, 0) * 90ms); will-change: opacity, transform; }
+  .reveal-on .rv.in { opacity: 1; transform: none; }
+  .reveal-on .hero-copy > *, .reveal-on .phone { animation: rise .8s cubic-bezier(.2,.7,.2,1) both; }
+  .reveal-on .hero-copy > :nth-child(2) { animation-delay: .08s; }
+  .reveal-on .hero-copy > :nth-child(3) { animation-delay: .16s; }
+  .reveal-on .hero-copy > :nth-child(4) { animation-delay: .24s; }
+  .reveal-on .hero-copy > :nth-child(5) { animation-delay: .32s; }
+  .reveal-on .phone { animation-delay: .2s; animation-name: pop; }
+  @keyframes rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+  @keyframes pop { from { opacity: 0; transform: translateY(30px) scale(.94); } to { opacity: 1; transform: none; } }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-on .rv { opacity: 1; transform: none; transition: none; }
+    .reveal-on .hero-copy > *, .reveal-on .phone { animation: none; }
+  }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn, .plus { transition: none; } }
 </style>
 </head>
@@ -699,6 +715,24 @@
     if (viewer.showModal) viewer.showModal(); else window.open(b.dataset.src, '_blank');
   }));
   viewer.addEventListener('click', e => { if (e.target === viewer || e.target.classList.contains('close')) viewer.close(); });
+  // 滾動浮現動畫
+  (function () {
+    if (!('IntersectionObserver' in window)) return;
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const groups = ['.who-item', '.svc', '.plan', '.care', '.promise', '.ala', '.step', '.shot-item', '.faq details', '.contact', '.eyebrow', '.h2'];
+    const els = [];
+    groups.forEach(sel => document.querySelectorAll(sel).forEach(el => {
+      if (els.includes(el)) return;
+      const sib = Array.from(el.parentElement.children).filter(c => c.matches(sel));
+      el.style.setProperty('--i', Math.min(sib.indexOf(el), 6));
+      el.classList.add('rv'); els.push(el);
+    }));
+    document.documentElement.classList.add('reveal-on');
+    const io = new IntersectionObserver(entries => entries.forEach(en => {
+      if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+    }), { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+    els.forEach(el => io.observe(el));
+  })();
 </script>
 </body>
 </html>
