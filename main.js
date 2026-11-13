@@ -46,7 +46,7 @@ if (viewer) {
 (function () {
   if (!('IntersectionObserver' in window)) return;
   if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  const groups = ['.story-item', '.who-mini', '.choice', '.svc', '.plan', '.mode-note', '.ala', '.pr', '.step', '.shot-item', '.site-shot', '.work-text', '.kit', '.faq details', '.contact', '.eyebrow', '.h2', '.lead'];
+  const groups = ['.story-item', '.ind', '.choice', '.svc', '.plan', '.mode-note', '.ala', '.pr', '.step', '.shot-item', '.site-shot', '.work-text', '.kit', '.faq details', '.contact', '.eyebrow', '.h2', '.lead'];
   const els = [];
   groups.forEach(sel => document.querySelectorAll(sel).forEach(el => {
     if (els.includes(el)) return;

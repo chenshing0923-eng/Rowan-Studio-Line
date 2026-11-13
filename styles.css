@@ -471,6 +471,50 @@ footer .f-brand { display: flex; align-items: center; gap: 10px; }
 .demo-card em { font-style: normal; color: var(--mint); font-size: 14px; font-weight: 700; margin-top: 4px; }
 @media (max-width: 480px) { .demo-card img { width: 120px; } }
 
+/* ===== 適用產業（大格） ===== */
+.ind-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.ind { padding: 26px 22px; border-radius: 22px; border: 1px solid var(--line); background: linear-gradient(160deg, rgba(255,255,255,.035), transparent 60%), var(--surface); display: flex; flex-direction: column; gap: 8px; transition: border-color .25s, transform .25s; }
+.ind:hover { border-color: rgba(111,221,185,.45); transform: translateY(-3px); }
+.ind i { width: 60px; height: 60px; border-radius: 18px; background: var(--mint-dim); color: var(--mint); display: flex; align-items: center; justify-content: center; margin-bottom: 6px; }
+.ind i .ic { width: 30px; height: 30px; }
+.ind h3 { margin: 0; font-size: 21px; }
+.ind p { margin: 0; color: var(--muted); font-size: 15px; }
+.ind-more { margin: 22px 0 0; color: var(--muted); font-size: 16px; }
+@media (max-width: 960px) { .ind-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px) { .ind { padding: 20px 16px; } .ind h3 { font-size: 18px; } .ind i { width: 50px; height: 50px; } }
+
+/* ===== WHY：標題在上、三欄並排 ===== */
+.story.story-cols { display: block; }
+.story-head { max-width: 760px; margin-bottom: 40px; }
+.story-head .h2 { margin: 0 0 10px; font-size: clamp(30px, 3.6vw, 44px); }
+.story-head .lead { margin: 0; }
+.story-cols .story-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.story-cols .story-item { padding: 0; border-top: 0; }
+.story-cols .story-card { max-width: none; min-height: 168px; }
+@media (max-width: 860px) { .story-cols .story-list { grid-template-columns: 1fr; gap: 36px; } }
+
+/* ===== 電腦版字級放大 ===== */
+@media (min-width: 1024px) {
+  body { font-size: 17px; }
+  .h2 { font-size: 42px; }
+  .lead, .mode-note, .chooser-hint, .page-hero p { font-size: 18px; }
+  .hero p { font-size: 20px; }
+  .perk { font-size: 15px; }
+  .svc h3 { font-size: 21px; } .svc p { font-size: 16px; }
+  .story-item h3 { font-size: 28px; } .story-item p:last-child { font-size: 16px; }
+  .story-card .q, .story-card .todo { font-size: 15px; }
+  .choice h3 { font-size: 26px; } .choice p { font-size: 16px; } .choice ul { font-size: 15px; }
+  .plan h3 { font-size: 21px; } .plan .sub { font-size: 15px; } .feats { font-size: 16px; }
+  .pr h3 { font-size: 20px; } .pr p { font-size: 15px; }
+  .step h3 { font-size: 19px; } .step p { font-size: 15px; }
+  .faq summary { font-size: 17px; } .faq p { font-size: 16px; }
+  .shot-item figcaption { font-size: 15px; } .shot-item figcaption span { font-size: 14px; }
+  .work-text p:not(.work-kind) { font-size: 16px; }
+  .row { font-size: 16px; }
+  .nav-links { font-size: 16px; }
+  label { font-size: 15px; }
+}
+
 /* 換頁滑動（支援的瀏覽器才有，其餘照常換頁） */
 @view-transition { navigation: auto; }
 header { view-transition-name: site-header; }
