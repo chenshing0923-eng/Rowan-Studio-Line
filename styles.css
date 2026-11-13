@@ -425,7 +425,7 @@ footer .f-brand { display: flex; align-items: center; gap: 10px; }
 .mini-phone .scr .top span.me { align-self: flex-end; background: var(--teal); color: #08241F; border-radius: 8px 8px 2px 8px; }
 .mini-phone .scr .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--ink); padding: 1px; }
 .mini-phone .scr .grid3 i { height: 26px; background: #F6F5F1; }
-.mini-phone .scr .grid3 i:first-child { background: #D97706; }
+.mini-phone .scr .grid3 i:first-child { background: #C8613C; }
 .kit { display: flex; flex-direction: column; gap: 0; }
 .kit-item { display: flex; gap: 14px; padding: 16px 0; border-top: 1px solid var(--line); }
 .kit-item:first-child { border-top: 0; padding-top: 0; }
