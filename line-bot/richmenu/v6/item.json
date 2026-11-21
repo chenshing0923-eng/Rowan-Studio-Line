@@ -1,0 +1,134 @@
+{
+ "size": {
+  "width": 2500,
+  "height": 1686
+ },
+ "selected": true,
+ "name": "RowanStudio-v6-item",
+ "chatBarText": "點我看服務",
+ "areas": [
+  {
+   "bounds": {
+    "x": 0,
+    "y": 0,
+    "width": 834,
+    "height": 240
+   },
+   "action": {
+    "type": "richmenuswitch",
+    "data": "switch=tab-home",
+    "richMenuAliasId": "tab-home"
+   }
+  },
+  {
+   "bounds": {
+    "x": 834,
+    "y": 0,
+    "width": 833,
+    "height": 240
+   },
+   "action": {
+    "type": "richmenuswitch",
+    "data": "switch=tab-plan",
+    "richMenuAliasId": "tab-plan"
+   }
+  },
+  {
+   "bounds": {
+    "x": 1667,
+    "y": 0,
+    "width": 833,
+    "height": 240
+   },
+   "action": {
+    "type": "richmenuswitch",
+    "data": "switch=tab-item",
+    "richMenuAliasId": "tab-item"
+   }
+  },
+  {
+   "bounds": {
+    "x": 0,
+    "y": 240,
+    "width": 834,
+    "height": 555
+   },
+   "action": {
+    "type": "message",
+    "text": "單項：帳號開通"
+   }
+  },
+  {
+   "bounds": {
+    "x": 834,
+    "y": 240,
+    "width": 833,
+    "height": 555
+   },
+   "action": {
+    "type": "message",
+    "text": "單項：圖文選單"
+   }
+  },
+  {
+   "bounds": {
+    "x": 1667,
+    "y": 240,
+    "width": 833,
+    "height": 555
+   },
+   "action": {
+    "type": "message",
+    "text": "單項：自動回覆"
+   }
+  },
+  {
+   "bounds": {
+    "x": 0,
+    "y": 795,
+    "width": 834,
+    "height": 555
+   },
+   "action": {
+    "type": "message",
+    "text": "單項：圖片設計"
+   }
+  },
+  {
+   "bounds": {
+    "x": 834,
+    "y": 795,
+    "width": 833,
+    "height": 555
+   },
+   "action": {
+    "type": "message",
+    "text": "單項：集點與認證"
+   }
+  },
+  {
+   "bounds": {
+    "x": 1667,
+    "y": 795,
+    "width": 833,
+    "height": 555
+   },
+   "action": {
+    "type": "message",
+    "text": "單項：AI自動回應"
+   }
+  },
+  {
+   "bounds": {
+    "x": 0,
+    "y": 1350,
+    "width": 2500,
+    "height": 336
+   },
+   "action": {
+    "type": "message",
+    "text": "完整單項價目表"
+   }
+  }
+ ]
+}

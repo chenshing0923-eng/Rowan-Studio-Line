@@ -1,0 +1,110 @@
+{
+ "size": {
+  "width": 2500,
+  "height": 1686
+ },
+ "selected": true,
+ "name": "RowanStudio-v6-home",
+ "chatBarText": "點我看服務",
+ "areas": [
+  {
+   "bounds": {
+    "x": 0,
+    "y": 0,
+    "width": 834,
+    "height": 240
+   },
+   "action": {
+    "type": "richmenuswitch",
+    "richMenuAliasId": "tab-home",
+    "data": "switch=tab-home"
+   }
+  },
+  {
+   "bounds": {
+    "x": 834,
+    "y": 0,
+    "width": 833,
+    "height": 240
+   },
+   "action": {
+    "type": "richmenuswitch",
+    "richMenuAliasId": "tab-plan",
+    "data": "switch=tab-plan"
+   }
+  },
+  {
+   "bounds": {
+    "x": 1667,
+    "y": 0,
+    "width": 833,
+    "height": 240
+   },
+   "action": {
+    "type": "richmenuswitch",
+    "richMenuAliasId": "tab-item",
+    "data": "switch=tab-item"
+   }
+  },
+  {
+   "bounds": {
+    "x": 0,
+    "y": 240,
+    "width": 1250,
+    "height": 1446
+   },
+   "action": {
+    "type": "message",
+    "text": "LINE官方帳號服務"
+   }
+  },
+  {
+   "bounds": {
+    "x": 1250,
+    "y": 240,
+    "width": 1250,
+    "height": 859
+   },
+   "action": {
+    "type": "message",
+    "text": "網站製作方案"
+   }
+  },
+  {
+   "bounds": {
+    "x": 1250,
+    "y": 1099,
+    "width": 417,
+    "height": 587
+   },
+   "action": {
+    "type": "message",
+    "text": "作品範例"
+   }
+  },
+  {
+   "bounds": {
+    "x": 1667,
+    "y": 1099,
+    "width": 417,
+    "height": 587
+   },
+   "action": {
+    "type": "message",
+    "text": "免費諮詢"
+   }
+  },
+  {
+   "bounds": {
+    "x": 2084,
+    "y": 1099,
+    "width": 416,
+    "height": 587
+   },
+   "action": {
+    "type": "message",
+    "text": "常見問題"
+   }
+  }
+ ]
+}

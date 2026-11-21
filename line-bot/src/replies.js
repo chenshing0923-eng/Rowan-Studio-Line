@@ -22,7 +22,7 @@ const uriBtn = (label, uri, primary) => ({ type: 'button', style: primary ? 'pri
 const msgBtn = (label, text, primary) => ({ type: 'button', style: primary ? 'primary' : 'secondary', color: primary ? C.mint : undefined, height: 'sm', action: { type: 'message', label, text } });
 const clean = o => JSON.parse(JSON.stringify(o)); // 去掉 undefined 欄位
 
-const MAIN_QUICK = ['價格', '作品', '網站製作', '免費諮詢'];
+const MAIN_QUICK = ['方案價格', '作品', '網站製作', '免費諮詢'];
 
 /** 方案卡片 */
 function planBubble({ tag, title, sub, price, unit, note, feats, buttons, featured }) {
@@ -71,27 +71,27 @@ function workBubble({ img, ratio, title, sub, uri }) {
 
 // ---------- 內容 ----------
 const OVERVIEW = [
-  planBubble({ tag: 'ONE-TIME', title: '一次買斷', sub: '做好就是你的，不用每月繳', price: '3,000', unit: '起', feats: ['圖文選單＋自動回覆', '預約、表單自動化', '上線後教你自己改'], buttons: [msgBtn('看買斷方案', '一次買斷方案', true)] }),
-  planBubble({ tag: 'MONTHLY', title: '月費方案', sub: '每月有人幫你顧，不綁約', price: '1,500', unit: '／月起', feats: ['選單、推播定期更新', 'AI 智慧客服', '年繳免建置費'], buttons: [msgBtn('看月費方案', '月費方案', true)] }),
-  planBubble({ tag: 'WEBSITE', title: '網站製作', sub: '新開店、換新門面都適合', price: '9,800', unit: '起', feats: ['品牌形象網站', '以你的名義申請網址', '可加 LINE 官方帳號套餐'], buttons: [msgBtn('看網站方案', '網站方案', true)] })
+  planBubble({ tag: 'SETUP・一次付清', title: 'LINE 建置', sub: '選單、回覆一次做好，做好就是你的', price: '3,000', unit: '起', feats: ['圖文選單＋自動回覆', '預約、表單自動化', '上線後教你自己改'], buttons: [msgBtn('看建置方案', 'LINE建置方案', true)] }),
+  planBubble({ tag: 'WEBSITE・最推薦', title: '網站製作', sub: '網站＋LINE 一起開店', price: '9,800', unit: '起', feats: ['品牌形象網站', '以你的名義申請網址', '可加 LINE 官方帳號套餐'], featured: true, buttons: [msgBtn('看網站方案', '網站方案', true)] }),
+  planBubble({ tag: 'MONTHLY・月繳不綁約', title: 'LINE 代管', sub: '每月有人幫你更新、回客人', price: '1,280', unit: '／月起', feats: ['選單、推播定期更新', 'AI 智慧客服', '年繳免建置費'], buttons: [msgBtn('看代管方案', 'LINE代管方案', true)] })
 ];
 
 const ONE_TIME = [
-  planBubble({ tag: 'ONE-TIME', title: '入門方案', sub: '先把門面做好', price: '3,000', unit: '起', note: '一次付清・做好就是你的', feats: ['帳號設定＋歡迎訊息', '圖文選單 1 頁', '自動回覆 5 組'], buttons: [msgBtn('詢問這個方案', '我想了解：買斷・入門方案', true)] }),
+  planBubble({ tag: 'LINE 建置', title: '入門方案', sub: '先把門面做好', price: '3,000', unit: '起', note: '一次付清・做好就是你的', feats: ['帳號設定＋歡迎訊息', '圖文選單 1 頁', '自動回覆 5 組'], buttons: [msgBtn('詢問這個方案', '我想了解：買斷・入門方案', true)] }),
   planBubble({ tag: '最多人選', title: '標準方案', sub: '讓帳號幫你接客', price: '6,800', unit: '起', note: '一次付清・做好就是你的', feats: ['入門方案全部內容', '選單 2 頁可切換', '自動回覆 15 組＋卡片訊息', '操作教學 1 小時'], featured: true, buttons: [msgBtn('詢問這個方案', '我想了解：買斷・標準方案', true)] }),
-  planBubble({ tag: 'ONE-TIME', title: '自動化方案', sub: '預約、報名自動整理', price: '15,000', unit: '起', note: '依流程複雜度報價', feats: ['流程規劃', '線上預約／報名表單', '自動進 Google 試算表', '新預約即時通知'], buttons: [msgBtn('詢問這個方案', '我想了解：買斷・自動化方案', true)] })
+  planBubble({ tag: 'LINE 建置', title: '自動化方案', sub: '預約、報名自動整理', price: '15,000', unit: '起', note: '依流程複雜度報價', feats: ['流程規劃', '線上預約／報名表單', '自動進 Google 試算表', '新預約即時通知'], buttons: [msgBtn('詢問這個方案', '我想了解：買斷・自動化方案', true)] })
 ];
 
 const MONTHLY = [
-  planBubble({ tag: 'MONTHLY', title: '輕量代管', sub: '有人幫你顧選單', price: '1,500', unit: '／月', note: '建置費 NT$3,000・年繳免建置費', feats: ['入門方案建置', '每月換選單或圖文 1 次', '推播文案＋圖 2 則'], buttons: [msgBtn('詢問這個方案', '我想了解：月費・輕量代管', true)] }),
+  planBubble({ tag: 'LINE 代管', title: '輕量代管', sub: '有人幫你顧選單', price: '1,500', unit: '／月', note: '建置費 NT$3,000・年繳免建置費', feats: ['入門方案建置', '每月換選單或圖文 1 次', '推播文案＋圖 2 則'], buttons: [msgBtn('詢問這個方案', '我想了解：月費・輕量代管', true)] }),
   planBubble({ tag: '推薦', title: 'AI 智慧客服', sub: '打烊後也有人回', price: '1,280', unit: '／月', note: '建置費 NT$6,000・年繳免建置費', feats: ['AI 依你的資料回答', '答不出來轉真人', '含圖文選單設計 1 頁', '每月對話重點整理'], featured: true, buttons: [msgBtn('詢問這個方案', '我想了解：月費・AI 智慧客服', true)] }),
-  planBubble({ tag: 'MONTHLY', title: '進階代管', sub: '整個 LINE 交給我', price: '3,000', unit: '／月', note: '建置費 NT$6,800・年繳免建置費', feats: ['標準方案建置', '推播 4 則＋節慶選單', '每月數據回報'], buttons: [msgBtn('詢問這個方案', '我想了解：月費・進階代管', true)] })
+  planBubble({ tag: 'LINE 代管', title: '進階代管', sub: '整個 LINE 交給我', price: '3,000', unit: '／月', note: '建置費 NT$6,800・年繳免建置費', feats: ['標準方案建置', '推播 4 則＋節慶選單', '每月數據回報'], buttons: [msgBtn('詢問這個方案', '我想了解：月費・進階代管', true)] })
 ];
 
 const WEBSITE = [
-  planBubble({ tag: 'WEBSITE', title: '網站單買', sub: '先有一個門面', price: '9,800', unit: '起', note: '一頁式形象網站', feats: ['手機版優先設計', '服務、價格、地圖、聯絡', '加 LINE 按鈕與洽詢表單'], buttons: [msgBtn('詢問這個方案', '我想了解：網站單買', true)] }),
-  planBubble({ tag: '推薦', title: '網站＋LINE 起步包', sub: '網站和 LINE 一次好', price: '11,800', unit: '起', note: '單買合計 NT$12,800・省 NT$1,000', feats: ['一頁式形象網站', 'LINE 官方帳號開通＋設定', '圖文選單 1 頁＋自動回覆 5 組'], featured: true, buttons: [msgBtn('詢問這個方案', '我想了解：網站＋LINE 起步包', true)] }),
-  planBubble({ tag: 'WEBSITE', title: '網站＋LINE 完整包', sub: '開幕就能接單', price: '22,800', unit: '起', note: '多頁網站＋LINE 標準方案', feats: ['網站最多 5 頁', '選單 2 頁＋自動回覆 15 組', '集點卡＋加好友禮', '表單自動進試算表'], buttons: [msgBtn('詢問這個方案', '我想了解：網站＋LINE 完整包', true)] })
+  planBubble({ tag: 'WEBSITE', title: '網站單買', sub: '先有一個門面', price: '9,800', unit: '起', note: '一頁式形象網站', feats: ['手機版優先設計', '服務、價格、地圖、聯絡', '加 LINE 按鈕與洽詢表單'], buttons: [msgBtn('詢問這個方案', '我想了解：網站單買', true), uriBtn('看網站實例', `${SITE}/new-shop`)] }),
+  planBubble({ tag: '推薦', title: '網站＋LINE 起步包', sub: '網站和 LINE 一次好', price: '11,800', unit: '起', note: '單買合計 NT$12,800・省 NT$1,000', feats: ['一頁式形象網站', 'LINE 官方帳號開通＋設定', '圖文選單 1 頁＋自動回覆 5 組'], featured: true, buttons: [msgBtn('詢問這個方案', '我想了解：網站＋LINE 起步包', true), uriBtn('看網站實例', `${SITE}/new-shop`)] }),
+  planBubble({ tag: 'WEBSITE', title: '網站＋LINE 完整包', sub: '開幕就能接單', price: '22,800', unit: '起', note: '多頁網站＋LINE 標準方案', feats: ['網站最多 5 頁', '選單 2 頁＋自動回覆 15 組', '集點卡＋加好友禮', '表單自動進試算表'], buttons: [msgBtn('詢問這個方案', '我想了解：網站＋LINE 完整包', true), uriBtn('看網站實例', `${SITE}/new-shop`)] })
 ];
 
 const WORKS = [
@@ -165,7 +165,7 @@ const FAQ = ['合作流程', '付款方式', '多久可以上線', '需要給密
 export function welcome() {
   return [
     msg('嗨，歡迎加入 Rowan Studio！\n\n我幫店家做 LINE 官方帳號（圖文選單、自動回覆、AI 客服）和品牌網站。\n\n點下方選單，或直接輸入「價格」「作品」「網站」，馬上就有資料給你看。想聊聊你的店，輸入「免費諮詢」就好。'),
-    flex('Rowan Studio 三種合作方式', carousel(OVERVIEW), MAIN_QUICK)
+    flex('Rowan Studio 服務：LINE 建置、網站製作、LINE 代管', carousel(OVERVIEW), MAIN_QUICK)
   ];
 }
 
@@ -185,6 +185,12 @@ const RULES = [
   }],
   [/推薦|不知道選|怎麼選|哪個好/, () => [msg('幫你推薦！你的狀況比較接近哪一個？', Object.keys(RECOMMEND).map(k => `推薦：${k}`))]],
   [/免費諮詢|諮詢|估價|報價|我想問/, () => [msg('好的！先問一個問題，你比較想做哪一種？', ['我想了解：圖文選單＋自動回覆', '我想了解：月費代管', '我想了解：AI 智慧客服', '我想了解：網站製作', '我想了解：還不確定'])]],
+  [/LINE ?官方帳號服務|LINE ?服務/i, () => [
+    msg('我幫店家把 LINE 官方帳號做好，有兩種方式：\n\n① LINE 建置：一次付清 NT$3,000 起，圖文選單、自動回覆、預約自動化，做好就是你的。\n\n② LINE 代管：每月 NT$1,280 起，幫你換選單、寫推播、AI 客服 24 小時回覆，月繳不綁約。'),
+    flex('LINE 官方帳號服務：建置與代管', carousel([OVERVIEW[0], OVERVIEW[2]]), ['LINE建置方案', 'LINE代管方案', '作品範例', '免費諮詢'])
+  ]],
+  [/LINE ?建置|建置方案/i, () => [flex('LINE 建置方案：入門 3,000 起、標準 6,800 起、自動化 15,000 起', carousel(ONE_TIME), MAIN_QUICK)]],
+  [/LINE ?代管|代管方案/i, () => [flex('LINE 代管方案：輕量 1,500、AI 智慧客服 1,280、進階 3,000（每月）', carousel(MONTHLY), MAIN_QUICK)]],
   [/line ?月費|訊息費|則數/i, () => [msg('LINE 官方帳號的月費是付給 LINE 的，不包含在我的服務費裡。\n\n2026 年 11 月起：\n・輕用量 0 元（每月 200 則）\n・中用量 1,000 元（每月 3,000 則）\n・高用量 1,400 元（每月 6,000 則）\n\n回覆客人的訊息不算則數，我會依你的好友數建議最划算的方案。', FAQ)]],
   [/作品|範例|案例|作品集|設計/, () => [flex('Rowan Studio 作品與範例', carousel(WORKS), MAIN_QUICK)]],
   [/一次買斷|買斷/, () => [flex('一次買斷方案：入門 3,000 起、標準 6,800 起、自動化 15,000 起', carousel(ONE_TIME), MAIN_QUICK)]],
@@ -194,7 +200,7 @@ const RULES = [
     flex('月費方案', carousel(MONTHLY), MAIN_QUICK)
   ]],
   [/網站|官網|網頁|開店/, () => [flex('網站方案：網站單買 9,800 起、網站＋LINE 起步包 11,800 起、完整包 22,800 起', carousel(WEBSITE), ['作品', '網站範例', '免費諮詢'])]],
-  [/價格|價錢|方案|多少錢|費用|收費|價目/, () => [flex('Rowan Studio 三種合作方式', carousel(OVERVIEW), MAIN_QUICK)]],
+  [/價格|價錢|方案|多少錢|費用|收費|價目/, () => [flex('Rowan Studio 服務：LINE 建置、網站製作、LINE 代管', carousel(OVERVIEW), MAIN_QUICK)]],
   [/流程|怎麼合作|步驟/, () => [msg('合作流程很簡單：\n\n1️⃣ 免費諮詢：聊聊你的店和客人常問什麼\n2️⃣ 免費草圖：先畫一張選單草圖給你看\n3️⃣ 報價開工：滿意後付 50% 訂金\n4️⃣ 設計設定：過程中隨時給你看進度\n5️⃣ 上線教學：教你自己改，驗收後付尾款', FAQ)]],
   [/付款|訂金|匯款|轉帳|尾款/, () => [msg('付款方式：\n\n・先免費看選單草圖，滿意再開始\n・確認報價後付 50% 訂金開工\n・上線驗收後付尾款\n・支援銀行轉帳\n\n月費方案月繳不綁約，隨時可停；年繳免建置費。', FAQ)]],
   [/多久|幾天|上線|時程/, () => [msg('大約時程：\n\n・入門、標準方案：5–7 個工作天\n・網站＋LINE 起步包：7–10 個工作天\n・自動化、完整包：報價時給你明確時程\n\n急件（3 個工作天內）加收 30%。', FAQ)]],

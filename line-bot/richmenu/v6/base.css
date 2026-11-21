@@ -1,0 +1,24 @@
+/* Rowan Studio 三頁籤選單 v6（2500×1686）：沿用 v4 設計，字級放大約 1.4 倍。按鈕位置與 v4 相同 */
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 2500px; height: 1686px; overflow: hidden; }
+body { font-family: "Noto Sans TC", sans-serif; background: #F4F2ED; color: #1F2A2E; }
+.en { font-family: "Inter", "Noto Sans TC", sans-serif; }
+.tabs { height: 240px; background: #1F2A2E; display: grid; grid-template-columns: 834px 833px 833px; }
+.tab { display: flex; align-items: center; justify-content: center; gap: 30px; color: #8E9C96; }
+.tab b { font-size: 100px; font-weight: 900; letter-spacing: .1em; }
+.tab i { font-style: normal; font-family: "Inter", sans-serif; font-weight: 800; font-size: 40px; letter-spacing: .2em; }
+.tab.on { background: #F4F2ED; color: #1F2A2E; border-radius: 60px 60px 0 0; margin: 28px 24px 0; }
+.tab.on i { color: #12806F; }
+.main { position: absolute; left: 0; right: 0; top: 240px; bottom: 0; padding: 26px; }
+.card { background: #FFFFFF; border-radius: 52px; border: 3px solid #E6E3DC; position: relative; overflow: hidden; }
+.dark { background: #1F2A2E; color: #FFFFFF; border-color: #1F2A2E; }
+.icon { width: 140px; height: 140px; border-radius: 38px; background: #E3F3EF; color: #12806F; display: flex; align-items: center; justify-content: center; flex: none; }
+.icon svg { width: 76px; height: 76px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.dark .icon, .icon.solid { background: #2BB3A3; color: #FFFFFF; }
+.eyebrow { font-family: "Inter", sans-serif; font-weight: 800; font-size: 44px; letter-spacing: .2em; color: #2BB3A3; }
+.muted { color: #6E7A75; font-weight: 400; }
+.dark .muted { color: #B7C2BD; }
+.chev { position: absolute; top: 64px; right: 60px; width: 60px; height: 60px; color: #A9B3AF; }
+.chev svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.rule { height: 3px; background: #E6E3DC; }
+.dark .rule { background: #34444A; }
