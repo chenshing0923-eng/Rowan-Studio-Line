@@ -104,6 +104,53 @@ const WORKS = [
   workBubble({ img: `${IMG}/site-demo-tea.jpg`, ratio: '16:10', title: '網站範例｜茶館', sub: '和茶館選單同一套風格', uri: `${SITE}/demo/tea` })
 ];
 
+
+/** 單項價目卡片（一列一個項目） */
+function itemBubble({ tag, title, sub, rows, note, ask }) {
+  return clean({
+    type: 'bubble', size: 'mega',
+    header: { type: 'box', layout: 'vertical', paddingAll: '16px', backgroundColor: C.head, spacing: 'xs', contents: [
+      { type: 'text', text: tag, size: 'xxs', color: '#8FD9C9', weight: 'bold' },
+      { type: 'text', text: title, size: 'lg', color: '#FFFFFF', weight: 'bold' },
+      sub ? { type: 'text', text: sub, size: 'xs', color: '#C9D2CC', wrap: true } : undefined
+    ].filter(Boolean) },
+    body: { type: 'box', layout: 'vertical', paddingAll: '16px', spacing: 'md', contents: [
+      ...rows.map(([name, price]) => ({ type: 'box', layout: 'horizontal', spacing: 'md', contents: [
+        { type: 'text', text: name, size: 'sm', color: C.text, wrap: true, flex: 5 },
+        { type: 'text', text: price, size: 'sm', color: C.teal, weight: 'bold', align: 'end', flex: 3, wrap: true }
+      ] })),
+      note ? { type: 'text', text: note, size: 'xs', color: C.muted, wrap: true, margin: 'lg' } : undefined
+    ].filter(Boolean) },
+    footer: { type: 'box', layout: 'vertical', spacing: 'sm', paddingAll: '12px', contents: [
+      msgBtn('詢問這個項目', `我想了解：${ask || title}`, true),
+      msgBtn('完整單項價目表', '完整單項價目表')
+    ] }
+  });
+}
+
+const ITEMS = {
+  帳號開通: { tag: 'À LA CARTE', title: '帳號開通', sub: '申請＋基本設定', rows: [['帳號開通與基本設定（頭像、封面、店家資訊、歡迎訊息）', 'NT$800']], note: '還沒有官方帳號也沒關係，申請是免費的，我帶你一步步開好。' },
+  圖文選單: { tag: 'À LA CARTE', title: '圖文選單', sub: '設計＋設定', rows: [['圖文選單設計＋設定（1 頁）', 'NT$2,000'], ['頁籤切換：每多 1 頁', 'NT$1,500']], note: '先免費畫一張草圖給你看，滿意再開始。' },
+  自動回覆: { tag: 'À LA CARTE', title: '自動回覆', sub: '關鍵字回覆＋文案', rows: [['關鍵字自動回覆（含文案撰寫，5 組起）', 'NT$100／組']], note: '營業時間、價格、地址、停車這類常見問題，交給自動回覆。' },
+  圖片設計: { tag: 'À LA CARTE', title: '圖片設計', sub: '卡片訊息・推播圖・背景圖', rows: [['卡片型訊息（左右滑，含圖）', 'NT$800／組'], ['圖文訊息／推播圖', 'NT$600／張'], ['背景圖／歡迎圖設計', 'NT$500／張']] },
+  集點與認證: { tag: 'À LA CARTE', title: '集點・認證', sub: '集點卡＋藍盾申請', rows: [['集點卡設定（含卡面設計）', 'NT$1,000'], ['認證帳號（藍盾）申請協助', 'NT$1,200'], ['會員點數系統（客製）', 'NT$15,000 起']] },
+  AI自動回應: { tag: 'À LA CARTE', title: 'AI 自動回應', sub: 'LINE 內建 AI 或客製串接', rows: [['LINE 內建 AI 自動回應設定', 'NT$2,500'], ['AI 智慧客服（客製串接）', 'NT$20,000 起'], ['AI 智慧客服月費方案', 'NT$1,280／月']], note: '內建 AI 需另付 LINE 每月 NT$100；月費方案建置費 NT$6,000，年繳免。' }
+};
+
+const FULL_LIST = itemBubble({ tag: 'PRICE LIST', title: '完整單項價目表', sub: '需要什麼就買什麼，自由搭配', rows: [
+  ['帳號開通與基本設定', 'NT$800'], ['圖文選單設計＋設定（1 頁）', 'NT$2,000'], ['頁籤切換：每多 1 頁', 'NT$1,500'], ['關鍵字回覆（5 組起）', 'NT$100／組'],
+  ['卡片型訊息', 'NT$800／組'], ['圖文訊息／推播圖', 'NT$600／張'], ['背景圖／歡迎圖', 'NT$500／張'], ['線上操作教學 1 小時', 'NT$800'],
+  ['集點卡設定', 'NT$1,000'], ['藍盾申請協助', 'NT$1,200'], ['LINE 內建 AI 設定', 'NT$2,500'], ['會員點數系統（客製）', 'NT$15,000 起'], ['AI 智慧客服（客製）', 'NT$20,000 起']
+], note: '價格未稅。確認報價後付 50% 訂金開工，驗收後付尾款；超過修改次數每次 NT$300；急件加收 30%。', ask: '單項搭配' });
+
+const RECOMMEND = {
+  '剛開店、預算有限': ['入門方案 NT$3,000 起', '先把帳號、選單、自動回覆做好，門面有了再慢慢加。', '一次買斷方案'],
+  '客人常問重複問題': ['標準方案 NT$6,800 起', '選單 2 頁＋自動回覆 15 組，重複的問題一次交給系統。', '一次買斷方案'],
+  '預約很多想省人力': ['自動化方案 NT$15,000 起', '預約、報名表單自動進試算表，新預約即時通知。', '一次買斷方案'],
+  '沒時間自己經營': ['月費方案 NT$1,500／月起', '每月幫你換選單、寫推播；想要 24 小時回覆可選 AI 智慧客服 NT$1,280／月。', '月費方案'],
+  '也需要網站': ['網站＋LINE 起步包 NT$11,800 起', '形象網站和 LINE 官方帳號一次架好，同一套風格。', '網站製作方案']
+};
+
 const FAQ = ['合作流程', '付款方式', '多久可以上線', '需要給密碼嗎', 'LINE 月費怎麼算'];
 
 // ---------- 對外：加好友歡迎 ----------
@@ -117,6 +164,18 @@ export function welcome() {
 // ---------- 對外：關鍵字 → 回覆 ----------
 const RULES = [
   [/^我想了解：/, t => [msg(`收到，你想了解「${t.replace(/^我想了解：/, '')}」！\n\n麻煩簡單告訴我：\n1. 店名和行業\n2. 目前有沒有 LINE 官方帳號\n3. 最想解決的問題\n\n我看到後會親自回覆你，通常一個工作天內。也可以先免費看選單草圖，滿意再談。`)]],
+  [/^單項：?(帳號開通|圖文選單|自動回覆|圖片設計|集點與認證|AI ?自動回應)/i, t => {
+    const k = t.match(/^單項：?(帳號開通|圖文選單|自動回覆|圖片設計|集點與認證|AI ?自動回應)/i)[1].replace(/\s/g, '').replace(/^ai/i, 'AI');
+    const it = ITEMS[k];
+    return [flex(`單項價目：${it.title}`, itemBubble(it), ['完整單項價目表', '幫我推薦方案', '免費諮詢'])];
+  }],
+  [/完整單項|單項價目|價目表/, () => [flex('完整單項價目表', FULL_LIST, ['幫我推薦方案', '免費諮詢'])]],
+  [/^推薦：/, t => {
+    const r = RECOMMEND[t.replace(/^推薦：/, '')];
+    if (!r) return null;
+    return [msg(`建議你看：${r[0]}\n\n${r[1]}\n\n想更準確的建議，輸入「免費諮詢」，我親自幫你看。`, [r[2], '免費諮詢', '完整單項價目表'])];
+  }],
+  [/推薦|不知道選|怎麼選|哪個好/, () => [msg('幫你推薦！你的狀況比較接近哪一個？', Object.keys(RECOMMEND).map(k => `推薦：${k}`))]],
   [/免費諮詢|諮詢|估價|報價|我想問/, () => [msg('好的！先問一個問題，你比較想做哪一種？', ['我想了解：圖文選單＋自動回覆', '我想了解：月費代管', '我想了解：AI 智慧客服', '我想了解：網站製作', '我想了解：還不確定'])]],
   [/line ?月費|訊息費|則數/i, () => [msg('LINE 官方帳號的月費是付給 LINE 的，不包含在我的服務費裡。\n\n2026 年 11 月起：\n・輕用量 0 元（每月 200 則）\n・中用量 1,000 元（每月 3,000 則）\n・高用量 1,400 元（每月 6,000 則）\n\n回覆客人的訊息不算則數，我會依你的好友數建議最划算的方案。', FAQ)]],
   [/作品|範例|案例|作品集|設計/, () => [flex('Rowan Studio 作品與範例', carousel(WORKS), MAIN_QUICK)]],
