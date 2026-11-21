@@ -11,12 +11,13 @@ LINE 官方帳號 `@041yyclq` 的自動回覆機器人，跑在 Cloudflare Worke
 | 把選單套用到 LINE | `scripts/setup-richmenu.sh` |
 
 ## 目前使用的圖文選單
-正式選單是 **v5 三頁籤大字版**（首頁／方案／單項），檔案在 `richmenu/v5/`：
+正式選單是 **v6 三頁籤**（首頁／方案／單項），檔案在 `richmenu/v6/`：
 - `home.html`、`plan.html`、`item.html`：設計稿，輸出成同名 `.jpg`（2500×1686）
-- `home.json`、`plan.json`、`item.json`：按鈕位置（與 v4 相同），頁籤用別名 `tab-home`／`tab-plan`／`tab-item` 切換
-- 預設顯示 `tab-home`
+- `home.json`、`plan.json`、`item.json`：按鈕位置與送出的文字；頁籤用別名 `tab-home`／`tab-plan`／`tab-item` 切換，預設顯示 `tab-home`
+- 首頁：LINE 官方帳號服務（左大格）、網站製作（右上）、作品範例／免費諮詢／常見問題
+- 方案：LINE 建置／網站製作／LINE 代管＋幫我推薦方案
 
-舊版 v4 的圖片備份在 `richmenu/v4-backup/`。`richmenu/` 根目錄的 6 格選單是更早的備用版本，沒有套用。
+舊版設計：`richmenu/v5/`（大字版）、`richmenu/v4-backup/`（v4 圖片）、`richmenu/` 根目錄（6 格版），都沒有套用。
 
 ## 關鍵字
 價格／方案、一次買斷、單項（帳號開通、圖文選單、自動回覆、圖片設計、集點與認證、AI 自動回應）、完整單項價目表、幫我推薦方案、月費／代管、AI、網站、作品／範例、免費諮詢、流程、付款、多久上線、密碼、LINE 月費、常見問題、聯絡、謝謝、你好。
