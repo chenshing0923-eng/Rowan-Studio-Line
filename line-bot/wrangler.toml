@@ -3,6 +3,9 @@ name = "rowan-line-bot"
 main = "src/index.js"
 compatibility_date = "2025-09-01"
 
+# 部署時保留在 Cloudflare 後台手動設定的變數，不會被清掉
+keep_vars = true
+
 # 兩個密鑰請在 Cloudflare 後台設定（Settings → Variables and Secrets），不要寫在這裡：
 #   LINE_CHANNEL_SECRET        LINE Developers → Basic settings → Channel secret
 #   LINE_CHANNEL_ACCESS_TOKEN  LINE Developers → Messaging API → Channel access token
