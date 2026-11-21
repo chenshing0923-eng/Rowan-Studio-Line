@@ -1,0 +1,39 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8"><link rel="stylesheet" href="base.css">
+<style>
+.main { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1058px 1fr; gap: 26px; }
+.p { padding: 62px 58px 54px; display: flex; flex-direction: column; }
+.top { display: flex; align-items: center; justify-content: space-between; }
+.badge.soft { background: #EEF6F3; color: #12806F; }
+.dark .badge.soft { background: rgba(255,255,255,.1); color: #BFEDE3; }
+.badge { background: #C9A15C; color: #FFFFFF; font-size: 44px; font-weight: 900; padding: 10px 28px; border-radius: 999px; }
+.p h2 { font-size: 116px; font-weight: 900; line-height: 1.1; margin-top: 16px; }
+.p .sub { font-size: 56px; margin-top: 8px; white-space: nowrap; }
+.price { display: flex; align-items: baseline; gap: 12px; margin-top: 26px; white-space: nowrap; }
+.price .cur { font-family: "Inter", sans-serif; font-weight: 800; font-size: 54px; color: #6E7A75; }
+.dark .price .cur { color: #B7C2BD; }
+.price b { font-family: "Inter", sans-serif; font-weight: 800; font-size: 160px; letter-spacing: -.03em; line-height: 1; }
+.price .unit { font-size: 58px; }
+.p .rule { margin: 30px 0 22px; }
+.p ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 54px; white-space: nowrap; }
+.p li { display: flex; align-items: center; gap: 24px; }
+.p li::before { content: ""; width: 18px; height: 18px; border-radius: 50%; background: #2BB3A3; flex: none; }
+.btn { margin-top: auto; text-align: center; font-size: 62px; font-weight: 900; padding: 24px 0; border-radius: 999px; border: 5px solid #1F2A2E; }
+.dark .btn { background: #2BB3A3; border-color: #2BB3A3; color: #FFFFFF; }
+.bar { grid-column: 1 / 4; display: flex; align-items: center; gap: 56px; padding: 0 84px; }
+.bar h3 { font-size: 100px; font-weight: 900; line-height: 1.1; }
+.bar p { font-size: 58px; margin-top: 10px; }
+.bar .chev { position: static; margin-left: auto; width: 80px; height: 80px; }
+</style></head><body>
+<div class="tabs"><div class="tab"><b>首頁</b><i>HOME</i></div><div class="tab on"><b>方案</b><i>PLANS</i></div><div class="tab"><b>單項</b><i>À LA CARTE</i></div></div>
+<div class="main">
+  <div class="card p"><div class="top"><span class="eyebrow">SETUP</span><span class="badge soft">一次付清</span></div><h2>LINE 建置</h2><div class="sub muted">選單、回覆一次做好</div>
+    <div class="price"><span class="cur">NT$</span><b>3,000</b><span class="unit muted">起</span></div><div class="rule"></div>
+    <ul><li>入門 NT$3,000</li><li>標準 NT$6,800</li><li>自動化 NT$15,000</li></ul><div class="btn">看方案內容</div></div>
+  <div class="card dark p"><div class="top"><span class="eyebrow">WEBSITE</span><span class="badge">最推薦</span></div><h2>網站製作</h2><div class="sub muted">網站＋LINE 一起開店</div>
+    <div class="price"><span class="cur">NT$</span><b>9,800</b><span class="unit muted">起</span></div><div class="rule"></div>
+    <ul><li>網站單買 $9,800</li><li>起步包 $11,800</li><li>完整包 $22,800</li></ul><div class="btn">看方案內容</div></div>
+  <div class="card p"><div class="top"><span class="eyebrow">MONTHLY</span><span class="badge soft">月繳不綁約</span></div><h2>LINE 代管</h2><div class="sub muted">每月更新、AI 客服</div>
+    <div class="price"><span class="cur">NT$</span><b>1,280</b><span class="unit muted">／月起</span></div><div class="rule"></div>
+    <ul><li>輕量代管 $1,500</li><li>AI 客服 $1,280</li><li>進階代管 $3,000</li></ul><div class="btn">看方案內容</div></div>
+  <div class="card bar"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></div><div><h3>不知道選哪個？</h3><p class="muted">說說你的需求，幫你搭配最划算的組合</p></div><span class="chev"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span></div>
+</div></body></html>
