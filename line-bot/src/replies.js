@@ -105,8 +105,22 @@ const WORKS = [
 ];
 
 
-/** 單項價目卡片（一列一個項目） */
-function itemBubble({ tag, title, sub, rows, note, ask }) {
+/** 單項價目卡片：rows 可以是 ['名稱', '價格'] 或 { group: '分組標題' } */
+function itemBubble({ tag, title, sub, rows, note, ask, footer }) {
+  const body = [];
+  rows.forEach((r, i) => {
+    if (!Array.isArray(r)) {
+      if (body.length) body.push({ type: 'separator', margin: 'lg', color: C.line });
+      body.push({ type: 'text', text: r.group, size: 'xs', weight: 'bold', color: C.teal, margin: body.length ? 'lg' : 'none' });
+      return;
+    }
+    const [name, price] = r;
+    body.push({ type: 'box', layout: 'horizontal', spacing: 'md', margin: 'md', contents: [
+      { type: 'text', text: name, size: 'sm', color: C.text, wrap: true, flex: 1, gravity: 'center' },
+      { type: 'text', text: price, size: 'sm', color: C.teal, weight: 'bold', align: 'end', flex: 0, gravity: 'center' }
+    ] });
+  });
+  if (note) body.push({ type: 'text', text: note, size: 'xs', color: C.muted, wrap: true, margin: 'xl' });
   return clean({
     type: 'bubble', size: 'mega',
     header: { type: 'box', layout: 'vertical', paddingAll: '16px', backgroundColor: C.head, spacing: 'xs', contents: [
@@ -114,34 +128,28 @@ function itemBubble({ tag, title, sub, rows, note, ask }) {
       { type: 'text', text: title, size: 'lg', color: '#FFFFFF', weight: 'bold' },
       sub ? { type: 'text', text: sub, size: 'xs', color: '#C9D2CC', wrap: true } : undefined
     ].filter(Boolean) },
-    body: { type: 'box', layout: 'vertical', paddingAll: '16px', spacing: 'md', contents: [
-      ...rows.map(([name, price]) => ({ type: 'box', layout: 'horizontal', spacing: 'md', contents: [
-        { type: 'text', text: name, size: 'sm', color: C.text, wrap: true, flex: 5 },
-        { type: 'text', text: price, size: 'sm', color: C.teal, weight: 'bold', align: 'end', flex: 3, wrap: true }
-      ] })),
-      note ? { type: 'text', text: note, size: 'xs', color: C.muted, wrap: true, margin: 'lg' } : undefined
-    ].filter(Boolean) },
-    footer: { type: 'box', layout: 'vertical', spacing: 'sm', paddingAll: '12px', contents: [
+    body: { type: 'box', layout: 'vertical', paddingAll: '16px', contents: body },
+    footer: { type: 'box', layout: 'vertical', spacing: 'sm', paddingAll: '12px', contents: footer || [
       msgBtn('詢問這個項目', `我想了解：${ask || title}`, true),
-      msgBtn('完整單項價目表', '完整單項價目表')
+      msgBtn('看完整單項價目表', '完整單項價目表')
     ] }
   });
 }
 
 const ITEMS = {
-  帳號開通: { tag: 'À LA CARTE', title: '帳號開通', sub: '申請＋基本設定', rows: [['帳號開通與基本設定（頭像、封面、店家資訊、歡迎訊息）', 'NT$800']], note: '還沒有官方帳號也沒關係，申請是免費的，我帶你一步步開好。' },
-  圖文選單: { tag: 'À LA CARTE', title: '圖文選單', sub: '設計＋設定', rows: [['圖文選單設計＋設定（1 頁）', 'NT$2,000'], ['頁籤切換：每多 1 頁', 'NT$1,500']], note: '先免費畫一張草圖給你看，滿意再開始。' },
-  自動回覆: { tag: 'À LA CARTE', title: '自動回覆', sub: '關鍵字回覆＋文案', rows: [['關鍵字自動回覆（含文案撰寫，5 組起）', 'NT$100／組']], note: '營業時間、價格、地址、停車這類常見問題，交給自動回覆。' },
-  圖片設計: { tag: 'À LA CARTE', title: '圖片設計', sub: '卡片訊息・推播圖・背景圖', rows: [['卡片型訊息（左右滑，含圖）', 'NT$800／組'], ['圖文訊息／推播圖', 'NT$600／張'], ['背景圖／歡迎圖設計', 'NT$500／張']] },
-  集點與認證: { tag: 'À LA CARTE', title: '集點・認證', sub: '集點卡＋藍盾申請', rows: [['集點卡設定（含卡面設計）', 'NT$1,000'], ['認證帳號（藍盾）申請協助', 'NT$1,200'], ['會員點數系統（客製）', 'NT$15,000 起']] },
-  AI自動回應: { tag: 'À LA CARTE', title: 'AI 自動回應', sub: 'LINE 內建 AI 或客製串接', rows: [['LINE 內建 AI 自動回應設定', 'NT$2,500'], ['AI 智慧客服（客製串接）', 'NT$20,000 起'], ['AI 智慧客服月費方案', 'NT$1,280／月']], note: '內建 AI 需另付 LINE 每月 NT$100；月費方案建置費 NT$6,000，年繳免。' }
+  帳號開通: { tag: 'À LA CARTE', title: '帳號開通', sub: '申請＋基本設定', rows: [['帳號開通與基本設定', 'NT$800']], note: '包含頭像、封面、店家資訊、歡迎訊息。還沒有官方帳號也沒關係，申請是免費的，我帶你一步步開好。' },
+  圖文選單: { tag: 'À LA CARTE', title: '圖文選單', sub: '設計＋設定', rows: [['選單設計＋設定（1 頁）', 'NT$2,000'], ['頁籤切換，每多 1 頁', 'NT$1,500']], note: '先免費畫一張草圖給你看，滿意再開始。' },
+  自動回覆: { tag: 'À LA CARTE', title: '自動回覆', sub: '關鍵字回覆＋文案', rows: [['關鍵字回覆（含文案）', 'NT$100／組']], note: '5 組起。營業時間、價格、地址、停車這類常見問題，交給自動回覆。' },
+  圖片設計: { tag: 'À LA CARTE', title: '圖片設計', sub: '卡片訊息・推播圖・背景圖', rows: [['卡片型訊息（含圖）', 'NT$800／組'], ['圖文訊息、推播圖', 'NT$600／張'], ['背景圖、歡迎圖', 'NT$500／張']] },
+  集點與認證: { tag: 'À LA CARTE', title: '集點・認證', sub: '集點卡＋藍盾申請', rows: [['集點卡（含卡面設計）', 'NT$1,000'], ['藍盾認證申請協助', 'NT$1,200'], ['會員點數系統', 'NT$15,000 起']] },
+  AI自動回應: { tag: 'À LA CARTE', title: 'AI 自動回應', sub: 'LINE 內建 AI 或客製串接', rows: [['LINE 內建 AI 設定', 'NT$2,500'], ['AI 客服客製串接', 'NT$20,000 起'], ['AI 客服月費方案', 'NT$1,280／月']], note: '內建 AI 需另付 LINE 每月 NT$100；月費方案建置費 NT$6,000，年繳免。' }
 };
 
 const FULL_LIST = itemBubble({ tag: 'PRICE LIST', title: '完整單項價目表', sub: '需要什麼就買什麼，自由搭配', rows: [
-  ['帳號開通與基本設定', 'NT$800'], ['圖文選單設計＋設定（1 頁）', 'NT$2,000'], ['頁籤切換：每多 1 頁', 'NT$1,500'], ['關鍵字回覆（5 組起）', 'NT$100／組'],
-  ['卡片型訊息', 'NT$800／組'], ['圖文訊息／推播圖', 'NT$600／張'], ['背景圖／歡迎圖', 'NT$500／張'], ['線上操作教學 1 小時', 'NT$800'],
-  ['集點卡設定', 'NT$1,000'], ['藍盾申請協助', 'NT$1,200'], ['LINE 內建 AI 設定', 'NT$2,500'], ['會員點數系統（客製）', 'NT$15,000 起'], ['AI 智慧客服（客製）', 'NT$20,000 起']
-], note: '價格未稅。確認報價後付 50% 訂金開工，驗收後付尾款；超過修改次數每次 NT$300；急件加收 30%。', ask: '單項搭配' });
+  { group: '基礎設定' }, ['帳號開通與設定', 'NT$800'], ['選單設計＋設定（1 頁）', 'NT$2,000'], ['頁籤切換，每多 1 頁', 'NT$1,500'], ['關鍵字回覆（5 組起）', 'NT$100／組'],
+  { group: '內容設計' }, ['卡片型訊息', 'NT$800／組'], ['圖文訊息、推播圖', 'NT$600／張'], ['背景圖、歡迎圖', 'NT$500／張'], ['線上教學 1 小時', 'NT$800'],
+  { group: '進階功能' }, ['集點卡設定', 'NT$1,000'], ['藍盾認證申請', 'NT$1,200'], ['LINE 內建 AI 設定', 'NT$2,500'], ['會員點數系統', 'NT$15,000 起'], ['AI 客服客製串接', 'NT$20,000 起']
+], note: '價格未稅。確認報價後付 50% 訂金開工，驗收後付尾款。超過修改次數每次 NT$300，急件加收 30%。', footer: [msgBtn('我想詢問', '我想了解：單項搭配', true), msgBtn('幫我推薦方案', '幫我推薦方案')] });
 
 const RECOMMEND = {
   '剛開店、預算有限': ['入門方案 NT$3,000 起', '先把帳號、選單、自動回覆做好，門面有了再慢慢加。', '一次買斷方案'],
