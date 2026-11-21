@@ -8,13 +8,21 @@ export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (request.method === 'GET') {
-      return new Response('Rowan Studio LINE bot is running.', { headers: { 'content-type': 'text/plain; charset=utf-8' } });
+      // 健康檢查：只顯示密鑰有沒有設定，不顯示內容
+      const mark = v => (v ? '✔ 已設定' : '✘ 沒有設定');
+      const lines = [
+        'Rowan Studio LINE bot is running.',
+        '',
+        `LINE_CHANNEL_SECRET：${mark(env.LINE_CHANNEL_SECRET)}`,
+        `LINE_CHANNEL_ACCESS_TOKEN：${mark(env.LINE_CHANNEL_ACCESS_TOKEN)}`
+      ];
+      return new Response(lines.join('\n'), { headers: { 'content-type': 'text/plain; charset=utf-8' } });
     }
     if (request.method !== 'POST' || (url.pathname !== '/' && url.pathname !== '/webhook')) {
       return new Response('Not found', { status: 404 });
     }
     if (!env.LINE_CHANNEL_SECRET || !env.LINE_CHANNEL_ACCESS_TOKEN) {
-      return new Response('Missing LINE secrets', { status: 500 });
+      return new Response('Missing LINE secrets', { status: 503 });
     }
 
     const body = await request.text();
