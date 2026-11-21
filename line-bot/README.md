@@ -12,7 +12,8 @@ LINE 官方帳號 `@041yyclq` 的自動回覆機器人，跑在 Cloudflare Worke
 
 ## 目前使用的圖文選單
 正式選單是 **v6 三頁籤**（首頁／方案／單項），檔案在 `richmenu/v6/`：
-- `home.html`、`plan.html`、`item.html`：設計稿，輸出成同名 `.jpg`（2500×1686）
+- `home.html`、`plan.html`、`item.html`：設計稿，用 `node line-bot/richmenu/v6/render.mjs` 輸出成同名 `.jpg`（2500×1686）
+- 字體：中文「昭源黑體 Chiron Hei HK」、數字與英文「Inter」
 - `home.json`、`plan.json`、`item.json`：按鈕位置與送出的文字；頁籤用別名 `tab-home`／`tab-plan`／`tab-item` 切換，預設顯示 `tab-home`
 - 首頁：LINE 官方帳號服務（左大格）、網站製作（右上）、作品範例／免費諮詢／常見問題
 - 方案：LINE 建置／網站製作／LINE 代管＋幫我推薦方案
