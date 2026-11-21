@@ -55,7 +55,7 @@
    },
    "action": {
     "type": "message",
-    "text": "單項：帳號開通"
+    "text": "單項：圖文選單"
    }
   },
   {
@@ -67,7 +67,7 @@
    },
    "action": {
     "type": "message",
-    "text": "單項：圖文選單"
+    "text": "單項：自動回覆"
    }
   },
   {
@@ -79,7 +79,7 @@
    },
    "action": {
     "type": "message",
-    "text": "單項：自動回覆"
+    "text": "單項：線上預約"
    }
   },
   {
@@ -103,7 +103,7 @@
    },
    "action": {
     "type": "message",
-    "text": "單項：集點與認證"
+    "text": "單項：優惠集點"
    }
   },
   {
