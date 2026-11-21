@@ -1,0 +1,110 @@
+{
+ "size": {
+  "width": 2500,
+  "height": 1686
+ },
+ "selected": true,
+ "name": "RowanStudio-v5-home",
+ "chatBarText": "點我看服務",
+ "areas": [
+  {
+   "bounds": {
+    "x": 0,
+    "y": 0,
+    "width": 834,
+    "height": 240
+   },
+   "action": {
+    "type": "richmenuswitch",
+    "data": "switch=tab-home",
+    "richMenuAliasId": "tab-home"
+   }
+  },
+  {
+   "bounds": {
+    "x": 834,
+    "y": 0,
+    "width": 833,
+    "height": 240
+   },
+   "action": {
+    "type": "richmenuswitch",
+    "data": "switch=tab-plan",
+    "richMenuAliasId": "tab-plan"
+   }
+  },
+  {
+   "bounds": {
+    "x": 1667,
+    "y": 0,
+    "width": 833,
+    "height": 240
+   },
+   "action": {
+    "type": "richmenuswitch",
+    "data": "switch=tab-item",
+    "richMenuAliasId": "tab-item"
+   }
+  },
+  {
+   "bounds": {
+    "x": 0,
+    "y": 240,
+    "width": 1250,
+    "height": 1446
+   },
+   "action": {
+    "type": "message",
+    "text": "預約諮詢"
+   }
+  },
+  {
+   "bounds": {
+    "x": 1250,
+    "y": 240,
+    "width": 625,
+    "height": 723
+   },
+   "action": {
+    "type": "message",
+    "text": "合作流程"
+   }
+  },
+  {
+   "bounds": {
+    "x": 1875,
+    "y": 240,
+    "width": 625,
+    "height": 723
+   },
+   "action": {
+    "type": "message",
+    "text": "常見問題"
+   }
+  },
+  {
+   "bounds": {
+    "x": 1250,
+    "y": 963,
+    "width": 625,
+    "height": 723
+   },
+   "action": {
+    "type": "message",
+    "text": "作品範例"
+   }
+  },
+  {
+   "bounds": {
+    "x": 1875,
+    "y": 963,
+    "width": 625,
+    "height": 723
+   },
+   "action": {
+    "type": "uri",
+    "uri": "https://rowan-studio.pages.dev/"
+   }
+  }
+ ]
+}

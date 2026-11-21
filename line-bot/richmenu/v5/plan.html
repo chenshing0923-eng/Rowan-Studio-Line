@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8"><link rel="stylesheet" href="base.css">
+<style>
+.main { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1058px 1fr; gap: 26px; }
+.p { padding: 70px 60px; display: flex; flex-direction: column; }
+.p h2 { font-size: 124px; font-weight: 900; line-height: 1; }
+.p .sub { font-size: 74px; font-weight: 700; color: #5B6963; margin-top: 30px; }
+.dark .sub { color: #C9D2CC; }
+.price { margin-top: auto; display: flex; align-items: baseline; gap: 14px; }
+.price small { font-size: 66px; font-weight: 700; color: #7A8882; }
+.price b { font-size: 190px; font-weight: 900; letter-spacing: -.02em; line-height: 1; }
+.dark .price small { color: #AFC0B9; }
+.go { margin-top: 56px; text-align: center; font-size: 80px; font-weight: 900; padding: 30px 0; border-radius: 999px; border: 5px solid #1F2A2E; }
+.dark .go { background: #2BB3A3; border-color: #2BB3A3; color: #0B2A23; }
+.badge { align-self: flex-start; margin-top: 40px; background: #E7B567; color: #3A2606; font-size: 58px; font-weight: 900; padding: 12px 30px; border-radius: 999px; }
+.bar { grid-column: 1 / 4; display: flex; align-items: center; gap: 50px; padding: 0 80px; }
+.bar h3 { font-size: 104px; font-weight: 900; }
+.bar span { margin-left: auto; font-size: 96px; }
+</style></head><body>
+<div class="tabs"><div class="tab">首頁</div><div class="tab on">方案</div><div class="tab">單項</div></div>
+<div class="main">
+  <div class="card p"><h2>一次買斷</h2><div class="sub">做好就是你的</div><div class="price"><b>3,000</b><small>起</small></div><div class="go">看方案 →</div></div>
+  <div class="card dark p"><h2>月費方案</h2><div class="sub">每月有人幫你顧</div><div class="badge">年繳免建置費</div><div class="price"><b>1,280</b><small>／月起</small></div><div class="go">看方案 →</div></div>
+  <div class="card p"><h2>網站製作</h2><div class="sub">網站＋LINE 一起做</div><div class="price"><b>9,800</b><small>起</small></div><div class="go">看方案 →</div></div>
+  <div class="card bar"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg></div><h3>不知道選哪個？幫你推薦</h3><span class="arrow">→</span></div>
+</div></body></html>
