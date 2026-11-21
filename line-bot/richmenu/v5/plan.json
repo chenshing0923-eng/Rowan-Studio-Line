@@ -1,0 +1,98 @@
+{
+ "size": {
+  "width": 2500,
+  "height": 1686
+ },
+ "selected": true,
+ "name": "RowanStudio-v5-plan",
+ "chatBarText": "點我看服務",
+ "areas": [
+  {
+   "bounds": {
+    "x": 0,
+    "y": 0,
+    "width": 834,
+    "height": 240
+   },
+   "action": {
+    "type": "richmenuswitch",
+    "data": "switch=tab-home",
+    "richMenuAliasId": "tab-home"
+   }
+  },
+  {
+   "bounds": {
+    "x": 834,
+    "y": 0,
+    "width": 833,
+    "height": 240
+   },
+   "action": {
+    "type": "richmenuswitch",
+    "data": "switch=tab-plan",
+    "richMenuAliasId": "tab-plan"
+   }
+  },
+  {
+   "bounds": {
+    "x": 1667,
+    "y": 0,
+    "width": 833,
+    "height": 240
+   },
+   "action": {
+    "type": "richmenuswitch",
+    "data": "switch=tab-item",
+    "richMenuAliasId": "tab-item"
+   }
+  },
+  {
+   "bounds": {
+    "x": 0,
+    "y": 240,
+    "width": 834,
+    "height": 1110
+   },
+   "action": {
+    "type": "message",
+    "text": "一次買斷方案"
+   }
+  },
+  {
+   "bounds": {
+    "x": 834,
+    "y": 240,
+    "width": 833,
+    "height": 1110
+   },
+   "action": {
+    "type": "message",
+    "text": "月費方案"
+   }
+  },
+  {
+   "bounds": {
+    "x": 1667,
+    "y": 240,
+    "width": 833,
+    "height": 1110
+   },
+   "action": {
+    "type": "message",
+    "text": "網站製作方案"
+   }
+  },
+  {
+   "bounds": {
+    "x": 0,
+    "y": 1350,
+    "width": 2500,
+    "height": 336
+   },
+   "action": {
+    "type": "message",
+    "text": "幫我推薦方案"
+   }
+  }
+ ]
+}

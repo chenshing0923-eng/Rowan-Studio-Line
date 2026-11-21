@@ -1,0 +1,17 @@
+/* Rowan Studio 三頁籤選單 v5（2500×1686）：字放大、少小字。按鈕位置與 v4 相同 */
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 2500px; height: 1686px; overflow: hidden; }
+body { font-family: "Noto Sans TC", sans-serif; background: #F3F1EC; color: #1F2A2E; }
+.tabs { height: 240px; background: #1F2A2E; display: grid; grid-template-columns: 834px 833px 833px; padding: 0 0 0; }
+.tab { display: flex; align-items: center; justify-content: center; font-size: 96px; font-weight: 900; color: #93A39C; letter-spacing: .12em; }
+.tab.on { background: #F3F1EC; color: #1F2A2E; border-radius: 56px 56px 0 0; margin: 26px 24px 0; }
+.tab.on::after { content: ""; display: block; width: 18px; height: 18px; border-radius: 50%; background: #2BB3A3; margin-left: 22px; }
+.main { position: absolute; left: 0; right: 0; top: 240px; bottom: 0; padding: 26px; }
+.card { background: #FFFFFF; border-radius: 48px; box-shadow: 0 6px 0 rgba(31,42,46,.06); border: 3px solid #E4E1D9; position: relative; overflow: hidden; }
+.dark { background: #1F2A2E; color: #FFFFFF; border-color: #1F2A2E; }
+.icon { width: 150px; height: 150px; border-radius: 40px; background: #E2F4EF; color: #12806F; display: flex; align-items: center; justify-content: center; }
+.icon svg { width: 90px; height: 90px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.dark .icon { background: #2BB3A3; color: #0B2A23; }
+.arrow { font-weight: 900; color: #12806F; }
+.mint { color: #12806F; }
+.gold { color: #B7791F; }

@@ -11,8 +11,12 @@ LINE 官方帳號 `@041yyclq` 的自動回覆機器人，跑在 Cloudflare Worke
 | 把選單套用到 LINE | `scripts/setup-richmenu.sh` |
 
 ## 目前使用的圖文選單
-正式選單是 **v4 三頁籤選單**（首頁／方案／單項，名稱 `RowanStudio-tab-home`、`RowanStudio-tab-plan`、`RowanStudio-tab-item`，別名 `tab-home`／`tab-plan`／`tab-item`），預設顯示 `tab-home`。
-機器人已支援 v4 所有按鈕文字。`richmenu/` 裡的 6 格選單是備用版本，目前沒有套用。
+正式選單是 **v5 三頁籤大字版**（首頁／方案／單項），檔案在 `richmenu/v5/`：
+- `home.html`、`plan.html`、`item.html`：設計稿，輸出成同名 `.jpg`（2500×1686）
+- `home.json`、`plan.json`、`item.json`：按鈕位置（與 v4 相同），頁籤用別名 `tab-home`／`tab-plan`／`tab-item` 切換
+- 預設顯示 `tab-home`
+
+舊版 v4 的圖片備份在 `richmenu/v4-backup/`。`richmenu/` 根目錄的 6 格選單是更早的備用版本，沒有套用。
 
 ## 關鍵字
 價格／方案、一次買斷、單項（帳號開通、圖文選單、自動回覆、圖片設計、集點與認證、AI 自動回應）、完整單項價目表、幫我推薦方案、月費／代管、AI、網站、作品／範例、免費諮詢、流程、付款、多久上線、密碼、LINE 月費、常見問題、聯絡、謝謝、你好。
