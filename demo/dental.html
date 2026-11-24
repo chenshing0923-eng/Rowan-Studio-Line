@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>晴光牙醫診所｜示範網站・Rowan Studio 製作</title>
+<meta name="robots" content="noindex" />
+<meta name="description" content="Rowan Studio 製作的牙醫診所示範網站：線上掛號、門診時間、醫師團隊、交通資訊。診所名稱與內容皆為示範。" />
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="_demo.css" />
+<style>
+  :root { --blue: #2F72C9; --deep: #1D4F96; --sky: #EAF2FC; --ink: #1A2B44; --muted: #5E6E86; }
+  body { background: #fff; color: var(--ink); font-family: "Noto Sans TC", sans-serif; }
+  header { border-bottom: 1px solid #E3EBF6; }
+  .nav { display: flex; align-items: center; justify-content: space-between; padding-block: 16px; gap: 16px; }
+  .logo { font-weight: 900; font-size: 21px; text-decoration: none; display: flex; align-items: center; gap: 10px; color: var(--deep); }
+  .nav nav { display: flex; gap: 22px; font-size: 15px; flex-wrap: wrap; align-items: center; }
+  .nav nav a { text-decoration: none; color: var(--muted); }
+  .nav nav a.cta { background: var(--blue); color: #fff; padding: 9px 20px; border-radius: 999px; font-weight: 700; }
+  .hero { background: linear-gradient(135deg, var(--sky), #fff 60%); }
+  .hero .wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: center; padding-block: 64px; }
+  .hero small { color: var(--blue); font-weight: 700; letter-spacing: .2em; }
+  .hero h1 { font-size: clamp(38px, 5.4vw, 64px); line-height: 1.2; margin: 10px 0 14px; font-weight: 900; }
+  .hero p { color: var(--muted); font-size: 18px; margin: 0 0 26px; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 999px; font-weight: 700; text-decoration: none; }
+  .btn.b { background: var(--blue); color: #fff; box-shadow: 0 16px 30px -14px rgba(47,114,201,.7); }
+  .btn.w { color: var(--deep); border: 2px solid #C9DAF0; margin-left: 10px; }
+  .card { background: #fff; border-radius: 26px; padding: 28px; box-shadow: 0 30px 60px -36px rgba(29,79,150,.45); }
+  .card h3 { margin: 0 0 14px; display: flex; justify-content: space-between; align-items: center; }
+  .card h3 span { font-size: 13px; background: #E5F6EC; color: #1F8A4C; padding: 4px 12px; border-radius: 999px; }
+  .slot { display: flex; justify-content: space-between; padding: 12px 0; border-top: 1px solid #EEF3FA; }
+  .slot b { font-family: Inter, sans-serif; color: var(--deep); }
+  .sec { padding-block: 64px 16px; }
+  h2 { font-size: 32px; margin: 0 0 6px; font-weight: 900; }
+  .sub { color: var(--muted); margin: 0 0 26px; }
+  .svc { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .svc div { background: var(--sky); border-radius: 22px; padding: 24px; }
+  .svc h3 { margin: 12px 0 4px; font-size: 19px; }
+  .svc p { margin: 0; color: var(--muted); font-size: 14px; }
+  .svc .ic { width: 34px; height: 34px; color: var(--blue); }
+  table { border: 1px solid #E3EBF6; border-radius: 18px; overflow: hidden; }
+  th, td { padding: 14px; text-align: center; border-bottom: 1px solid #EEF3FA; }
+  th { background: var(--sky); color: var(--deep); }
+  td.on::after { content: "●"; color: var(--blue); }
+  td.off { color: #B9C4D4; }
+  .docs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .doc { border: 1px solid #E3EBF6; border-radius: 22px; padding: 24px; display: flex; gap: 16px; align-items: center; }
+  .doc i { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #CFE0F6, #EAF2FC); flex: none; }
+  .doc p { margin: 0; color: var(--muted); font-size: 14px; }
+  footer { text-align: center; padding: 40px 16px; color: var(--muted); font-size: 13px; }
+  @media (max-width: 820px) { .hero .wrap { grid-template-columns: 1fr; } .svc { grid-template-columns: 1fr 1fr; } .docs { grid-template-columns: 1fr; } .nav nav a:not(.cta) { display: none; } .tbl { overflow-x: auto; } .btn.w { margin-left: 0; margin-top: 10px; } }
+</style>
+</head>
+<body>
+  <div class="demo-bar">這是 Rowan Studio 製作的<b>示範網站</b>，診所名稱與內容皆為示範。<a href="../new-shop.html">看網站方案 →</a></div>
+  <header><div class="wrap nav"><a class="logo" href="#"><svg class="ic" viewBox="0 0 24 24"><path d="M7 3c-2.5 0-4 2-4 4.5 0 3 1.5 4.5 2 8 .3 2.4.8 5.5 2.3 5.5 1.7 0 1.6-5 4.7-5s3 5 4.7 5c1.5 0 2-3.1 2.3-5.5.5-3.5 2-5 2-8C21 5 19.5 3 17 3c-2 0-3 1-5 1S9 3 7 3z"/></svg>晴光牙醫診所</a><nav><a href="#svc">服務項目</a><a href="#time">門診時間</a><a href="#doc">醫師團隊</a><a href="#time" class="cta">線上掛號</a></nav></div></header>
+  <section class="hero"><div class="wrap">
+    <div><small>BRIGHT DENTAL</small><h1>看牙不用等，<br />線上掛號免排隊。</h1><p>即時查看看診進度，輪到前 LINE 提醒你出門。溫柔看診，從洗牙到植牙。</p><a class="btn b" href="#time">立即線上掛號</a><a class="btn w" href="#svc">服務項目</a></div>
+    <div class="card"><h3>今日可掛號時段 <span>即時更新</span></h3><div class="slot"><span>上午診 09:00–12:00</span><b>剩 3 位</b></div><div class="slot"><span>下午診 14:00–17:30</span><b>剩 6 位</b></div><div class="slot"><span>晚上診 18:30–21:00</span><b>已額滿</b></div></div>
+  </div></section>
+  <section class="wrap sec" id="svc"><h2>服務項目</h2><p class="sub">從日常保健到美觀治療。</p>
+    <div class="svc">
+      <div><svg class="ic" viewBox="0 0 24 24"><path d="M12 3v18M3 12h18"/></svg><h3>一般治療</h3><p>洗牙、補牙、根管治療</p></div>
+      <div><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg><h3>兒童牙科</h3><p>塗氟、窩溝封填</p></div>
+      <div><svg class="ic" viewBox="0 0 24 24"><path d="M4 12h16M4 8h16M4 16h16"/></svg><h3>矯正</h3><p>隱形矯正、傳統矯正</p></div>
+      <div><svg class="ic" viewBox="0 0 24 24"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/></svg><h3>美白・植牙</h3><p>冷光美白、人工植牙</p></div>
+    </div></section>
+  <section class="wrap sec" id="time"><h2>門診時間</h2><p class="sub">● 表示有看診（示範內容）。</p>
+    <div class="tbl"><table><tr><th></th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th></tr><tr><td>上午</td><td class="on"></td><td class="on"></td><td class="on"></td><td class="on"></td><td class="on"></td><td class="on"></td></tr><tr><td>下午</td><td class="on"></td><td class="on"></td><td class="off">休</td><td class="on"></td><td class="on"></td><td class="off">休</td></tr><tr><td>晚上</td><td class="on"></td><td class="off">休</td><td class="on"></td><td class="on"></td><td class="on"></td><td class="off">休</td></tr></table></div></section>
+  <section class="wrap sec" id="doc"><h2>醫師團隊</h2><p class="sub">以下為示範內容。</p>
+    <div class="docs"><div class="doc"><i></i><div><b>王醫師</b><p>院長・植牙、假牙</p></div></div><div class="doc"><i></i><div><b>林醫師</b><p>矯正、兒童牙科</p></div></div><div class="doc"><i></i><div><b>陳醫師</b><p>根管治療、牙周</p></div></div></div></section>
+  <footer>示範網站・由 <a href="../index.html">Rowan Studio</a> 設計製作</footer>
+</body>
+</html>
