@@ -63,7 +63,7 @@ if (viewer) {
 
 // 換頁滑動方向：往右邊的分頁就向左滑，回主畫面就向右滑
 (function () {
-  const ORDER = ['index', 'one-time', 'monthly', 'new-shop'];
+  const ORDER = ['index', 'one-time', 'monthly', 'new-shop', 'quote'];
   const pageOf = u => { const n = new URL(u).pathname.split('/').pop().replace(/\.html$/, ''); return ORDER.indexOf(n || 'index'); };
   window.addEventListener('pagereveal', e => {
     if (!e.viewTransition) return;
