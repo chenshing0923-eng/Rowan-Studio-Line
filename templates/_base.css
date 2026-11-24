@@ -1,0 +1,18 @@
+/* 範本共用樣式：改 --brand 就能換成客人的品牌色 */
+:root { --brand: #C8613C; --brand-ink: #fff; --bg: #FBF8F3; --card: #fff; --ink: #2B2420; --muted: #7D7068; --line: #EADFD3; --radius: 16px; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+.wrap { max-width: 880px; margin: 0 auto; padding: 32px max(16px, env(safe-area-inset-left, 0px)) 120px; }
+h1 { margin: 0 0 4px; font-size: clamp(26px, 5vw, 36px); }
+.lead { margin: 0 0 24px; color: var(--muted); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 24px; border-radius: 999px; border: 0; background: var(--brand); color: var(--brand-ink); font: inherit; font-weight: 700; font-size: 16px; cursor: pointer; text-decoration: none; }
+.btn:disabled { opacity: .4; cursor: not-allowed; }
+.btn.line { background: #06C755; color: #fff; }
+.tpl-bar { font-size: 13px; text-align: center; padding: 6px 16px; background: #1F2A2E; color: #DCE3E0; }
+.tpl-bar a { color: #9FE3D4; }
+label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 14px; }
+input, select, textarea { display: block; width: 100%; margin-top: 6px; padding: 11px 13px; border: 1px solid var(--line); border-radius: 10px; font: inherit; font-weight: 400; background: #fff; color: var(--ink); }
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--brand); outline-offset: 1px; }
+.muted { color: var(--muted); }
+.note { font-size: 13px; color: var(--muted); }

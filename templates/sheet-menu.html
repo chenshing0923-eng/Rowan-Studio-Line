@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>範本｜改試算表就更新菜單・Rowan Studio</title>
+<meta name="robots" content="noindex" />
+<link rel="stylesheet" href="_base.css" />
+<style>
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+  .tabs button { padding: 7px 16px; border-radius: 999px; border: 1px solid var(--line); background: #fff; font: inherit; cursor: pointer; }
+  .tabs button[aria-pressed="true"] { background: var(--brand); border-color: var(--brand); color: var(--brand-ink); }
+  .group { margin-bottom: 28px; }
+  .group h2 { font-size: 20px; margin: 0 0 10px; padding-bottom: 6px; border-bottom: 2px solid var(--brand); display: inline-block; }
+  .items { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+  .item { display: flex; gap: 12px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; }
+  .item img { width: 72px; height: 72px; border-radius: 10px; object-fit: cover; flex: none; background: var(--line); }
+  .item div { flex: 1; min-width: 0; }
+  .item h3 { margin: 0; font-size: 16px; display: flex; justify-content: space-between; gap: 10px; }
+  .item h3 b { color: var(--brand); white-space: nowrap; }
+  .item p { margin: 2px 0 0; font-size: 14px; color: var(--muted); }
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 1px 8px; border-radius: 999px; background: var(--brand); color: var(--brand-ink); margin-top: 6px; }
+  .item.sold { opacity: .45; }
+  .updated { font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="tpl-bar">Rowan Studio 網站功能範本：<b>改 Google 試算表，網站內容自動更新</b>・<a href="README.md">使用說明</a></div>
+<main class="wrap">
+  <h1 id="title">今日菜單</h1>
+  <p class="lead">每天依市場食材調整，售完為止。<span class="updated" id="updated"></span></p>
+  <div class="tabs" id="tabs" role="toolbar" aria-label="分類"></div>
+  <div id="menu" aria-live="polite"><p class="muted">載入中…</p></div>
+</main>
+
+<script>
+/* ===== 設定區：交件時只改這裡 =====
+   1. 客人的 Google 試算表 → 檔案 → 共用 → 發布到網路 → 選工作表、格式選「逗號分隔值 (.csv)」→ 複製網址貼到 CSV_URL
+   2. 試算表第一列是欄位名稱：分類, 名稱, 價格, 說明, 標籤, 圖片, 售完
+   3. 「售完」欄填 v 或 是，網站就會顯示售完；整列刪掉就下架 */
+const CSV_URL = ''; // 空白 = 用下面的示範資料
+const SAMPLE = `分類,名稱,價格,說明,標籤,圖片,售完
+麵食,紅燒牛肉麵,190,燉煮 6 小時湯頭，手工寬麵,招牌,,
+麵食,麻油雞麵線,160,冬季限定，老薑麻油,季節限定,,
+飯類,滷肉飯套餐,120,附當日青菜、滷蛋、湯品,,,
+飯類,雞腿便當,140,現烤去骨雞腿,,,v
+小菜,燙青菜,60,當日市場直送,,,
+小菜,滷味拼盤,80,豆干、海帶、滷蛋,,,`;
+
+/* ---------- 以下不用改 ---------- */
+function parseCSV(text) {
+  const rows = []; let row = [], cell = '', q = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (q) { if (c === '"') { if (text[i + 1] === '"') { cell += '"'; i++; } else q = false; } else cell += c; }
+    else if (c === '"') q = true;
+    else if (c === ',') { row.push(cell); cell = ''; }
+    else if (c === '\n' || c === '\r') { if (c === '\r' && text[i + 1] === '\n') i++; row.push(cell); rows.push(row); row = []; cell = ''; }
+    else cell += c;
+  }
+  if (cell || row.length) { row.push(cell); rows.push(row); }
+  const [head, ...body] = rows.filter(r => r.some(x => x.trim()));
+  return body.map(r => Object.fromEntries(head.map((h, i) => [h.trim(), (r[i] || '').trim()])));
+}
+const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const money = v => (/^\d+$/.test(v) ? '$' + Number(v).toLocaleString('en-US') : v);
+let DATA = [], cur = '全部';
+
+function render() {
+  const cats = [...new Set(DATA.map(d => d['分類']))];
+  document.getElementById('tabs').innerHTML = ['全部', ...cats].map(c => `<button type="button" aria-pressed="${c === cur}">${esc(c)}</button>`).join('');
+  const show = cur === '全部' ? cats : [cur];
+  document.getElementById('menu').innerHTML = show.map(c => `
+    <section class="group"><h2>${esc(c)}</h2><div class="items">
+      ${DATA.filter(d => d['分類'] === c).map(d => {
+        const sold = /^(v|是|y|yes|1)$/i.test(d['售完'] || '');
+        return `<article class="item${sold ? ' sold' : ''}">
+          ${d['圖片'] ? `<img src="${esc(d['圖片'])}" alt="${esc(d['名稱'])}" loading="lazy" />` : ''}
+          <div><h3>${esc(d['名稱'])}<b>${sold ? '售完' : esc(money(d['價格']))}</b></h3>
+          ${d['說明'] ? `<p>${esc(d['說明'])}</p>` : ''}${d['標籤'] ? `<span class="tag">${esc(d['標籤'])}</span>` : ''}</div>
+        </article>`;
+      }).join('')}
+    </div></section>`).join('');
+}
+document.getElementById('tabs').addEventListener('click', e => { const b = e.target.closest('button'); if (b) { cur = b.textContent; render(); } });
+
+(async () => {
+  let text = SAMPLE;
+  if (CSV_URL) {
+    try {
+      const r = await fetch(CSV_URL + (CSV_URL.includes('?') ? '&' : '?') + 't=' + Date.now());
+      if (!r.ok) throw new Error(r.status);
+      text = await r.text();
+      document.getElementById('updated').textContent = '（已同步最新內容）';
+    } catch (e) {
+      document.getElementById('menu').innerHTML = '<p class="muted">菜單暫時載入失敗，請稍後重新整理。</p>';
+      return;
+    }
+  }
+  DATA = parseCSV(text).filter(d => d['名稱']);
+  render();
+})();
+</script>
+</body>
+</html>
