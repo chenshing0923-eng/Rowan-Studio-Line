@@ -90,7 +90,7 @@ if (viewer) {
     'w-search': W('google.com', `<div class="gs"><span>台中 日日食堂</span><span>🔍</span></div><div class="gr"><small>yourshop.com</small><b>日日食堂｜家常麵食・線上訂位</b><span>每天市場食材現做，LINE 就能訂位、外帶預點…</span></div><div class="ln" style="width:70%"></div><div class="ln" style="width:50%"></div>`),
     'w-store': `<div class="mk map"><div class="pinm"></div><div class="biz"><b>日日食堂</b><div><span class="st">★★★★★</span> 4.8（126 則評論）</div><div><span class="open">營業中</span>・20:00 打烊</div><div class="acts"><span>路線</span><span>致電</span><span>網站</span></div></div></div>`,
     'w-cal': W('yourshop.com/booking', `<b>選擇日期</b><div class="cal7"><span class="off">一</span><span>2</span><span>3</span><span class="sel">4</span><span>5</span><span>6</span><span class="off">休</span></div><b>選擇時段</b><div class="slots2"><span>10:00</span><span class="sel">14:00</span><span class="off">已額滿</span></div>`),
-    'w-page': W('yourshop.com/about', `<div class="pills"><span>首頁</span><span class="on">關於我們</span><span>服務</span><span>作品</span><span style="border-style:dashed">＋新頁面</span></div><div class="ln d" style="width:45%"></div><div class="ln"></div><div class="ln" style="width:85%"></div><div class="gal"><i style="background:#F2E2CB"></i><i style="background:#C9DDD3"></i><i style="background:#D9CCE8"></i></div>`),
+    'w-page': W('yourshop.com/about', `<div class="pills"><span>首頁</span><span class="on">關於</span><span>服務</span><span>作品</span><span style="border-style:dashed">＋新頁</span></div><div class="ln d" style="width:45%"></div><div class="ln"></div><div class="ln" style="width:85%"></div><div class="gal"><i style="background:#F2E2CB"></i><i style="background:#C9DDD3"></i><i style="background:#D9CCE8"></i></div>`),
     'w-news': W('yourshop.com/news', `<b>最新消息</b><div class="news"><div><small>11/20</small><span>冬季限定：麻油雞麵開賣<em>NEW</em></span></div><div><small>11/12</small><span>12 月公休日公告</span></div><div><small>11/01</small><span>加 LINE 好友送 9 折券</span></div></div>`),
     'w-sheet': `<div class="mk" style="background:#F1F4F3;padding:10px"><div class="split"><div class="gsheet"><div><span>品項</span><span>價格</span></div><div><span>牛肉麵</span><span class="hl">190</span></div><div><span>滷肉飯</span><span>120</span></div><div><span>燙青菜</span><span>60</span></div></div><div class="arrow">→</div><div class="menuw"><div><span>牛肉麵</span><span class="hl">$190</span></div><div><span>滷肉飯</span><span>$120</span></div><div><span>燙青菜</span><span>$60</span></div></div></div></div>`,
     'w-calc': W('yourshop.com/quote', `<b>居家清潔估價</b><div class="chk"><div><i class="y"></i>三房兩廳<span>$4,800</span></div><div><i class="y"></i>廚房深度清潔<span>$1,500</span></div><div><i></i>冷氣清洗<span>$1,800</span></div></div><div class="total"><span>預估總價</span><b>NT$6,300</b></div>`),
@@ -136,7 +136,7 @@ if (viewer) {
     pop.classList.add('show');
   };
   const hide = () => { clearTimeout(hideT); hideT = setTimeout(() => { pop.classList.remove('show'); cur && cur.classList.remove('peek'); cur = null; }, 120); };
-  window.RowanDemo = { show, hide, has: k => !!M[k], pop };
+  window.RowanDemo = { show, hide, has: k => !!M[k], html: k => M[k], keys: () => Object.keys(M), pop };
   tiles.forEach(t => {
     t.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') show(t); });
     t.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') hide(); });

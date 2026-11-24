@@ -1,0 +1,146 @@
+{
+  "size": {
+    "width": 2500,
+    "height": 1686
+  },
+  "selected": true,
+  "name": "RowanStudio-v7-item",
+  "chatBarText": "點我看服務",
+  "areas": [
+    {
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 834,
+        "height": 240
+      },
+      "action": {
+        "type": "richmenuswitch",
+        "data": "switch=tab-home",
+        "richMenuAliasId": "tab-home"
+      }
+    },
+    {
+      "bounds": {
+        "x": 834,
+        "y": 0,
+        "width": 833,
+        "height": 240
+      },
+      "action": {
+        "type": "richmenuswitch",
+        "data": "switch=tab-plan",
+        "richMenuAliasId": "tab-plan"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1667,
+        "y": 0,
+        "width": 833,
+        "height": 240
+      },
+      "action": {
+        "type": "richmenuswitch",
+        "data": "switch=tab-item",
+        "richMenuAliasId": "tab-item"
+      }
+    },
+    {
+      "bounds": {
+        "x": 0,
+        "y": 240,
+        "width": 834,
+        "height": 555
+      },
+      "action": {
+        "type": "message",
+        "text": "單項：線上預約"
+      }
+    },
+    {
+      "bounds": {
+        "x": 834,
+        "y": 240,
+        "width": 833,
+        "height": 555
+      },
+      "action": {
+        "type": "message",
+        "text": "圖文選單"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1667,
+        "y": 240,
+        "width": 833,
+        "height": 555
+      },
+      "action": {
+        "type": "message",
+        "text": "AI 客服"
+      }
+    },
+    {
+      "bounds": {
+        "x": 0,
+        "y": 795,
+        "width": 834,
+        "height": 555
+      },
+      "action": {
+        "type": "message",
+        "text": "優惠券"
+      }
+    },
+    {
+      "bounds": {
+        "x": 834,
+        "y": 795,
+        "width": 833,
+        "height": 555
+      },
+      "action": {
+        "type": "message",
+        "text": "Google 商家"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1667,
+        "y": 795,
+        "width": 833,
+        "height": 555
+      },
+      "action": {
+        "type": "message",
+        "text": "商品目錄"
+      }
+    },
+    {
+      "bounds": {
+        "x": 0,
+        "y": 1350,
+        "width": 1250,
+        "height": 336
+      },
+      "action": {
+        "type": "message",
+        "text": "網站功能"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1250,
+        "y": 1350,
+        "width": 1250,
+        "height": 336
+      },
+      "action": {
+        "type": "message",
+        "text": "LINE 功能"
+      }
+    }
+  ]
+}
