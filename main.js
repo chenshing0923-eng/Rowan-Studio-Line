@@ -78,7 +78,6 @@ if (viewer) {
 /* ===== 功能預覽：滑過／點一下圖示，跳出實際畫面 ===== */
 (() => {
   const tiles = document.querySelectorAll('.ft[data-demo]');
-  if (!tiles.length) return;
   const W = (url, body) => `<div class="mk web"><div class="wb"><i></i><i></i><i></i><span>${url}</span></div><div class="wbody">${body}</div></div>`;
   const C = (body, cls = '') => `<div class="mk chat ${cls}">${body}</div>`;
   const RM = `<div class="rm"><i class="hi">立即預約</i><i>本月優惠</i><i>價目表</i><i>營業時間</i><i>常見問題</i><i>交通位置</i></div>`;
@@ -91,6 +90,7 @@ if (viewer) {
     'w-search': W('google.com', `<div class="gs"><span>台中 日日食堂</span><span>🔍</span></div><div class="gr"><small>yourshop.com</small><b>日日食堂｜家常麵食・線上訂位</b><span>每天市場食材現做，LINE 就能訂位、外帶預點…</span></div><div class="ln" style="width:70%"></div><div class="ln" style="width:50%"></div>`),
     'w-store': `<div class="mk map"><div class="pinm"></div><div class="biz"><b>日日食堂</b><div><span class="st">★★★★★</span> 4.8（126 則評論）</div><div><span class="open">營業中</span>・20:00 打烊</div><div class="acts"><span>路線</span><span>致電</span><span>網站</span></div></div></div>`,
     'w-cal': W('yourshop.com/booking', `<b>選擇日期</b><div class="cal7"><span class="off">一</span><span>2</span><span>3</span><span class="sel">4</span><span>5</span><span>6</span><span class="off">休</span></div><b>選擇時段</b><div class="slots2"><span>10:00</span><span class="sel">14:00</span><span class="off">已額滿</span></div>`),
+    'w-page': W('yourshop.com/about', `<div class="pills"><span>首頁</span><span class="on">關於我們</span><span>服務</span><span>作品</span><span style="border-style:dashed">＋新頁面</span></div><div class="ln d" style="width:45%"></div><div class="ln"></div><div class="ln" style="width:85%"></div><div class="gal"><i style="background:#F2E2CB"></i><i style="background:#C9DDD3"></i><i style="background:#D9CCE8"></i></div>`),
     'w-news': W('yourshop.com/news', `<b>最新消息</b><div class="news"><div><small>11/20</small><span>冬季限定：麻油雞麵開賣<em>NEW</em></span></div><div><small>11/12</small><span>12 月公休日公告</span></div><div><small>11/01</small><span>加 LINE 好友送 9 折券</span></div></div>`),
     'w-sheet': `<div class="mk" style="background:#F1F4F3;padding:10px"><div class="split"><div class="gsheet"><div><span>品項</span><span>價格</span></div><div><span>牛肉麵</span><span class="hl">190</span></div><div><span>滷肉飯</span><span>120</span></div><div><span>燙青菜</span><span>60</span></div></div><div class="arrow">→</div><div class="menuw"><div><span>牛肉麵</span><span class="hl">$190</span></div><div><span>滷肉飯</span><span>$120</span></div><div><span>燙青菜</span><span>$60</span></div></div></div></div>`,
     'w-calc': W('yourshop.com/quote', `<b>居家清潔估價</b><div class="chk"><div><i class="y"></i>三房兩廳<span>$4,800</span></div><div><i class="y"></i>廚房深度清潔<span>$1,500</span></div><div><i></i>冷氣清洗<span>$1,800</span></div></div><div class="total"><span>預估總價</span><b>NT$6,300</b></div>`),
@@ -116,12 +116,15 @@ if (viewer) {
   pop.className = 'fpop'; pop.setAttribute('role', 'tooltip');
   document.body.appendChild(pop);
   let cur = null, hideT;
-  const show = t => {
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  // info：{ title, badge, plain, demo, tip }；沒給就從功能清單的格子讀
+  const show = (t, info) => {
     clearTimeout(hideT);
-    if (cur && cur !== t) cur.classList.remove('on');
-    cur = t; t.classList.add('on');
-    const add = t.classList.contains('add');
-    pop.innerHTML = `<h4>${t.querySelector('span').textContent}<small class="${add ? 'add' : ''}">${add ? '可加購' : '方案內含'}</small></h4>${M[t.dataset.demo] || ''}<p>${t.dataset.tip}</p>`;
+    if (!info) { const add = t.classList.contains('add'); info = { title: t.querySelector('span').textContent, badge: add ? '可加購' : '方案內含', plain: add, demo: t.dataset.demo, tip: t.dataset.tip }; }
+    if (!M[info.demo]) return;
+    if (cur && cur !== t) cur.classList.remove('peek');
+    cur = t; t.classList.add('peek');
+    pop.innerHTML = `<h4>${esc(info.title)}${info.badge ? `<small class="${info.plain ? 'add' : ''}">${esc(info.badge)}</small>` : ''}</h4>${M[info.demo]}${info.tip ? `<p>${esc(info.tip)}</p>` : ''}`;
     const r = t.getBoundingClientRect(), vw = document.documentElement.clientWidth;
     const w = Math.min(272, vw - 24); pop.style.width = w + 'px';
     const h = pop.offsetHeight;
@@ -132,7 +135,8 @@ if (viewer) {
     pop.style.left = left + scrollX + 'px'; pop.style.top = top + scrollY + 'px';
     pop.classList.add('show');
   };
-  const hide = () => { hideT = setTimeout(() => { pop.classList.remove('show'); cur && cur.classList.remove('on'); cur = null; }, 120); };
+  const hide = () => { clearTimeout(hideT); hideT = setTimeout(() => { pop.classList.remove('show'); cur && cur.classList.remove('peek'); cur = null; }, 120); };
+  window.RowanDemo = { show, hide, has: k => !!M[k], pop };
   tiles.forEach(t => {
     t.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') show(t); });
     t.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') hide(); });
