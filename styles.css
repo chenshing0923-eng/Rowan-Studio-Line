@@ -550,7 +550,7 @@ html:active-view-transition-type(back)::view-transition-new(root) { animation-na
 .fb-web .ft .ic { color: var(--warm); }
 .ft::before { content: ""; position: absolute; top: 7px; right: 7px; width: 6px; height: 6px; border-radius: 50%; background: var(--mint); }
 .ft.add::before { background: transparent; box-shadow: inset 0 0 0 1.5px var(--muted); }
-.ft:hover, .ft:focus-visible, .ft.on { border-color: var(--line-2); background: var(--surface-2); transform: translateY(-2px); }
+.ft:hover, .ft:focus-visible, .ft.peek { border-color: var(--line-2); background: var(--surface-2); transform: translateY(-2px); }
 .fb-legend { display: flex; flex-wrap: wrap; gap: 6px 20px; margin: 14px 0 0; font-size: 13px; color: var(--muted); }
 .fb-legend span { display: inline-flex; align-items: center; gap: 7px; }
 .fb-legend i { width: 8px; height: 8px; border-radius: 50%; }
@@ -807,3 +807,11 @@ html:active-view-transition-type(back)::view-transition-new(root) { animation-na
   .q-bar .btn { padding: 11px 18px; font-size: 15px; }
 }
 @media (max-width: 560px) { .q-opts { grid-template-columns: repeat(2, minmax(0, 1fr)); } .q-opt { padding: 12px; } }
+
+/* 估價頁：滑過／長按看範例 */
+.q-opt, .q-tog { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+.q-opt.peek { border-color: var(--line-2); }
+.q-chip.peek:not(.on) { border-color: var(--line-2); background: var(--surface-2); }
+.q-peek-tip { display: inline-flex; align-items: center; gap: 6px; margin: -4px 0 12px; font-size: 13px; color: var(--muted); }
+.q-peek-tip::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--warm); }
+#quote [hidden], .q-bar [hidden] { display: none !important; }

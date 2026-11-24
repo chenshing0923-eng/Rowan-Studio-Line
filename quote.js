@@ -106,6 +106,33 @@
   if (P.line.some(o => o.id === qs.get('line'))) st.line = qs.get('line');
   render();
 
+  // 範例預覽：電腦滑過、手機長按（放開後點空白處關閉）
+  const infoOf = el => {
+    const k = el.dataset.k, id = el.dataset.v || el.closest('.q-chip')?.dataset.id;
+    const o = k === 'site' ? P.site.find(x => x.id === id) : k === 'line' ? P.line.find(x => x.id === id) : P.addons.find(x => x.id === id);
+    if (!o || !o.demo) return null;
+    const inc = !k && included(o);
+    const badge = inc ? '方案已含' : o.quote ? '另報價' : o.monthly ? `${nt(o.monthly)}／月` : `${nt(o.price)}${o.unit ? '／' + o.unit : o.from || k ? ' 起' : ''}`;
+    return { title: o.name, badge, plain: !inc, demo: o.demo, tip: o.tip };
+  };
+  const peekEls = () => root.querySelectorAll('.q-opt, .q-tog');
+  let pressT = null, pressed = false, sx = 0, sy = 0;
+  peekEls().forEach(el => {
+    const host = el.closest('.q-chip') || el;
+    el.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { const i = infoOf(el); i && window.RowanDemo?.show(host, i); } });
+    el.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') window.RowanDemo?.hide(); });
+    el.addEventListener('pointerdown', e => {
+      if (e.pointerType === 'mouse') return;
+      pressed = false; sx = e.clientX; sy = e.clientY; clearTimeout(pressT);
+      pressT = setTimeout(() => { const i = infoOf(el); if (i && window.RowanDemo) { pressed = true; window.RowanDemo.show(host, i); navigator.vibrate?.(10); } }, 450);
+    });
+    el.addEventListener('pointermove', e => { if (Math.hypot(e.clientX - sx, e.clientY - sy) > 10) clearTimeout(pressT); });
+    ['pointerup', 'pointercancel'].forEach(t => el.addEventListener(t, () => clearTimeout(pressT)));
+    el.addEventListener('contextmenu', e => e.preventDefault());
+  });
+  // 長按後放開不要算成「選取」
+  root.addEventListener('click', e => { if (pressed) { pressed = false; e.stopPropagation(); e.preventDefault(); } }, true);
+
   // 手機底部總價列：總結區看得到時隱藏
   const bar = document.getElementById('q-bar');
   if (bar && 'IntersectionObserver' in window) new IntersectionObserver(([en]) => bar.classList.toggle('hide', en.isIntersecting)).observe($('#q-sum'));
