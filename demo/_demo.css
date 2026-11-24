@@ -1,0 +1,11 @@
+/* 示範網站共用基礎（各站在自己的 <style> 定義顏色與版面） */
+* { box-sizing: border-box; }
+body { margin: 0; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+img, svg { max-width: 100%; }
+.demo-bar { font-size: 13px; text-align: center; padding: 6px 16px; background: #111; color: #ddd; }
+.demo-bar a { color: #9FE3D4; }
+.wrap { max-width: 1160px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.ic { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+table { border-collapse: collapse; width: 100%; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
