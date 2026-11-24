@@ -25,7 +25,7 @@
   $('#q-lineadd').innerHTML = chips('line');
   $('#q-care').innerHTML = P.care.map(c => `<button type="button" class="q-pill" data-k="care" data-v="${c.id}" aria-pressed="false">${c.name}${c.monthly ? ` <em>${nt(c.monthly)}／月</em>` : ''}</button>`).join('');
 
-  const included = a => a.incl && ((a.incl.site || []).includes(st.site) || (a.incl.line || []).includes(st.line));
+  const included = a => !!a.incl && ((a.incl.site || []).includes(st.site) || (a.incl.line || []).includes(st.line));
 
   function render() {
     root.querySelectorAll('[data-k]').forEach(b => b.setAttribute('aria-pressed', String(st[b.dataset.k] === b.dataset.v)));
