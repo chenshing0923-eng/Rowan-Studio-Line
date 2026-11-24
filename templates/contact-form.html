@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>範本｜洽詢表單・Rowan Studio</title>
+<meta name="robots" content="noindex" />
+<link rel="stylesheet" href="_base.css" />
+<style>
+  :root { --brand: #2F72C9; --bg: #F4F7FB; --line: #DCE5F0; --muted: #5E6E86; --ink: #1A2B44; }
+  form.card { max-width: 560px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+  .chips label { margin: 0; font-weight: 400; position: relative; }
+  .chips input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; pointer-events: none; }
+  .chips span { display: inline-block; padding: 7px 14px; border: 1px solid var(--line); border-radius: 999px; cursor: pointer; background: #fff; }
+  .chips input:checked + span { background: var(--brand); border-color: var(--brand); color: #fff; }
+  .chips input:focus-visible + span { outline: 2px solid var(--brand); outline-offset: 2px; }
+  .req { color: #D14343; }
+  .done { display: none; text-align: center; padding: 40px 20px; }
+  .done b { font-size: 22px; display: block; margin-bottom: 6px; }
+  .done.show { display: block; }
+  .err { color: #D14343; font-size: 14px; min-height: 1.4em; margin: 8px 0 0; }
+  .hp { position: absolute; left: -9999px; }
+  @media (max-width: 520px) { .two { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="tpl-bar">Rowan Studio 網站功能範本：<b>洽詢表單（資料進試算表＋通知店家）</b>・<a href="README.md">使用說明</a></div>
+<main class="wrap">
+  <h1>預約諮詢</h1>
+  <p class="lead">留下資料，我們會在一個工作天內與你聯絡。</p>
+  <form class="card" id="f" novalidate>
+    <div class="two">
+      <label>姓名 <span class="req">*</span><input name="姓名" required autocomplete="name" placeholder="王小姐" /></label>
+      <label>電話 <span class="req">*</span><input name="電話" required type="tel" autocomplete="tel" placeholder="0912-345-678" pattern="[0-9\-\+\s]{8,}" /></label>
+    </div>
+    <label>LINE ID 或 Email<input name="聯絡方式" placeholder="方便的話留一個" /></label>
+    <div style="margin-bottom:14px"><b style="font-size:14px">想詢問的項目</b>
+      <div class="chips">
+        <label><input type="checkbox" name="項目" value="洗牙" /><span>洗牙</span></label>
+        <label><input type="checkbox" name="項目" value="矯正" /><span>矯正</span></label>
+        <label><input type="checkbox" name="項目" value="植牙" /><span>植牙</span></label>
+        <label><input type="checkbox" name="項目" value="兒童牙科" /><span>兒童牙科</span></label>
+        <label><input type="checkbox" name="項目" value="其他" /><span>其他</span></label>
+      </div>
+    </div>
+    <label>方便聯絡的時間
+      <select name="聯絡時間"><option>都可以</option><option>上午</option><option>下午</option><option>晚上</option></select>
+    </label>
+    <label>想說的話<textarea name="留言" rows="3" placeholder="例如：想詢問週六有沒有時段"></textarea></label>
+    <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    <button class="btn" id="send" style="width:100%">送出</button>
+    <p class="err" id="err" role="alert"></p>
+    <p class="note">送出即表示同意我們使用這些資料與你聯絡，不會提供給第三方。</p>
+  </form>
+  <div class="card done" id="done" role="status"><b>✓ 已收到，謝謝你！</b><span class="muted">我們會盡快和你聯絡。</span></div>
+</main>
+
+<script>
+/* ===== 設定區 =====
+   SCRIPT_URL：照 README 部署 apps-script.gs 後，貼上「網頁應用程式」網址。空白 = 示範模式（不會真的送出） */
+const SCRIPT_URL = '';
+
+/* ---------- 以下不用改 ---------- */
+const f = document.getElementById('f'), err = document.getElementById('err'), btn = document.getElementById('send');
+f.addEventListener('submit', async e => {
+  e.preventDefault(); err.textContent = '';
+  if (!f.checkValidity()) { const bad = f.querySelector(':invalid'); err.textContent = '請填寫「' + bad.name + '」'; bad.focus(); return; }
+  if (f.website.value) return; // 機器人
+  const data = {};
+  new FormData(f).forEach((v, k) => { if (k === 'website') return; data[k] = data[k] ? data[k] + '、' + v : v; });
+  data['頁面'] = location.href;
+  btn.disabled = true; btn.textContent = '送出中…';
+  try {
+    if (SCRIPT_URL) await fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(data) });
+    else { console.log('示範模式，送出的資料：', data); await new Promise(r => setTimeout(r, 500)); }
+    f.hidden = true; document.getElementById('done').classList.add('show');
+  } catch (x) {
+    err.textContent = '送出失敗，請稍後再試，或直接用 LINE 聯絡我們。';
+    btn.disabled = false; btn.textContent = '送出';
+  }
+});
+</script>
+</body>
+</html>

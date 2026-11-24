@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>範本｜線上報價試算・Rowan Studio</title>
+<meta name="robots" content="noindex" />
+<link rel="stylesheet" href="_base.css" />
+<style>
+  :root { --brand: #0F7469; --bg: #F3F6F5; --line: #DCE5E2; --muted: #5F706B; --ink: #1F2A2E; }
+  .grid { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 24px; align-items: start; }
+  .step { margin-bottom: 26px; }
+  .step h2 { font-size: 18px; margin: 0 0 10px; }
+  .step h2 small { font-weight: 400; color: var(--muted); font-size: 13px; margin-left: 6px; }
+  .opts { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 8px; }
+  .opt { position: relative; display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 12px 14px; border-radius: 12px; border: 1.5px solid var(--line); background: #fff; font: inherit; text-align: left; cursor: pointer; color: var(--ink); }
+  .opt b { font-weight: 700; }
+  .opt small { color: var(--muted); white-space: nowrap; }
+  .opt[aria-pressed="true"] { border-color: var(--brand); background: color-mix(in srgb, var(--brand) 9%, #fff); }
+  .qty { display: flex; align-items: center; gap: 10px; background: #fff; border: 1.5px solid var(--line); border-radius: 12px; padding: 8px 12px; }
+  .qty span { flex: 1; }
+  .qty button { width: 32px; height: 32px; border-radius: 50%; border: 0; background: var(--bg); font-size: 18px; cursor: pointer; }
+  .qty output { min-width: 28px; text-align: center; font-weight: 700; }
+  .sum { position: sticky; top: 16px; }
+  .sum ul { list-style: none; margin: 0 0 12px; padding: 0; font-size: 14px; display: flex; flex-direction: column; gap: 6px; }
+  .sum li { display: flex; justify-content: space-between; gap: 10px; }
+  .total { border-top: 1px solid var(--line); padding-top: 12px; display: flex; align-items: baseline; justify-content: space-between; }
+  .total b { font-size: 30px; color: var(--brand); }
+  .sum .btn { width: 100%; margin-top: 14px; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } .sum { position: static; } }
+</style>
+</head>
+<body>
+<div class="tpl-bar">Rowan Studio 網站功能範本：<b>線上報價試算</b>・<a href="README.md">使用說明</a></div>
+<main class="wrap" style="max-width:1000px">
+  <h1 id="title"></h1>
+  <p class="lead" id="lead"></p>
+  <div class="grid">
+    <div id="steps"></div>
+    <aside class="card sum" aria-live="polite">
+      <b>估價明細</b>
+      <ul id="rows" style="margin-top:10px"></ul>
+      <div class="total"><span>預估總價</span><b id="total">$0</b></div>
+      <p class="note" id="foot"></p>
+      <button type="button" class="btn line" id="send">用 LINE 傳給店家</button>
+    </aside>
+  </div>
+</main>
+
+<script>
+/* ===== 設定區：交件時只改這裡 =====
+   type: 'one' 單選、'many' 複選、'qty' 數量
+   price：單價；from: true 會顯示「起」 */
+const CONFIG = {
+  title: '居家清潔估價',
+  lead: '選擇坪數和需要的項目，馬上看到大概費用。實際價格以現場評估為準。',
+  lineId: '@041yyclq',               // 店家的 LINE 官方帳號 ID（要含 @）
+  currency: '$',
+  footnote: '以上為預估價格，實際依現場狀況報價。',
+  steps: [
+    { id: 'size', title: '房屋大小', type: 'one', options: [
+      { name: '套房（15 坪內）', price: 2800 }, { name: '兩房（30 坪內）', price: 4200 }, { name: '三房（45 坪內）', price: 5600 }, { name: '45 坪以上', price: 7200, from: true } ] },
+    { id: 'extra', title: '加購項目', note: '可複選', type: 'many', options: [
+      { name: '廚房深度清潔', price: 1500 }, { name: '浴室除霉', price: 1200 }, { name: '紗窗清洗', price: 800 }, { name: '冰箱清潔', price: 600 } ] },
+    { id: 'ac', title: '冷氣清洗', type: 'qty', unit: '台', price: 1800, max: 10 },
+  ],
+};
+
+/* ---------- 以下不用改 ---------- */
+const st = {}; const $ = id => document.getElementById(id);
+const money = n => CONFIG.currency + n.toLocaleString('en-US');
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+$('title').textContent = CONFIG.title; $('lead').textContent = CONFIG.lead; $('foot').textContent = CONFIG.footnote; document.title = CONFIG.title;
+$('steps').innerHTML = CONFIG.steps.map((s, i) => {
+  st[s.id] = s.type === 'many' ? [] : s.type === 'qty' ? 0 : null;
+  const body = s.type === 'qty'
+    ? `<div class="qty"><span>${esc(s.title)}（${money(s.price)}／${esc(s.unit)}）</span><button type="button" data-s="${s.id}" data-d="-1" aria-label="減少">−</button><output id="q-${s.id}">0</output><button type="button" data-s="${s.id}" data-d="1" aria-label="增加">＋</button></div>`
+    : `<div class="opts">${s.options.map((o, j) => `<button type="button" class="opt" data-s="${s.id}" data-i="${j}" aria-pressed="false"><b>${esc(o.name)}</b><small>${money(o.price)}${o.from ? ' 起' : ''}</small></button>`).join('')}</div>`;
+  return `<section class="step"><h2>${i + 1}. ${esc(s.title)}${s.note ? `<small>${esc(s.note)}</small>` : ''}</h2>${body}</section>`;
+}).join('');
+
+function render() {
+  const rows = []; let total = 0, from = false;
+  CONFIG.steps.forEach(s => {
+    if (s.type === 'qty') { const q = st[s.id]; $('q-' + s.id).textContent = q; if (q) { rows.push([`${s.title} × ${q}`, s.price * q]); total += s.price * q; } return; }
+    const picked = s.type === 'many' ? st[s.id] : st[s.id] === null ? [] : [st[s.id]];
+    document.querySelectorAll(`.opt[data-s="${s.id}"]`).forEach(b => b.setAttribute('aria-pressed', String(picked.includes(+b.dataset.i))));
+    picked.forEach(i => { const o = s.options[i]; rows.push([o.name, o.price]); total += o.price; if (o.from) from = true; });
+  });
+  $('rows').innerHTML = rows.length ? rows.map(r => `<li><span>${esc(r[0])}</span><b>${money(r[1])}</b></li>`).join('') : '<li class="muted">請先選擇項目</li>';
+  $('total').textContent = money(total) + (from ? ' 起' : '');
+  $('send').disabled = !rows.length;
+  $('send').dataset.text = [`【${CONFIG.title}】`, ...rows.map(r => `・${r[0]}：${money(r[1])}`), `預估總價：${money(total)}${from ? ' 起' : ''}`, '想請你幫我確認報價，謝謝！'].join('\n');
+}
+document.addEventListener('click', e => {
+  const b = e.target.closest('button[data-s]'); if (!b) return;
+  const s = CONFIG.steps.find(x => x.id === b.dataset.s);
+  if (s.type === 'qty') st[s.id] = Math.max(0, Math.min(s.max || 99, st[s.id] + Number(b.dataset.d)));
+  else if (s.type === 'one') st[s.id] = st[s.id] === +b.dataset.i ? null : +b.dataset.i;
+  else { const i = +b.dataset.i, a = st[s.id]; a.includes(i) ? a.splice(a.indexOf(i), 1) : a.push(i); }
+  render();
+});
+$('send').addEventListener('click', e => { location.href = `https://line.me/R/oaMessage/${encodeURIComponent(CONFIG.lineId)}/?${encodeURIComponent(e.currentTarget.dataset.text)}`; });
+render();
+</script>
+</body>
+</html>

@@ -72,7 +72,7 @@ function workBubble({ img, ratio, title, sub, uri }) {
 // ---------- 內容（價格改這裡） ----------
 const OVERVIEW = [
   planBubble({ tag: 'SETUP・一次付清', title: 'LINE 建置', sub: '選單、回覆一次做好，做好就是你的', price: '3,500', unit: '起', feats: ['圖文選單＋自動回覆', '線上預約、表單自動化', '上線後教你自己改'], buttons: [msgBtn('看建置方案', 'LINE建置方案', true)] }),
-  planBubble({ tag: 'WEBSITE・最推薦', title: '網站製作', sub: '網站＋LINE 一起開店', price: '9,800', unit: '起', feats: ['品牌形象網站', '以你的名義申請網址', '可加 LINE 官方帳號套餐'], featured: true, buttons: [msgBtn('看網站方案', '網站方案', true), uriBtn('看網站實例', `${SITE}/new-shop`)] }),
+  planBubble({ tag: 'WEBSITE・最推薦', title: '網站製作', sub: '形象網站、品牌官網、預約網站', price: '9,800', unit: '起', feats: ['手機好看、Google 找得到', '線上預約、報價試算可加購', '網站＋LINE 套餐更省'], featured: true, buttons: [msgBtn('看網站方案', '網站方案', true), uriBtn('算算要多少錢', `${SITE}/quote`)] }),
   planBubble({ tag: 'MONTHLY・月繳不綁約', title: 'LINE 代管', sub: '每月有人幫你更新，或 AI 24 小時回', price: '1,280', unit: '／月起', feats: ['人工代管：選單、推播定期更新', 'AI 智慧客服：24 小時自動回', '年繳免建置費'], buttons: [msgBtn('看代管方案', 'LINE代管方案', true)] })
 ];
 
@@ -89,9 +89,14 @@ const MONTHLY = [
 ];
 
 const WEBSITE = [
-  planBubble({ tag: 'WEBSITE', title: '網站單買', sub: '先有一個門面', price: '9,800', unit: '起', note: '一頁式形象網站', feats: ['手機版優先設計', '服務、價格、地圖、聯絡', '加 LINE 按鈕與洽詢表單'], buttons: [msgBtn('詢問這個方案', '我想了解：網站單買', true), uriBtn('看網站實例', `${SITE}/new-shop`)] }),
-  planBubble({ tag: '推薦', title: '網站＋LINE 起步包', sub: '網站和 LINE 一次好', price: '11,800', unit: '起', note: '單買合計 NT$13,300・省 NT$1,500', feats: ['一頁式形象網站', 'LINE 官方帳號開通＋設定', '圖文選單 1 頁＋自動回覆 5 組'], featured: true, buttons: [msgBtn('詢問這個方案', '我想了解：網站＋LINE 起步包', true), uriBtn('看網站實例', `${SITE}/new-shop`)] }),
-  planBubble({ tag: 'WEBSITE', title: '網站＋LINE 完整包', sub: '開幕就能接單', price: '22,800', unit: '起', note: '多頁網站＋LINE 標準方案', feats: ['網站最多 5 頁', '選單 2 頁＋自動回覆 15 組', '集點卡＋加好友禮', '表單自動進試算表'], buttons: [msgBtn('詢問這個方案', '我想了解：網站＋LINE 完整包', true), uriBtn('看網站實例', `${SITE}/new-shop`)] })
+  planBubble({ tag: 'WEBSITE', title: '一頁式形象網站', sub: '先有一個門面', price: '9,800', unit: '起', note: '1 頁・約 7–10 個工作天', feats: ['手機版優先設計', '服務、價格、地圖、聯絡', '一鍵加 LINE＋洽詢表單', '基本 SEO＋上線設定'], buttons: [msgBtn('詢問這個方案', '我想了解：一頁式形象網站', true), uriBtn('看網站範例', `${SITE}/new-shop#demos`)] }),
+  planBubble({ tag: '最多人選', title: '多頁品牌官網', sub: '把店的故事說完整', price: '18,800', unit: '起', note: '最多 5 頁・約 3 週', feats: ['首頁、關於、服務、作品、聯絡', '作品相簿分類展示', '基本 SEO＋Google 商家設定', '可加最新消息、多語系'], featured: true, buttons: [msgBtn('詢問這個方案', '我想了解：多頁品牌官網', true), uriBtn('看網站範例', `${SITE}/new-shop#demos`)] }),
+  planBubble({ tag: 'WEBSITE', title: '預約型網站', sub: '客人自己線上約', price: '28,800', unit: '起', note: '品牌官網＋線上預約・約 4–5 週', feats: ['含多頁品牌官網全部內容', '客人自選時段、額滿自動關閉', '預約資料進試算表＋即時通知', '可串 LINE 提醒客人'], buttons: [msgBtn('詢問這個方案', '我想了解：預約型網站', true), uriBtn('看網站範例', `${SITE}/new-shop#demos`)] }),
+  itemBubble({ size: 'kilo', tag: 'SET', title: '網站＋LINE 套餐', sub: '一起做比較省', rows: [
+    { group: '開店起步包' }, ['一頁式網站＋LINE 入門', 'NT$11,800 起'], ['單買合計 NT$13,300', '省 1,500'],
+    { group: '開店完整包' }, ['多頁官網＋LINE 標準', 'NT$22,800 起'], ['單買合計 NT$25,600', '省 2,800']
+  ], note: '上線後維護：基本 NT$500／月（文字、照片、價格更新），進階 NT$1,200／月（含每月 2 篇消息、數據月報）。', footer: [msgBtn('詢問套餐', '我想了解：網站＋LINE 套餐', true), uriBtn('算算要多少錢', `${SITE}/quote`)] }),
+  null
 ];
 
 const BOOKING = [
@@ -107,11 +112,14 @@ const WORKS = [
   workBubble({ img: `${IMG}/menu-pet.jpg`, ratio: '20:13', title: '寵物美容', sub: '圖文選單・美容預約、住宿', uri: `${SITE}/#works` }),
   workBubble({ img: `${IMG}/menu-dental.jpg`, ratio: '20:13', title: '牙醫診所', sub: '圖文選單・線上掛號', uri: `${SITE}/#works` }),
   workBubble({ img: `${IMG}/menu-tea.jpg`, ratio: '20:13', title: '茶館', sub: '圖文選單・頁籤切換', uri: `${SITE}/#works` }),
+  workBubble({ img: `${IMG}/site-demo-restaurant.jpg`, ratio: '16:10', title: '網站範例｜餐飲', sub: '訂位、外帶預點', uri: `${SITE}/demo/restaurant` }),
+  workBubble({ img: `${IMG}/site-demo-cram-school.jpg`, ratio: '16:10', title: '網站範例｜補習班', sub: '免費試聽預約', uri: `${SITE}/demo/cram-school` }),
+  workBubble({ img: `${IMG}/site-demo-dental.jpg`, ratio: '16:10', title: '網站範例｜牙醫診所', sub: '線上掛號', uri: `${SITE}/demo/dental` }),
   workBubble({ img: `${IMG}/site-demo-tea.jpg`, ratio: '16:10', title: '網站範例｜茶館', sub: '和茶館選單同一套風格', uri: `${SITE}/demo/tea` })
 ];
 
 /** 單項價目卡片：rows 可以是 ['名稱', '價格'] 或 { group: '分組標題' } */
-function itemBubble({ tag, title, sub, rows, note, ask, footer }) {
+function itemBubble({ tag, title, sub, rows, note, ask, footer, size = 'mega' }) {
   const body = [];
   rows.forEach((r, i) => {
     if (!Array.isArray(r)) {
@@ -127,7 +135,7 @@ function itemBubble({ tag, title, sub, rows, note, ask, footer }) {
   });
   if (note) body.push({ type: 'text', text: note, size: 'xs', color: C.muted, wrap: true, margin: 'xl' });
   return clean({
-    type: 'bubble', size: 'mega',
+    type: 'bubble', size,
     header: { type: 'box', layout: 'vertical', paddingAll: '16px', backgroundColor: C.head, spacing: 'xs', contents: [
       { type: 'text', text: tag, size: 'xxs', color: '#8FD9C9', weight: 'bold' },
       { type: 'text', text: title, size: 'lg', color: '#FFFFFF', weight: 'bold' },
@@ -154,6 +162,30 @@ const ITEMS = {
 };
 ITEMS.集點與認證 = ITEMS.優惠集點;
 
+const WEB_ITEMS = itemBubble({ tag: 'À LA CARTE', title: '網站單項價目', sub: '已經有網站也能加', rows: [
+  { group: '讓客人找得到' }, ['Google 商家設定', 'NT$1,500'], ['基本 SEO', 'NT$2,000'], ['網域＋公司信箱', 'NT$1,000'], ['流量數據分析', 'NT$1,000'],
+  { group: '內容與頁面' }, ['加頁', 'NT$2,500／頁'], ['最新消息／部落格', 'NT$3,800'], ['多語系', 'NT$4,800 起'], ['改試算表就更新內容', 'NT$4,800'],
+  { group: '接單與互動' }, ['洽詢／報名表單', 'NT$3,000'], ['線上報價試算', 'NT$4,800 起'], ['商品目錄＋LINE 下單', 'NT$6,800 起'], ['線上付款／購物車', '依需求'],
+  { group: '已經有網站' }, ['網站健檢', 'NT$800'], ['網站改版', 'NT$6,800 起'], ['網站搬家', 'NT$2,500 起']
+], note: '價格未稅。網域年費約 NT$400–1,000 由店家自付，網站主機用免費方案，不另收主機費。', footer: [msgBtn('我想詢問', '我想了解：網站單項', true), uriBtn('算算要多少錢', `${SITE}/quote`)] });
+WEBSITE[WEBSITE.length - 1] = { ...WEB_ITEMS, size: 'kilo' };
+
+const QUOTE = clean({ type: 'bubble', size: 'kilo',
+  header: { type: 'box', layout: 'vertical', paddingAll: '16px', backgroundColor: C.teal, spacing: 'xs', contents: [
+    { type: 'text', text: 'QUOTE', size: 'xxs', color: '#BFF0E6', weight: 'bold' },
+    { type: 'text', text: '估價小幫手', size: 'lg', color: '#FFFFFF', weight: 'bold' },
+    { type: 'text', text: '選一選，馬上知道大概多少錢', size: 'xs', color: '#E0F5F0', wrap: true }
+  ] },
+  body: { type: 'box', layout: 'vertical', paddingAll: '16px', spacing: 'sm', contents: [
+    ...['選網站方案', '選 LINE 建置或代管', '勾要加的功能', '用 LINE 把明細傳給我'].map((t, i) => ({ type: 'box', layout: 'baseline', spacing: 'sm', contents: [
+      { type: 'text', text: `${i + 1}`, size: 'sm', color: C.teal, weight: 'bold', flex: 0 },
+      { type: 'text', text: t, size: 'sm', color: C.text, wrap: true }
+    ] })),
+    { type: 'text', text: '套餐價、方案已含的功能會自動算好。', size: 'xs', color: C.muted, wrap: true, margin: 'md' }
+  ] },
+  footer: { type: 'box', layout: 'vertical', spacing: 'sm', paddingAll: '12px', contents: [uriBtn('開始估價', `${SITE}/quote`, true), msgBtn('直接找我報價', '我想了解：幫我報價')] }
+});
+
 const FULL_LIST = itemBubble({ tag: 'PRICE LIST', title: '完整單項價目表', sub: '需要什麼就買什麼，自由搭配', rows: [
   { group: '基礎設定' }, ['帳號開通與設定', 'NT$800'], ['選單設計＋設定（1 頁）', 'NT$2,500'], ['頁籤切換，每多 1 頁', 'NT$1,800'], ['關鍵字回覆（5 組起）', 'NT$100／組'], ['帳號健檢', 'NT$800'],
   { group: '預約與表單' }, ['預約系統代設定', 'NT$2,000'], ['預約／報名表單', 'NT$4,800 起'], ['時段預約系統', 'NT$12,000 起'],
@@ -167,7 +199,7 @@ const RECOMMEND = {
   '客人常問重複問題': ['LINE 建置・標準方案 NT$6,800 起', '選單 2 頁＋自動回覆 15 組，重複的問題一次交給系統。想 24 小時都有人回，可以再加 AI 智慧客服。', 'LINE建置方案'],
   '想讓客人線上預約': ['線上預約 NT$2,000 起', '預算少用現成系統代設定；不想付月費用預約表單；要完整的選時段、提醒，就選時段預約系統或預約方案。', '線上預約'],
   '沒時間自己經營': ['LINE 代管 NT$1,280／月起', '想要有人每月幫你更新選單、寫推播，選人工代管（NT$1,980 起）；想要 24 小時自動回客人，選 AI 智慧客服（NT$1,280）。', 'LINE代管方案'],
-  '也需要網站': ['網站＋LINE 起步包 NT$11,800 起', '形象網站和 LINE 官方帳號一次架好，同一套風格。', '網站方案'],
+  '也需要網站': ['網站製作 NT$9,800 起', '一頁式形象網站 9,800 起、多頁品牌官網 18,800 起、預約型網站 28,800 起。網站＋LINE 一起做有套餐價（11,800 起），可以先用估價小幫手算算看：' + `${SITE}/quote`, '網站方案'],
   '帳號有了但沒效果': ['帳號健檢 NT$800', '我先幫你看問題在哪，列出改進建議。之後決定要做，這筆可以折抵。', '單項：帳號健檢']
 };
 
@@ -177,7 +209,7 @@ const MAIN_QUICK2 = ['方案價格', '線上預約', '作品', '免費諮詢'];
 // ---------- 對外：加好友歡迎 ----------
 export function welcome() {
   return [
-    msg('嗨，歡迎加入 Rowan Studio！\n\n我幫店家做兩件事：\n① LINE 官方帳號：圖文選單、自動回覆、線上預約、AI 客服\n② 品牌網站：網站＋LINE 一起開店\n\n點下方選單，或直接輸入你的問題，例如「預約」「多少錢」「多久可以上線」。想聊聊你的店，輸入「免費諮詢」。'),
+    msg('嗨，歡迎加入 Rowan Studio！\n\n我幫店家做兩件事：\n① LINE 官方帳號：圖文選單、自動回覆、線上預約、AI 客服\n② 品牌網站：形象網站、品牌官網、預約網站\n\n點下方選單，或直接輸入你的問題，例如「預約」「多少錢」「多久可以上線」。想聊聊你的店，輸入「免費諮詢」；想先算價格，輸入「估價」。'),
     flex('Rowan Studio 服務：LINE 建置、網站製作、LINE 代管', carousel(OVERVIEW), MAIN_QUICK2)
   ];
 }
@@ -198,7 +230,8 @@ const RULES = [
     return [msg(`建議你看：${r[0]}\n\n${r[1]}\n\n想更準確的建議，輸入「免費諮詢」，我親自幫你看。`, [r[2], '免費諮詢', '完整單項價目表'])];
   }],
   [/推薦|不知道選|怎麼選|哪個好|適合我/, () => [msg('幫你推薦！你的狀況比較接近哪一個？', Object.keys(RECOMMEND).map(k => `推薦：${k}`))]],
-  [/免費諮詢|諮詢|估價|報價/, () => [msg('好的！先問一個問題，你比較想做哪一種？', ['我想了解：LINE 選單＋自動回覆', '我想了解：線上預約', '我想了解：AI 智慧客服', '我想了解：LINE 代管', '我想了解：網站製作', '我想了解：還不確定'])]],
+  [/估價|報價|試算|算算|算價/, () => [flex('估價小幫手：選一選，馬上知道大概多少錢', QUOTE, ['網站方案', 'LINE建置方案', '免費諮詢'])]],
+  [/免費諮詢|諮詢/, () => [msg('好的！先問一個問題，你比較想做哪一種？', ['我想了解：LINE 選單＋自動回覆', '我想了解：線上預約', '我想了解：AI 智慧客服', '我想了解：LINE 代管', '我想了解：網站製作', '我想了解：還不確定', '估價'])]],
   [/^預約方案$/, () => [flex('LINE 建置方案：入門 3,500 起、標準 6,800 起、預約方案 15,800 起', carousel(ONE_TIME), ['線上預約', '免費諮詢'])]],
   [/預約|訂位|掛號|排班|時段|報名|預定/, () => [
     msg('可以！讓客人用 LINE 預約有三種做法，依預算選：\n\n① 預約系統代設定 NT$2,000：用現成的預約系統（米客、Folio 等），系統月費約 NT$450 起由店家付。\n\n② 預約／報名表單 NT$4,800 起：客人在 LINE 填表，資料自動進 Google 試算表並通知你，沒有月費。\n\n③ 時段預約系統 NT$12,000 起：客人自己選時段、額滿自動關閉、前一天提醒，沒有月費。\n\n想連選單、自動回覆一起做，可以選「預約方案」NT$15,800 起。'),
@@ -216,7 +249,11 @@ const RULES = [
     flex('LINE 代管方案', carousel(MONTHLY), MAIN_QUICK2)
   ]],
   [/代管|月費|月租|代操|經營/, () => [flex('LINE 代管方案：輕量 1,980、AI 智慧客服 1,280、進階 3,800（每月）', carousel(MONTHLY), MAIN_QUICK2)]],
-  [/網站|官網|網頁|開店|網址|網域/, () => [flex('網站方案：網站單買 9,800 起、網站＋LINE 起步包 11,800 起、完整包 22,800 起', carousel(WEBSITE), ['作品', '網站範例', '免費諮詢'])]],
+  [/seo|google|谷歌|搜尋|商家|多語|英文版|日文版|部落格|最新消息|購物車|金流|刷卡|線上付款|改版|網站健檢|網站搬家|公司信箱|網站單項/i, () => [flex('網站單項價目', WEB_ITEMS, ['網站方案', '估價', '免費諮詢'])]],
+  [/網站|官網|網頁|開店|網址|網域/, () => [
+    msg('網站有三種方案：\n\n① 一頁式形象網站 NT$9,800 起：先有一個門面\n② 多頁品牌官網 NT$18,800 起：最多 5 頁，最多人選\n③ 預約型網站 NT$28,800 起：客人自己線上約\n\n和 LINE 一起做有套餐價（NT$11,800 起）。往右滑看詳細內容和單項價目。'),
+    flex('網站方案：一頁式 9,800 起、多頁官網 18,800 起、預約型 28,800 起', carousel(WEBSITE), ['網站範例', '估價', '免費諮詢'])
+  ]],
   [/優惠券|折價|折扣|生日禮|加好友禮/, () => [flex('單項價目：優惠・集點', itemBubble(ITEMS.優惠集點), ['完整單項價目表', '免費諮詢'])]],
   [/集點|點數|會員/, () => [flex('單項價目：優惠・集點', itemBubble(ITEMS.優惠集點), ['完整單項價目表', '免費諮詢'])]],
   [/分眾|標籤|貼標/, () => [msg('分眾標籤會依客人點過的選單、問過的問題自動分類（例如「問過價格」「預約過」）。推播時只發給對的人，客人不覺得被打擾，也省 LINE 訊息費。\n\n設定費 NT$1,500。', ['單項：優惠集點', '完整單項價目表', '免費諮詢'])]],
@@ -227,7 +264,7 @@ const RULES = [
   [/價格|價錢|方案|多少錢|費用|收費|價位|預算/, () => [flex('Rowan Studio 服務：LINE 建置、網站製作、LINE 代管', carousel(OVERVIEW), ['線上預約', '完整單項價目表', '幫我推薦方案', '免費諮詢'])]],
   [/流程|怎麼合作|步驟|怎麼開始/, () => [msg('合作流程：\n\n1️⃣ 免費諮詢：聊聊你的店和客人常問什麼\n2️⃣ 免費草圖：先畫選單草圖給你看\n3️⃣ 報價開工：滿意後付 50% 訂金\n4️⃣ 設計設定：過程中隨時給你看進度\n5️⃣ 上線教學：教你自己改，驗收後付尾款', FAQ)]],
   [/付款|訂金|匯款|轉帳|尾款|分期/, () => [msg('付款方式：\n\n・先免費看草圖，滿意再開始\n・確認報價後付 50% 訂金開工\n・上線驗收後付尾款\n・支援銀行轉帳\n\nLINE 代管月繳不綁約，隨時可停；年繳免建置費。', FAQ)]],
-  [/多久|幾天|上線|時程|急/, () => [msg('大約時程：\n\n・入門、標準方案：5–7 個工作天\n・預約表單：約 7 個工作天\n・網站＋LINE 起步包：7–10 個工作天\n・預約方案、完整包：報價時給你明確時程\n\n急件（3 個工作天內）加收 30%。有開幕日期的話先跟我說，我幫你倒推時程。', FAQ)]],
+  [/多久|幾天|上線|時程|急/, () => [msg('大約時程：\n\n・入門、標準方案：5–7 個工作天\n・預約表單：約 7 個工作天\n・一頁式網站、起步包：7–10 個工作天\n・多頁品牌官網：約 3 週\n・預約型網站：約 4–5 週\n・預約方案、完整包：報價時給你明確時程\n\n急件（3 個工作天內）加收 30%。有開幕日期的話先跟我說，我幫你倒推時程。', FAQ)]],
   [/準備|提供|資料|素材|需要什麼/, () => [msg('開始前請準備這些（有多少給多少就好）：\n\n・店名、Logo\n・營業時間、地址、電話\n・服務項目和價目表\n・幾張店內或作品照片\n・客人最常問的 5 個問題\n\n沒有 Logo 或照片也沒關係，我可以先用文字版設計，之後再換。', FAQ)]],
   [/修改|改幾次|不滿意|不喜歡/, () => [msg('修改次數：入門方案 2 次、標準方案 3 次，超過每次 NT$300。\n\n開工前會先給你免費草圖，方向確認了才開始做，所以通常不太需要大改。上線後簡單的文字、價格，我也會教你自己改。', FAQ)]],
   [/教學|自己改|自己管/, () => [msg('上線後我會教你怎麼自己改文字、換優惠、看數據（標準方案含 1 小時線上教學，單買 NT$800）。\n\n之後想大改版或沒時間，可以再找我單次報價，或加 LINE 代管。', FAQ)]],

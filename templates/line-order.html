@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>範本｜商品目錄＋LINE 下單・Rowan Studio</title>
+<meta name="robots" content="noindex" />
+<link rel="stylesheet" href="_base.css" />
+<style>
+  :root { --brand: #6B4E2E; --bg: #F7F3EC; --line: #E6DCCB; --muted: #857561; --ink: #2E2418; }
+  .prods { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+  .prod { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+  .prod .pic { aspect-ratio: 4/3; background: var(--line) center/cover no-repeat; }
+  .prod div.b { padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 4px; flex: 1; }
+  .prod h3 { margin: 0; font-size: 16px; }
+  .prod p { margin: 0; font-size: 13px; color: var(--muted); flex: 1; }
+  .prod .row { display: flex; align-items: center; justify-content: space-between; margin-top: 8px; }
+  .prod .price { font-weight: 700; color: var(--brand); font-size: 17px; }
+  .stepper { display: flex; align-items: center; gap: 6px; }
+  .stepper button { width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--brand); background: #fff; color: var(--brand); font-size: 18px; cursor: pointer; }
+  .stepper button.add { background: var(--brand); color: #fff; }
+  .stepper output { min-width: 20px; text-align: center; font-weight: 700; }
+  .cart { position: fixed; left: 12px; right: 12px; bottom: max(12px, env(safe-area-inset-bottom, 0px)); max-width: 856px; margin: 0 auto; background: #fff; border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 20px 40px -16px rgba(0,0,0,.35); padding: 12px 12px 12px 18px; display: flex; align-items: center; gap: 12px; transform: translateY(160%); transition: transform .25s; }
+  .cart.show { transform: none; }
+  .cart div { flex: 1; min-width: 0; }
+  .cart b { font-size: 20px; color: var(--brand); }
+  dialog { border: 0; border-radius: 20px; padding: 0; width: min(440px, calc(100vw - 32px)); }
+  dialog::backdrop { background: rgba(0,0,0,.45); }
+  .dlg { padding: 20px; }
+  .dlg ul { list-style: none; padding: 0; margin: 0 0 14px; display: flex; flex-direction: column; gap: 6px; font-size: 15px; }
+  .dlg li { display: flex; justify-content: space-between; gap: 10px; }
+  .dlg .tot { display: flex; justify-content: space-between; font-weight: 700; border-top: 1px solid var(--line); padding-top: 10px; margin-bottom: 14px; }
+  .dlg .acts { display: flex; gap: 10px; }
+  .dlg .acts .btn { flex: 1; }
+  .ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+</style>
+</head>
+<body>
+<div class="tpl-bar">Rowan Studio 網站功能範本：<b>商品目錄＋LINE 下單</b>・<a href="README.md">使用說明</a></div>
+<main class="wrap">
+  <h1 id="title"></h1>
+  <p class="lead" id="lead"></p>
+  <div class="prods" id="prods"></div>
+</main>
+
+<div class="cart" id="cart" aria-live="polite">
+  <div><small class="muted" id="cart-n">0 件</small><br /><b id="cart-total">$0</b></div>
+  <button type="button" class="btn line" id="checkout">確認訂單</button>
+</div>
+
+<dialog id="dlg" aria-label="確認訂單">
+  <form method="dialog" class="dlg" id="order">
+    <h2 style="margin:0 0 12px;font-size:20px">確認訂單</h2>
+    <ul id="dlg-items"></ul>
+    <div class="tot"><span>合計</span><span id="dlg-total"></span></div>
+    <label>取貨方式<select name="取貨方式" id="pickup"></select></label>
+    <label>取貨日期<input type="date" name="取貨日期" id="date" required /></label>
+    <label>稱呼<input name="稱呼" required placeholder="王小姐" autocomplete="name" /></label>
+    <label>備註<input name="備註" placeholder="例如：禮盒要附提袋" /></label>
+    <div class="acts"><button type="button" class="btn ghost" id="back">再看看</button><button class="btn line" value="send">用 LINE 下單</button></div>
+    <p class="note" style="margin:10px 0 0">按下後會開啟 LINE，訂單內容會自動帶入，送出後店家會回覆確認與付款方式。</p>
+  </form>
+</dialog>
+
+<script>
+/* ===== 設定區：交件時只改這裡 ===== */
+const CONFIG = {
+  title: '茶時選物',
+  lead: '選好商品按「確認訂單」，用 LINE 傳給我們，店家回覆確認後再付款。',
+  lineId: '@041yyclq',             // 店家的 LINE 官方帳號 ID（要含 @）
+  currency: '$',
+  pickup: ['門市自取', '宅配（運費另計）'],
+  leadDays: 2,                     // 最快幾天後可取貨
+  products: [
+    { name: '高山烏龍禮盒', price: 680, desc: '150g×2 罐，附提袋', img: '', color: '#C9DDD3' },
+    { name: '東方美人', price: 450, desc: '75g，蜜香明顯', img: '', color: '#E8D5B7' },
+    { name: '冷泡茶包', price: 280, desc: '10 入，冷水 6 小時', img: '', color: '#D9E7EE' },
+    { name: '手工茶餅乾', price: 220, desc: '烏龍口味，8 片', img: '', color: '#F2E2CB' },
+    { name: '旅行茶具組', price: 1280, desc: '一壺兩杯，附收納袋', img: '', color: '#D9CCE8' },
+    { name: '季節限定・桂花烏龍', price: 520, desc: '限量 30 份', img: '', color: '#F4E3B5' },
+  ],
+};
+
+/* ---------- 以下不用改 ---------- */
+const $ = id => document.getElementById(id);
+const money = n => CONFIG.currency + n.toLocaleString('en-US');
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const cart = CONFIG.products.map(() => 0);
+$('title').textContent = CONFIG.title; $('lead').textContent = CONFIG.lead; document.title = CONFIG.title;
+$('pickup').innerHTML = CONFIG.pickup.map(p => `<option>${esc(p)}</option>`).join('');
+const d = new Date(); d.setDate(d.getDate() + CONFIG.leadDays);
+$('date').min = $('date').value = d.toISOString().slice(0, 10);
+$('prods').innerHTML = CONFIG.products.map((p, i) => `
+  <article class="prod">
+    <div class="pic" style="${p.img ? `background-image:url('${esc(p.img)}')` : `background:${esc(p.color || '#eee')}`}" role="img" aria-label="${esc(p.name)}"></div>
+    <div class="b"><h3>${esc(p.name)}</h3><p>${esc(p.desc || '')}</p>
+      <div class="row"><span class="price">${money(p.price)}</span>
+        <span class="stepper"><button type="button" data-i="${i}" data-d="-1" aria-label="減少 ${esc(p.name)}" hidden>−</button><output id="n${i}" hidden>0</output><button type="button" class="add" data-i="${i}" data-d="1" aria-label="加入 ${esc(p.name)}">＋</button></span>
+      </div></div>
+  </article>`).join('');
+
+function render() {
+  let n = 0, t = 0;
+  cart.forEach((q, i) => {
+    n += q; t += q * CONFIG.products[i].price;
+    $('n' + i).textContent = q; $('n' + i).hidden = !q;
+    document.querySelector(`[data-i="${i}"][data-d="-1"]`).hidden = !q;
+  });
+  $('cart-n').textContent = `${n} 件`; $('cart-total').textContent = money(t);
+  $('cart').classList.toggle('show', n > 0);
+  return t;
+}
+$('prods').addEventListener('click', e => {
+  const b = e.target.closest('button[data-i]'); if (!b) return;
+  const i = +b.dataset.i; cart[i] = Math.max(0, Math.min(99, cart[i] + Number(b.dataset.d))); render();
+});
+$('checkout').addEventListener('click', () => {
+  const t = render();
+  $('dlg-items').innerHTML = cart.map((q, i) => q ? `<li><span>${esc(CONFIG.products[i].name)} × ${q}</span><b>${money(q * CONFIG.products[i].price)}</b></li>` : '').join('');
+  $('dlg-total').textContent = money(t);
+  $('dlg').showModal();
+});
+$('back').addEventListener('click', () => $('dlg').close());
+$('order').addEventListener('submit', e => {
+  const f = e.target;
+  if (!f.checkValidity()) { e.preventDefault(); f.reportValidity(); return; }
+  const t = render();
+  const text = [`【${CONFIG.title} 訂單】`,
+    ...cart.map((q, i) => q ? `・${CONFIG.products[i].name} × ${q}　${money(q * CONFIG.products[i].price)}` : '').filter(Boolean),
+    `合計：${money(t)}`, `取貨方式：${f['取貨方式'].value}`, `取貨日期：${f['取貨日期'].value}`, `稱呼：${f['稱呼'].value}`,
+    f['備註'].value ? `備註：${f['備註'].value}` : ''].filter(Boolean).join('\n');
+  location.href = `https://line.me/R/oaMessage/${encodeURIComponent(CONFIG.lineId)}/?${encodeURIComponent(text)}`;
+});
+render();
+</script>
+</body>
+</html>
