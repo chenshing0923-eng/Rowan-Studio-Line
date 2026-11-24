@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="zh-Hant"><head><meta charset="UTF-8"><link rel="stylesheet" href="base.css">
+<style>
+.main { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr 310px; gap: 26px; }
+.it { padding: 54px 58px 46px; display: flex; flex-direction: column; }
+.row { display: flex; align-items: center; gap: 36px; }
+.it .icon { width: 120px; height: 120px; border-radius: 34px; }
+.it .icon svg { width: 66px; height: 66px; }
+.it h2 { font-size: 100px; font-weight: 700; line-height: 1; }
+.it .sub { font-size: 54px; margin-top: 26px; }
+.it .rule { margin: auto 0 26px; }
+.it .pr { display: flex; align-items: baseline; justify-content: space-between; }
+.it .pr b { font-family: "Inter", "Chiron Hei HK", sans-serif; font-size: 80px; font-weight: 800; color: #12806F; letter-spacing: -.01em; }
+.it .pr b small { font-family: "Chiron Hei HK", sans-serif; font-size: 54px; font-weight: 700; }
+.it .pr span { font-size: 46px; color: #A9B3AF; }
+.it.hot { background: linear-gradient(160deg, #FFFFFF, #EAF7F3); border-color: #8FD9C9; }
+.it.hot .icon { background: #2BB3A3; color: #FFFFFF; }
+.bar { grid-column: span 1; display: flex; align-items: center; gap: 56px; padding: 0 84px; }
+.bar h3 { font-size: 100px; font-weight: 700; line-height: 1.1; }
+.bar p { font-size: 58px; margin-top: 10px; }
+.bar .chev { position: static; margin-left: auto; width: 80px; height: 80px; color: #2BB3A3; }
+.main { grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; }
+.it { grid-column: span 2; }
+.bar.f1, .bar.f2 { grid-column: span 3; padding: 0 72px; gap: 44px; }
+.it h2 { white-space: nowrap; font-size: 92px; } .it h2.tight { letter-spacing: -.02em; } .it .pr b { font-size: 72px; }
+</style></head><body>
+<div class="tabs"><div class="tab"><b>首頁</b><i>HOME</i></div><div class="tab"><b>方案</b><i>PLANS</i></div><div class="tab on"><b>功能</b><i>FEATURES</i></div></div>
+<div class="main">
+  <div class="card it hot"><div class="row"><div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4M8 14l2.5 2.5L16 12"/></svg></div><h2>線上預約</h2></div><div class="sub muted">表單、選時段、提醒</div><div class="rule"></div><div class="pr"><b>NT$2,000<small>起</small></b><span>示意 ›</span></div></div>
+  <div class="card it"><div class="row"><div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div><h2>圖文選單</h2></div><div class="sub muted">設計＋設定，可多頁</div><div class="rule"></div><div class="pr"><b>NT$2,500<small>／頁</small></b><span>示意 ›</span></div></div>
+  <div class="card it"><div class="row"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/><path d="M19 15l.8 1.7 1.7.8-1.7.8L19 20l-.8-1.7-1.7-.8 1.7-.8z"/></svg></div><h2>AI 客服</h2></div><div class="sub muted">24 小時自動回答</div><div class="rule"></div><div class="pr"><b>NT$2,500<small>起</small></b><span>示意 ›</span></div></div>
+  <div class="card it"><div class="row"><div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8c-2-4-6-4-6-1.5S9 8 12 8zm0 0c2-4 6-4 6-1.5S15 8 12 8z"/></svg></div><h2>優惠集點</h2></div><div class="sub muted">優惠券・集點卡</div><div class="rule"></div><div class="pr"><b>NT$500<small>起</small></b><span>示意 ›</span></div></div>
+  <div class="card it"><div class="row"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></svg></div><h2 class="tight">Google 曝光</h2></div><div class="sub muted">商家地圖＋SEO</div><div class="rule"></div><div class="pr"><b>NT$1,500<small>起</small></b><span>示意 ›</span></div></div>
+  <div class="card it"><div class="row"><div class="icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.5 12h12L22 7H6.2"/></svg></div><h2>LINE 下單</h2></div><div class="sub muted">網站商品目錄</div><div class="rule"></div><div class="pr"><b>NT$6,800<small>起</small></b><span>示意 ›</span></div></div>
+  <div class="card bar f1"><div class="icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg></div><div><h3>網站功能</h3><p class="muted">11 種，附示意圖</p></div><span class="chev"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span></div>
+  <div class="card dark bar f2"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 4C7 4 3 7.2 3 11.2c0 3.6 3.2 6.6 7.5 7.1l-.4 2.3 3.3-2.3c4.4-.3 7.6-3.4 7.6-7.1C21 7.2 17 4 12 4z"/></svg></div><div><h3>LINE 功能</h3><p class="muted">12 種，附示意圖</p></div><span class="chev"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span></div>
+</div></body></html>

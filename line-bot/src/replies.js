@@ -24,11 +24,16 @@ const clean = o => JSON.parse(JSON.stringify(o)); // 去掉 undefined 欄位
 
 const MAIN_QUICK = ['方案價格', '作品', '網站製作', '免費諮詢'];
 
+/** 功能示意圖（網站 images/line/feat/，比例 26:17） */
+const FEAT_IMG = k => `${IMG}/feat/${k}.jpg`;
+const hero = k => (k ? { type: 'image', url: FEAT_IMG(k), size: 'full', aspectRatio: '26:17', aspectMode: 'cover' } : undefined);
+
 /** 方案卡片 */
-function planBubble({ tag, title, sub, price, unit, note, feats, buttons, featured }) {
+function planBubble({ tag, title, sub, price, unit, note, feats, buttons, featured, img }) {
   return clean({
     type: 'bubble',
     size: 'kilo',
+    hero: hero(img),
     header: {
       type: 'box', layout: 'vertical', paddingAll: '16px', backgroundColor: featured ? C.teal : C.head, spacing: 'xs',
       contents: [
@@ -71,38 +76,37 @@ function workBubble({ img, ratio, title, sub, uri }) {
 
 // ---------- 內容（價格改這裡） ----------
 const OVERVIEW = [
-  planBubble({ tag: 'SETUP・一次付清', title: 'LINE 建置', sub: '選單、回覆一次做好，做好就是你的', price: '3,500', unit: '起', feats: ['圖文選單＋自動回覆', '線上預約、表單自動化', '上線後教你自己改'], buttons: [msgBtn('看建置方案', 'LINE建置方案', true)] }),
-  planBubble({ tag: 'WEBSITE・最推薦', title: '網站製作', sub: '形象網站、品牌官網、預約網站', price: '9,800', unit: '起', feats: ['手機好看、Google 找得到', '線上預約、報價試算可加購', '網站＋LINE 套餐更省'], featured: true, buttons: [msgBtn('看網站方案', '網站方案', true), uriBtn('算算要多少錢', `${SITE}/quote`)] }),
-  planBubble({ tag: 'MONTHLY・月繳不綁約', title: 'LINE 代管', sub: '每月有人幫你更新，或 AI 24 小時回', price: '1,280', unit: '／月起', feats: ['人工代管：選單、推播定期更新', 'AI 智慧客服：24 小時自動回', '年繳免建置費'], buttons: [msgBtn('看代管方案', 'LINE代管方案', true)] })
+  planBubble({ img: 'l-grid', tag: 'SETUP・一次付清', title: 'LINE 建置', sub: '選單、回覆一次做好，做好就是你的', price: '3,500', unit: '起', feats: ['圖文選單＋自動回覆', '線上預約、表單自動化', '上線後教你自己改'], buttons: [msgBtn('看建置方案', 'LINE建置方案', true)] }),
+  planBubble({ img: 'w-mobile', tag: 'WEBSITE・最推薦', title: '網站製作', sub: '形象網站、品牌官網、預約網站', price: '9,800', unit: '起', feats: ['手機好看、Google 找得到', '線上預約、報價試算可加購', '網站＋LINE 套餐更省'], featured: true, buttons: [msgBtn('看網站方案', '網站方案', true), uriBtn('算算要多少錢', `${SITE}/quote`)] }),
+  planBubble({ img: 'l-spark', tag: 'MONTHLY・月繳不綁約', title: 'LINE 代管', sub: '每月有人幫你更新，或 AI 24 小時回', price: '1,280', unit: '／月起', feats: ['人工代管：選單、推播定期更新', 'AI 智慧客服：24 小時自動回', '年繳免建置費'], buttons: [msgBtn('看代管方案', 'LINE代管方案', true)] })
 ];
 
 const ONE_TIME = [
-  planBubble({ tag: 'LINE 建置', title: '入門方案', sub: '先把門面做好', price: '3,500', unit: '起', note: '一次付清・單買合計 NT$3,800', feats: ['帳號開通＋歡迎訊息', '圖文選單 1 頁（含設計）', '關鍵字回覆 5 組', '修改 2 次'], buttons: [msgBtn('詢問這個方案', '我想了解：LINE 建置・入門方案', true)] }),
-  planBubble({ tag: '最多人選', title: '標準方案', sub: '讓帳號幫你接客', price: '6,800', unit: '起', note: '單買合計 NT$8,200・省 NT$1,400', feats: ['入門方案全部內容', '頁籤選單 2 頁可切換', '關鍵字回覆 15 組＋卡片訊息', '線上教學 1 小時・修改 3 次'], featured: true, buttons: [msgBtn('詢問這個方案', '我想了解：LINE 建置・標準方案', true)] }),
-  planBubble({ tag: 'LINE 建置', title: '預約方案', sub: '客人直接在 LINE 預約', price: '15,800', unit: '起', note: '標準方案＋時段預約系統・省 NT$3,000', feats: ['標準方案全部內容', '客人在 LINE 選時段預約', '額滿自動關閉・前一天提醒', '預約資料自動進試算表'], buttons: [msgBtn('詢問這個方案', '我想了解：LINE 建置・預約方案', true), msgBtn('預約怎麼做', '線上預約')] })
+  planBubble({ img: 'l-chat', tag: 'LINE 建置', title: '入門方案', sub: '先把門面做好', price: '3,500', unit: '起', note: '一次付清・單買合計 NT$3,800', feats: ['帳號開通＋歡迎訊息', '圖文選單 1 頁（含設計）', '關鍵字回覆 5 組', '修改 2 次'], buttons: [msgBtn('詢問這個方案', '我想了解：LINE 建置・入門方案', true)] }),
+  planBubble({ img: 'l-tabs', tag: '最多人選', title: '標準方案', sub: '讓帳號幫你接客', price: '6,800', unit: '起', note: '單買合計 NT$8,200・省 NT$1,400', feats: ['入門方案全部內容', '頁籤選單 2 頁可切換', '關鍵字回覆 15 組＋卡片訊息', '線上教學 1 小時・修改 3 次'], featured: true, buttons: [msgBtn('詢問這個方案', '我想了解：LINE 建置・標準方案', true)] }),
+  planBubble({ img: 'l-cal', tag: 'LINE 建置', title: '預約方案', sub: '客人直接在 LINE 預約', price: '15,800', unit: '起', note: '標準方案＋時段預約系統・省 NT$3,000', feats: ['標準方案全部內容', '客人在 LINE 選時段預約', '額滿自動關閉・前一天提醒', '預約資料自動進試算表'], buttons: [msgBtn('詢問這個方案', '我想了解：LINE 建置・預約方案', true), msgBtn('預約怎麼做', '線上預約')] })
 ];
 
 const MONTHLY = [
-  planBubble({ tag: '人工代管', title: '輕量代管', sub: '有人幫你更新', price: '1,980', unit: '／月', note: '建置費 NT$3,500・年繳免建置費', feats: ['入門方案建置', '每月換選單或圖文 1 次', '推播文案＋圖 2 則', '小修改隨時處理'], buttons: [msgBtn('詢問這個方案', '我想了解：LINE 代管・輕量代管', true)] }),
-  planBubble({ tag: 'AI・最划算', title: 'AI 智慧客服', sub: '系統月費，24 小時自動回', price: '1,280', unit: '／月', note: '建置費 NT$6,000・年繳免建置費', feats: ['AI 依你的資料回答', '答不出來自動轉給你', '含圖文選單設計 1 頁', '每月對話整理＋補資料'], featured: true, buttons: [msgBtn('詢問這個方案', '我想了解：LINE 代管・AI 智慧客服', true)] }),
-  planBubble({ tag: '人工代管', title: '進階代管', sub: '整個 LINE 交給我', price: '3,800', unit: '／月', note: '建置費 NT$6,800・年繳免建置費', feats: ['標準方案建置', '推播 4 則＋節慶活動選單', '每月數據回報', '優先處理'], buttons: [msgBtn('詢問這個方案', '我想了解：LINE 代管・進階代管', true)] })
+  planBubble({ img: 'l-cards', tag: '人工代管', title: '輕量代管', sub: '有人幫你更新', price: '1,980', unit: '／月', note: '建置費 NT$3,500・年繳免建置費', feats: ['入門方案建置', '每月換選單或圖文 1 次', '推播文案＋圖 2 則', '小修改隨時處理'], buttons: [msgBtn('詢問這個方案', '我想了解：LINE 代管・輕量代管', true)] }),
+  planBubble({ img: 'l-spark', tag: 'AI・最划算', title: 'AI 智慧客服', sub: '系統月費，24 小時自動回', price: '1,280', unit: '／月', note: '建置費 NT$6,000・年繳免建置費', feats: ['AI 依你的資料回答', '答不出來自動轉給你', '含圖文選單設計 1 頁', '每月對話整理＋補資料'], featured: true, buttons: [msgBtn('詢問這個方案', '我想了解：LINE 代管・AI 智慧客服', true)] }),
+  planBubble({ img: 'l-target', tag: '人工代管', title: '進階代管', sub: '整個 LINE 交給我', price: '3,800', unit: '／月', note: '建置費 NT$6,800・年繳免建置費', feats: ['標準方案建置', '推播 4 則＋節慶活動選單', '每月數據回報', '優先處理'], buttons: [msgBtn('詢問這個方案', '我想了解：LINE 代管・進階代管', true)] })
 ];
 
 const WEBSITE = [
-  planBubble({ tag: 'WEBSITE', title: '一頁式形象網站', sub: '先有一個門面', price: '9,800', unit: '起', note: '1 頁・約 7–10 個工作天', feats: ['手機版優先設計', '服務、價格、地圖、聯絡', '一鍵加 LINE＋洽詢表單', '基本 SEO＋上線設定'], buttons: [msgBtn('詢問這個方案', '我想了解：一頁式形象網站', true), uriBtn('看網站範例', `${SITE}/new-shop#demos`)] }),
-  planBubble({ tag: '最多人選', title: '多頁品牌官網', sub: '把店的故事說完整', price: '18,800', unit: '起', note: '最多 5 頁・約 3 週', feats: ['首頁、關於、服務、作品、聯絡', '作品相簿分類展示', '基本 SEO＋Google 商家設定', '可加最新消息、多語系'], featured: true, buttons: [msgBtn('詢問這個方案', '我想了解：多頁品牌官網', true), uriBtn('看網站範例', `${SITE}/new-shop#demos`)] }),
-  planBubble({ tag: 'WEBSITE', title: '預約型網站', sub: '客人自己線上約', price: '28,800', unit: '起', note: '品牌官網＋線上預約・約 4–5 週', feats: ['含多頁品牌官網全部內容', '客人自選時段、額滿自動關閉', '預約資料進試算表＋即時通知', '可串 LINE 提醒客人'], buttons: [msgBtn('詢問這個方案', '我想了解：預約型網站', true), uriBtn('看網站範例', `${SITE}/new-shop#demos`)] }),
-  itemBubble({ size: 'kilo', tag: 'SET', title: '網站＋LINE 套餐', sub: '一起做比較省', rows: [
-    { group: '開店起步包' }, ['一頁式網站＋LINE 入門', 'NT$11,800 起'], ['單買合計 NT$13,300', '省 1,500'],
-    { group: '開店完整包' }, ['多頁官網＋LINE 標準', 'NT$22,800 起'], ['單買合計 NT$25,600', '省 2,800']
-  ], note: '上線後維護：基本 NT$500／月（文字、照片、價格更新），進階 NT$1,200／月（含每月 2 篇消息、數據月報）。', footer: [msgBtn('詢問套餐', '我想了解：網站＋LINE 套餐', true), uriBtn('算算要多少錢', `${SITE}/quote`)] }),
-  null
+  planBubble({ img: 'w-line', tag: 'WEBSITE', title: '一頁式形象網站', sub: '先有一個門面', price: '9,800', unit: '起', note: '1 頁・約 7–10 個工作天', feats: ['手機版優先設計', '服務、價格、地圖、聯絡', '一鍵加 LINE＋洽詢表單', '基本 SEO＋上線設定'], buttons: [msgBtn('詢問這個方案', '我想了解：一頁式形象網站', true), uriBtn('看網站範例', `${SITE}/new-shop#demos`)] }),
+  planBubble({ img: 'w-page', tag: '最多人選', title: '多頁品牌官網', sub: '把店的故事說完整', price: '18,800', unit: '起', note: '最多 5 頁・約 3 週', feats: ['首頁、關於、服務、作品、聯絡', '作品相簿分類展示', '基本 SEO＋Google 商家設定', '可加最新消息、多語系'], featured: true, buttons: [msgBtn('詢問這個方案', '我想了解：多頁品牌官網', true), uriBtn('看網站範例', `${SITE}/new-shop#demos`)] }),
+  planBubble({ img: 'w-cal', tag: 'WEBSITE', title: '預約型網站', sub: '客人自己線上約', price: '28,800', unit: '起', note: '品牌官網＋線上預約・約 4–5 週', feats: ['含多頁品牌官網全部內容', '客人自選時段、額滿自動關閉', '預約資料進試算表＋即時通知', '可串 LINE 提醒客人'], buttons: [msgBtn('詢問這個方案', '我想了解：預約型網站', true), uriBtn('看網站範例', `${SITE}/new-shop#demos`)] }),
+  itemBubble({ size: 'kilo', img: 'w-mobile', tag: 'SET', title: '網站＋LINE 套餐', sub: '一起做比較省', rows: [
+    { group: '開店起步包・一頁式＋LINE 入門' }, ['NT$11,800 起', '省 1,500'],
+    { group: '開店完整包・多頁官網＋LINE 標準' }, ['NT$22,800 起', '省 2,800']
+  ], note: '上線後維護 NT$500／月起', footer: [msgBtn('詢問套餐', '我想了解：網站＋LINE 套餐', true), uriBtn('算算要多少錢', `${SITE}/quote`)] })
 ];
 
 const BOOKING = [
-  planBubble({ tag: '最快上手', title: '預約系統代設定', sub: '用現成系統（米客、Folio 等）', price: '2,000', unit: '一次', note: '系統月費由店家自付（約 NT$450 起）', feats: ['幫你挑適合的預約系統', '服務、時段、人員設定好', '接到 LINE 選單一鍵預約'], buttons: [msgBtn('詢問這個項目', '我想了解：預約系統代設定', true)] }),
-  planBubble({ tag: '不用月費', title: '預約／報名表單', sub: '客人填表，我幫你整理', price: '4,800', unit: '起', note: '一次付清，沒有系統月費', feats: ['客人在 LINE 填預約或報名', '資料自動進 Google 試算表', '新預約即時通知你', '自動回覆客人「已收到」'], featured: true, buttons: [msgBtn('詢問這個項目', '我想了解：預約／報名表單', true)] }),
-  planBubble({ tag: '最完整', title: '時段預約系統', sub: '客人自己選時段', price: '12,000', unit: '起', note: '一次付清，沒有系統月費', feats: ['顯示可預約時段', '額滿自動關閉、不重複預約', '前一天自動提醒', '客人可以自己取消'], buttons: [msgBtn('詢問這個項目', '我想了解：時段預約系統', true)] })
+  planBubble({ img: 'l-cal', tag: '最快上手', title: '預約系統代設定', sub: '用現成系統（米客、Folio 等）', price: '2,000', unit: '一次', note: '系統月費由店家自付（約 NT$450 起）', feats: ['幫你挑適合的預約系統', '服務、時段、人員設定好', '接到 LINE 選單一鍵預約'], buttons: [msgBtn('詢問這個項目', '我想了解：預約系統代設定', true)] }),
+  planBubble({ img: 'w-clip', tag: '不用月費', title: '預約／報名表單', sub: '客人填表，我幫你整理', price: '4,800', unit: '起', note: '一次付清，沒有系統月費', feats: ['客人在 LINE 填預約或報名', '資料自動進 Google 試算表', '新預約即時通知你', '自動回覆客人「已收到」'], featured: true, buttons: [msgBtn('詢問這個項目', '我想了解：預約／報名表單', true)] }),
+  planBubble({ img: 'l-bell', tag: '最完整', title: '時段預約系統', sub: '客人自己選時段', price: '12,000', unit: '起', note: '一次付清，沒有系統月費', feats: ['顯示可預約時段', '額滿自動關閉、不重複預約', '前一天自動提醒', '客人可以自己取消'], buttons: [msgBtn('詢問這個項目', '我想了解：時段預約系統', true)] })
 ];
 
 const WORKS = [
@@ -119,7 +123,7 @@ const WORKS = [
 ];
 
 /** 單項價目卡片：rows 可以是 ['名稱', '價格'] 或 { group: '分組標題' } */
-function itemBubble({ tag, title, sub, rows, note, ask, footer, size = 'mega' }) {
+function itemBubble({ tag, title, sub, rows, note, ask, footer, size = 'mega', img }) {
   const body = [];
   rows.forEach((r, i) => {
     if (!Array.isArray(r)) {
@@ -136,6 +140,7 @@ function itemBubble({ tag, title, sub, rows, note, ask, footer, size = 'mega' })
   if (note) body.push({ type: 'text', text: note, size: 'xs', color: C.muted, wrap: true, margin: 'xl' });
   return clean({
     type: 'bubble', size,
+    hero: hero(img),
     header: { type: 'box', layout: 'vertical', paddingAll: '16px', backgroundColor: C.head, spacing: 'xs', contents: [
       { type: 'text', text: tag, size: 'xxs', color: '#8FD9C9', weight: 'bold' },
       { type: 'text', text: title, size: 'lg', color: '#FFFFFF', weight: 'bold' },
@@ -150,15 +155,15 @@ function itemBubble({ tag, title, sub, rows, note, ask, footer, size = 'mega' })
 }
 
 const ITEMS = {
-  帳號開通: { tag: 'À LA CARTE', title: '帳號開通', sub: '申請＋基本設定', rows: [['帳號開通與基本設定', 'NT$800']], note: '包含頭像、封面、店家資訊、歡迎訊息。還沒有官方帳號也沒關係，申請是免費的，我帶你一步步開好。' },
-  圖文選單: { tag: 'À LA CARTE', title: '圖文選單', sub: '設計＋設定', rows: [['選單設計＋設定（1 頁）', 'NT$2,500'], ['頁籤切換，每多 1 頁', 'NT$1,800']], note: '先免費畫一張草圖給你看，滿意再開始。頁籤切換就是像這個選單一樣，上方可以切換不同頁。' },
-  自動回覆: { tag: 'À LA CARTE', title: '自動回覆', sub: '關鍵字回覆＋文案', rows: [['關鍵字回覆（含文案）', 'NT$100／組']], note: '5 組起。營業時間、價格、地址、停車這類常見問題，交給自動回覆。' },
-  線上預約: { tag: 'À LA CARTE', title: '線上預約', sub: '三種做法，依預算選', rows: [['預約系統代設定', 'NT$2,000'], ['預約／報名表單', 'NT$4,800 起'], ['時段預約系統', 'NT$12,000 起']], note: '前一天提醒屬於主動推播，會用到店家的 LINE 訊息額度。', ask: '線上預約' },
-  圖片設計: { tag: 'À LA CARTE', title: '圖片設計', sub: '卡片・推播圖・背景圖・桌卡', rows: [['卡片型訊息（含圖）', 'NT$800／組'], ['圖文訊息、推播圖', 'NT$600／張'], ['背景圖、歡迎圖', 'NT$500／張'], ['加好友 QR 桌卡／海報', 'NT$500']] },
-  優惠集點: { tag: 'À LA CARTE', title: '優惠・集點', sub: '讓客人回來消費', rows: [['優惠券設計＋設定', 'NT$500／張'], ['集點卡（含卡面設計）', 'NT$1,000'], ['分眾標籤設定', 'NT$1,500'], ['藍盾認證申請協助', 'NT$1,000']], note: '分眾標籤：依客人興趣自動分類，推播只發給對的人，省訊息費。' },
+  帳號開通: { img: 'l-wave', tag: 'À LA CARTE', title: '帳號開通', sub: '申請＋基本設定', rows: [['帳號開通與基本設定', 'NT$800']], note: '包含頭像、封面、店家資訊、歡迎訊息。還沒有官方帳號也沒關係，申請是免費的，我帶你一步步開好。' },
+  圖文選單: { img: 'l-grid', tag: 'À LA CARTE', title: '圖文選單', sub: '設計＋設定', rows: [['選單設計＋設定（1 頁）', 'NT$2,500'], ['頁籤切換，每多 1 頁', 'NT$1,800']], note: '先免費畫一張草圖給你看，滿意再開始。頁籤切換就是像這個選單一樣，上方可以切換不同頁。' },
+  自動回覆: { img: 'l-chat', tag: 'À LA CARTE', title: '自動回覆', sub: '關鍵字回覆＋文案', rows: [['關鍵字回覆（含文案）', 'NT$100／組']], note: '5 組起。營業時間、價格、地址、停車這類常見問題，交給自動回覆。' },
+  線上預約: { img: 'l-cal', tag: 'À LA CARTE', title: '線上預約', sub: '三種做法，依預算選', rows: [['預約系統代設定', 'NT$2,000'], ['預約／報名表單', 'NT$4,800 起'], ['時段預約系統', 'NT$12,000 起']], note: '前一天提醒屬於主動推播，會用到店家的 LINE 訊息額度。', ask: '線上預約' },
+  圖片設計: { img: 'l-cards', tag: 'À LA CARTE', title: '圖片設計', sub: '卡片・推播圖・背景圖・桌卡', rows: [['卡片型訊息（含圖）', 'NT$800／組'], ['圖文訊息、推播圖', 'NT$600／張'], ['背景圖、歡迎圖', 'NT$500／張'], ['加好友 QR 桌卡／海報', 'NT$500']] },
+  優惠集點: { img: 'l-stamp', tag: 'À LA CARTE', title: '優惠・集點', sub: '讓客人回來消費', rows: [['優惠券設計＋設定', 'NT$500／張'], ['集點卡（含卡面設計）', 'NT$1,000'], ['分眾標籤設定', 'NT$1,500'], ['藍盾認證申請協助', 'NT$1,000']], note: '分眾標籤：依客人興趣自動分類，推播只發給對的人，省訊息費。' },
   集點與認證: null,
-  AI自動回應: { tag: 'À LA CARTE', title: 'AI 自動回應', sub: 'LINE 內建 AI 或客製串接', rows: [['LINE 內建 AI 設定', 'NT$2,500'], ['AI 客服月費方案', 'NT$1,280／月'], ['AI 客服客製串接', 'NT$20,000 起']], note: '內建 AI 需另付 LINE 每月 NT$100；月費方案建置費 NT$6,000，年繳免。' },
-  帳號健檢: { tag: 'À LA CARTE', title: '帳號健檢', sub: '已經有帳號，但好像沒效果？', rows: [['帳號健檢＋優化建議', 'NT$800']], note: '我幫你看選單、歡迎訊息、自動回覆和推播，列出可以改進的地方。之後決定要做，這筆費用可以折抵。' }
+  AI自動回應: { img: 'l-spark', tag: 'À LA CARTE', title: 'AI 自動回應', sub: 'LINE 內建 AI 或客製串接', rows: [['LINE 內建 AI 設定', 'NT$2,500'], ['AI 客服月費方案', 'NT$1,280／月'], ['AI 客服客製串接', 'NT$20,000 起']], note: '內建 AI 需另付 LINE 每月 NT$100；月費方案建置費 NT$6,000，年繳免。' },
+  帳號健檢: { img: 'l-target', tag: 'À LA CARTE', title: '帳號健檢', sub: '已經有帳號，但好像沒效果？', rows: [['帳號健檢＋優化建議', 'NT$800']], note: '我幫你看選單、歡迎訊息、自動回覆和推播，列出可以改進的地方。之後決定要做，這筆費用可以折抵。' }
 };
 ITEMS.集點與認證 = ITEMS.優惠集點;
 
@@ -168,7 +173,46 @@ const WEB_ITEMS = itemBubble({ tag: 'À LA CARTE', title: '網站單項價目', 
   { group: '接單與互動' }, ['洽詢／報名表單', 'NT$3,000'], ['線上報價試算', 'NT$4,800 起'], ['商品目錄＋LINE 下單', 'NT$6,800 起'], ['線上付款／購物車', '依需求'],
   { group: '已經有網站' }, ['網站健檢', 'NT$800'], ['網站改版', 'NT$6,800 起'], ['網站搬家', 'NT$2,500 起']
 ], note: '價格未稅。網域年費約 NT$400–1,000 由店家自付，網站主機用免費方案，不另收主機費。', footer: [msgBtn('我想詢問', '我想了解：網站單項', true), uriBtn('算算要多少錢', `${SITE}/quote`)] });
-WEBSITE[WEBSITE.length - 1] = { ...WEB_ITEMS, size: 'kilo' };
+
+/** 功能介紹：名稱 → [示意圖, 價格, 說明, 'web' | 'line'] */
+const FEATS = {
+  'Google 商家': ['w-store', 'NT$1,500', '客人在 Google 地圖搜你的店，直接看到營業時間、評論、路線。', 'web'],
+  '基本 SEO': ['w-search', 'NT$2,000', 'Google 搜店名就找得到你的網站。網站方案都已包含。', 'web'],
+  '網域＋公司信箱': ['w-mail', 'NT$1,000', '專屬網址＋service@ 信箱，名片更專業。網域年費約 NT$400–1,000 自付。', 'web'],
+  '流量數據': ['w-chart', 'NT$1,000', '每月幾人來看、從 Google 還是 LINE 來，一目了然。', 'web'],
+  '最新消息': ['w-news', 'NT$3,800', '活動、公告、新品自己就能發，不用每次找人改網站。', 'web'],
+  '改試算表更新內容': ['w-sheet', 'NT$4,800', '在 Google 試算表改價格、菜單，網站自動跟著更新。', 'web'],
+  '多語系': ['w-lang', 'NT$4,800 起', '中、英、日切換，觀光客也看得懂。', 'web'],
+  '報價試算': ['w-calc', 'NT$4,800 起', '客人勾選項目自動算價，先有底再找你，少很多來回。', 'web'],
+  '商品目錄＋LINE 下單': ['w-cart', 'NT$6,800 起', '客人在網站選好商品，一鍵用 LINE 把訂單傳給你，不用申請金流。', 'web'],
+  '線上付款': ['w-card', '依需求報價', '信用卡、轉帳付款。要看金流和商品數量，另外報價。', 'web'],
+  '圖文選單': ['l-grid', 'NT$2,500／頁', '聊天室下方的大按鈕，客人一點就看到價目、預約。', 'line'],
+  '自動回覆': ['l-chat', 'NT$100／組', '客人打「價格」「地址」，一秒自動回覆。5 組起。', 'line'],
+  '頁籤選單': ['l-tabs', '每多 1 頁 NT$1,800', '選單上方可以切換多頁，像 App 一樣。', 'line'],
+  'LINE 預約': ['l-cal', 'NT$2,000 起', '在 LINE 選日期、時段，預約完成自動通知。', 'line'],
+  '預約提醒': ['l-bell', '含在時段預約系統', '前一天自動提醒客人，減少放鳥。會用到 LINE 訊息額度。', 'line'],
+  '卡片訊息': ['l-cards', 'NT$800／組', '左右滑的商品、方案卡片，就像你現在看到的這種。', 'line'],
+  '優惠券': ['l-ticket', 'NT$500／張', '加好友禮、生日券、限時券，讓客人有理由再來。', 'line'],
+  '集點卡': ['l-stamp', 'NT$1,000', '消費集點、集滿換贈品，回購變多。含卡面設計。', 'line'],
+  '分眾推播': ['l-target', 'NT$1,500', '依客人興趣自動分類，推播只發給對的人，省訊息費。', 'line'],
+  'AI 客服': ['l-spark', 'NT$2,500 起', '24 小時自動回答常見問題，答不出來再轉給你。', 'line'],
+  '加好友歡迎': ['l-wave', '含在帳號開通 NT$800', '客人一加入就收到店家介紹和優惠。', 'line'],
+  '藍盾認證': ['l-shield', 'NT$1,000', 'LINE 搜尋得到、名字旁有藍盾，客人更放心。申請免費，我協助送審。', 'line'],
+};
+function featBubble(name) {
+  const [img, price, desc, kind] = FEATS[name];
+  return clean({ type: 'bubble', size: 'kilo', hero: hero(img),
+    body: { type: 'box', layout: 'vertical', paddingAll: '16px', spacing: 'sm', contents: [
+      { type: 'text', text: kind === 'web' ? '網站功能' : 'LINE 功能', size: 'xxs', weight: 'bold', color: kind === 'web' ? C.warm : C.teal },
+      { type: 'text', text: name, size: 'lg', weight: 'bold', color: C.text, wrap: true },
+      { type: 'text', text: price, size: 'md', weight: 'bold', color: C.teal, wrap: true },
+      { type: 'text', text: desc, size: 'sm', color: C.muted, wrap: true, margin: 'sm' }
+    ] },
+    footer: { type: 'box', layout: 'vertical', spacing: 'sm', paddingAll: '12px', contents: [msgBtn('詢問這個功能', `我想了解：${name}`, true), uriBtn('算算要多少錢', `${SITE}/quote`)] }
+  });
+}
+const featCarousel = kind => carousel(Object.keys(FEATS).filter(k => FEATS[k][3] === kind).slice(0, 12).map(featBubble));
+const feat = (name, quick) => flex(`功能介紹：${name}（${FEATS[name][1]}）`, featBubble(name), quick || ['網站功能', 'LINE 功能', '估價', '免費諮詢']);
 
 const QUOTE = clean({ type: 'bubble', size: 'kilo',
   header: { type: 'box', layout: 'vertical', paddingAll: '16px', backgroundColor: C.teal, spacing: 'xs', contents: [
@@ -223,6 +267,7 @@ const RULES = [
     const it = ITEMS[k];
     return [flex(`單項價目：${it.title}`, itemBubble(it), ['完整單項價目表', '幫我推薦方案', '免費諮詢'])];
   }],
+  [/網站單項|網站價目/, () => [flex('網站單項價目', WEB_ITEMS, ['網站功能', '網站方案', '估價', '免費諮詢'])]],
   [/完整單項|單項價目|價目表|單項/, () => [flex('完整單項價目表', FULL_LIST, ['幫我推薦方案', '免費諮詢'])]],
   [/^推薦：/, t => {
     const r = RECOMMEND[t.replace(/^推薦：/, '')];
@@ -230,6 +275,26 @@ const RULES = [
     return [msg(`建議你看：${r[0]}\n\n${r[1]}\n\n想更準確的建議，輸入「免費諮詢」，我親自幫你看。`, [r[2], '免費諮詢', '完整單項價目表'])];
   }],
   [/推薦|不知道選|怎麼選|哪個好|適合我/, () => [msg('幫你推薦！你的狀況比較接近哪一個？', Object.keys(RECOMMEND).map(k => `推薦：${k}`))]],
+  [/網站功能/, () => [flex('網站可以做的功能', featCarousel('web'), ['LINE 功能', '網站方案', '估價', '免費諮詢'])]],
+  [/line ?功能/i, () => [flex('LINE 官方帳號可以做的功能', featCarousel('line'), ['網站功能', 'LINE建置方案', '估價', '免費諮詢'])]],
+  [/^(功能|功能介紹|有哪些功能|能做什麼|可以做什麼|有什麼功能)/, () => [msg('網站和 LINE 能做的功能都整理好了，往右滑看示意圖 👇'), flex('網站可以做的功能', featCarousel('web')), flex('LINE 官方帳號可以做的功能', featCarousel('line'), ['網站方案', 'LINE建置方案', '估價', '免費諮詢'])]],
+  [/google ?商家|商家檔案|地圖/i, () => [feat('Google 商家')]],
+  [/seo|搜尋得到|找得到|google|谷歌/i, () => [feat('基本 SEO')]],
+  [/網域|自己的網址|公司信箱/, () => [feat('網域＋公司信箱')]],
+  [/流量|瀏覽人數|數據分析/, () => [feat('流量數據')]],
+  [/最新消息|部落格|公告/, () => [feat('最新消息')]],
+  [/試算表|網站後台|cms/i, () => [feat('改試算表更新內容')]],
+  [/多語|英文版|日文版|英文網站|外國客/, () => [feat('多語系')]],
+  [/報價試算|計算機|自動算價|估價系統/, () => [feat('報價試算')]],
+  [/商品目錄|線上下單|訂單|購物|賣東西|網購/, () => [feat('商品目錄＋LINE 下單', ['線上付款', '網站功能', '估價', '免費諮詢'])]],
+  [/刷卡|信用卡|金流|線上付款|購物車/, () => [feat('線上付款', ['商品目錄', '網站功能', '免費諮詢'])]],
+  [/改版|網站健檢|網站搬家|已經有網站|舊網站/, () => [msg('已經有網站也可以！\n\n・網站健檢 NT$800：看速度、手機版、SEO，給你改善建議\n・網站改版 NT$6,800 起：保留內容、換新設計\n・網站搬家 NT$2,500 起：從要付月費的主機搬到免費主機\n\n也可以只加功能，例如最新消息、多語系。', ['網站單項', '網站功能', '免費諮詢'])]],
+  [/頁籤|多頁選單|切換選單/, () => [feat('頁籤選單', ['圖文選單', 'LINE 功能', '免費諮詢'])]],
+  [/卡片|滑動|輪播/, () => [feat('卡片訊息')]],
+  [/提醒|放鳥|爽約/, () => [feat('預約提醒', ['線上預約', 'LINE 功能', '免費諮詢'])]],
+  [/歡迎訊息|加好友歡迎|歡迎詞/, () => [feat('加好友歡迎')]],
+  [/^(圖文)?選單$|圖文選單/, () => [flex('單項價目：圖文選單', itemBubble(ITEMS.圖文選單), ['頁籤選單', 'LINE 功能', '免費諮詢'])]],
+  [/自動回覆|關鍵字/, () => [flex('單項價目：自動回覆', itemBubble(ITEMS.自動回覆), ['AI 客服', 'LINE 功能', '免費諮詢'])]],
   [/估價|報價|試算|算算|算價/, () => [flex('估價小幫手：選一選，馬上知道大概多少錢', QUOTE, ['網站方案', 'LINE建置方案', '免費諮詢'])]],
   [/免費諮詢|諮詢/, () => [msg('好的！先問一個問題，你比較想做哪一種？', ['我想了解：LINE 選單＋自動回覆', '我想了解：線上預約', '我想了解：AI 智慧客服', '我想了解：LINE 代管', '我想了解：網站製作', '我想了解：還不確定', '估價'])]],
   [/^預約方案$/, () => [flex('LINE 建置方案：入門 3,500 起、標準 6,800 起、預約方案 15,800 起', carousel(ONE_TIME), ['線上預約', '免費諮詢'])]],
@@ -249,15 +314,14 @@ const RULES = [
     flex('LINE 代管方案', carousel(MONTHLY), MAIN_QUICK2)
   ]],
   [/代管|月費|月租|代操|經營/, () => [flex('LINE 代管方案：輕量 1,980、AI 智慧客服 1,280、進階 3,800（每月）', carousel(MONTHLY), MAIN_QUICK2)]],
-  [/seo|google|谷歌|搜尋|商家|多語|英文版|日文版|部落格|最新消息|購物車|金流|刷卡|線上付款|改版|網站健檢|網站搬家|公司信箱|網站單項/i, () => [flex('網站單項價目', WEB_ITEMS, ['網站方案', '估價', '免費諮詢'])]],
   [/網站|官網|網頁|開店|網址|網域/, () => [
-    msg('網站有三種方案：\n\n① 一頁式形象網站 NT$9,800 起：先有一個門面\n② 多頁品牌官網 NT$18,800 起：最多 5 頁，最多人選\n③ 預約型網站 NT$28,800 起：客人自己線上約\n\n和 LINE 一起做有套餐價（NT$11,800 起）。往右滑看詳細內容和單項價目。'),
-    flex('網站方案：一頁式 9,800 起、多頁官網 18,800 起、預約型 28,800 起', carousel(WEBSITE), ['網站範例', '估價', '免費諮詢'])
+    msg('網站有三種方案：\n\n① 一頁式形象網站 NT$9,800 起：先有一個門面\n② 多頁品牌官網 NT$18,800 起：最多 5 頁，最多人選\n③ 預約型網站 NT$28,800 起：客人自己線上約\n\n和 LINE 一起做有套餐價（NT$11,800 起）。往右滑看示意圖和詳細內容。'),
+    flex('網站方案：一頁式 9,800 起、多頁官網 18,800 起、預約型 28,800 起', carousel(WEBSITE), ['網站功能', '網站單項', '網站範例', '估價'])
   ]],
-  [/優惠券|折價|折扣|生日禮|加好友禮/, () => [flex('單項價目：優惠・集點', itemBubble(ITEMS.優惠集點), ['完整單項價目表', '免費諮詢'])]],
-  [/集點|點數|會員/, () => [flex('單項價目：優惠・集點', itemBubble(ITEMS.優惠集點), ['完整單項價目表', '免費諮詢'])]],
-  [/分眾|標籤|貼標/, () => [msg('分眾標籤會依客人點過的選單、問過的問題自動分類（例如「問過價格」「預約過」）。推播時只發給對的人，客人不覺得被打擾，也省 LINE 訊息費。\n\n設定費 NT$1,500。', ['單項：優惠集點', '完整單項價目表', '免費諮詢'])]],
-  [/藍盾|認證|未經過認證|警告|安全/, () => [msg('聊天室上方出現「此帳號為尚未經過認證的官方帳號」，是所有沒有藍盾的帳號都會顯示的提醒，不代表帳號有問題。\n\n申請「認證帳號」（藍盾）通過後就會消失，客人比較安心，也能被 LINE 搜尋到。申請免費，我協助準備資料與送審 NT$1,000。', ['單項：優惠集點', '免費諮詢'])]],
+  [/優惠券|折價|折扣|生日禮|加好友禮/, () => [feat('優惠券', ['集點卡', '分眾推播', 'LINE 功能', '免費諮詢'])]],
+  [/集點|點數|會員/, () => [feat('集點卡', ['優惠券', '分眾推播', 'LINE 功能', '免費諮詢'])]],
+  [/分眾|標籤|貼標/, () => [msg('分眾標籤會依客人點過的選單、問過的問題自動分類（例如「問過價格」「預約過」）。推播時只發給對的人，客人不覺得被打擾，也省 LINE 訊息費。\n\n設定費 NT$1,500。'), feat('分眾推播', ['優惠券', '集點卡', 'LINE 功能', '免費諮詢'])]],
+  [/藍盾|認證|未經過認證|警告|安全/, () => [msg('聊天室上方出現「此帳號為尚未經過認證的官方帳號」，是所有沒有藍盾的帳號都會顯示的提醒，不代表帳號有問題。\n\n申請「認證帳號」（藍盾）通過後就會消失，客人比較安心，也能被 LINE 搜尋到。申請免費，我協助準備資料與送審 NT$1,000。'), feat('藍盾認證', ['LINE 功能', '免費諮詢'])]],
   [/健檢|沒效果|沒人用|好友不|沒反應|已經有帳號|現有帳號|有帳號|搬家|換廠商|舊廠商/, () => [msg('已經有帳號也可以！好友、資料都會保留，我幫你重新規劃選單和回覆。\n\n不確定問題在哪，可以先做「帳號健檢」NT$800：我幫你看選單、歡迎訊息、自動回覆和推播，列出改進建議，之後決定要做，這筆可以折抵。\n\n如果要從原廠商搬回自己管理，也可以幫你處理。', ['單項：帳號健檢', 'LINE建置方案', '免費諮詢'])]],
   [/qr|桌卡|海報|貼紙|立牌|好友變多|增加好友|加好友/i, () => [msg('想讓更多客人加好友，最有效的是：\n\n・店內放「加好友 QR 桌卡／海報」NT$500\n・設定「加好友禮」優惠券 NT$500／張\n・結帳時請店員提醒掃碼\n\n這三個一起做，好友通常會成長得比較快。', ['單項：圖片設計', '單項：優惠集點', '免費諮詢'])]],
   [/推播|群發|廣告|發訊息/, () => [msg('推播就是主動發訊息給所有好友，例如新品、優惠、節慶活動。\n\n・單張推播圖 NT$600\n・每月幫你規劃＋製作：輕量代管（每月 2 則）NT$1,980、進階代管（每月 4 則）NT$3,800\n\n推播會用到 LINE 的訊息額度，搭配分眾標籤只發給對的人，最省錢。', ['LINE代管方案', '分眾標籤', '免費諮詢'])]],
